@@ -38,17 +38,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.querySelectorAll('[data-kilau]').forEach(kotak => {
     const jenis = kotak.dataset.kilau;
+    if (jenis === 'tagihan') {
+      /* Tagihan gabungan dua belas bulan terakhir, listrik ditambah air */
+      const deret = HALO.listrikBulanan.map((v, i) =>
+        Math.round(v * HALO.tarif.listrik + HALO.airBulanan[i] * HALO.tarif.air));
+      Grafik.kilau(kotak, deret, 'var(--ink-3)');
+      return;
+    }
     Grafik.kilau(kotak, (jenis === 'air' ? HALO.airHarian : HALO.listrikHarian).slice(-14),
       jenis === 'air' ? 'var(--air)' : 'var(--listrik)');
   });
 
-  /* ---------- Cincin perbandingan kawasan ---------- */
+  /* ---------- Perbandingan dengan rata-rata kawasan ----------
+     Batang mendatar, bukan cincin, supaya kartu keempat berstruktur
+     sama dengan tiga kartu di sebelahnya. Garis tegak menandai 100
+     persen, yaitu rata-rata delapan kelurahan. */
   const rataKawasan = HALO.kawasan.reduce((a, b) => a + b.listrik, 0) / HALO.kawasan.length;
   const banding = Math.round((HALO.listrikBulanan[11] / rataKawasan) * 100);
-  Grafik.cincin(document.getElementById('cincinBanding'), {
-    nilai: banding, maks: 150, warna: banding <= 100 ? 'var(--hemat)' : 'var(--waspada)',
-    label: 'persen dari rata-rata'
-  });
+  const kotakBanding = document.getElementById('bandingBatang');
+  if (kotakBanding) {
+    const SKALA = 150;
+    const isi = kotakBanding.querySelector('.banding-isi');
+    const acuan = kotakBanding.querySelector('.banding-acuan');
+    acuan.style.left = (100 / SKALA * 100) + '%';
+    isi.style.background = banding <= 100 ? 'var(--hemat)' : 'var(--waspada)';
+    document.getElementById('nBanding').innerHTML = F.angka(banding) + ' <small>persen</small>';
+    const jalankan = () => { isi.style.width = Math.min(100, banding / SKALA * 100) + '%'; };
+    if ('IntersectionObserver' in window) {
+      const o = new IntersectionObserver(e => { if (e[0].isIntersecting) { jalankan(); o.disconnect(); } }, { threshold: .4 });
+      o.observe(kotakBanding);
+    } else { jalankan(); }
+  }
 
   /* ---------- Grafik pemakaian dengan pilihan rentang ---------- */
   const wadahPakai = document.getElementById('grafikPakai');

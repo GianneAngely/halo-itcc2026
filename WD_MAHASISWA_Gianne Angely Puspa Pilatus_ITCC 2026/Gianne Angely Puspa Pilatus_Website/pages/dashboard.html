@@ -79,13 +79,18 @@
         </div>
         <div class="panel">
           <p class="panel-nama">Perkiraan tagihan Agustus</p>
-          <p class="panel-angka tnum" id="nTagihan">Rp439.700</p>
+          <p class="panel-angka tnum" id="nTagihan">Rp439.752</p>
+          <div class="panel-kilau" data-kilau="tagihan"></div>
           <p class="panel-kaki" id="nTagihanKaki">listrik dan air digabung</p>
         </div>
-        <div class="panel panel-cincin">
-          <p class="panel-nama">Dibanding rata-rata kawasan</p>
-          <div id="cincinBanding"></div>
-          <p class="panel-kaki">Di bawah 100 berarti lebih hemat daripada rata-rata delapan kelurahan.</p>
+        <div class="panel">
+          <p class="panel-nama">Dibanding kawasan</p>
+          <p class="panel-angka tnum" id="nBanding">94 <small>persen</small></p>
+          <div class="banding" id="bandingBatang">
+            <span class="banding-isi"></span>
+            <span class="banding-acuan" title="Rata-rata kawasan"></span>
+          </div>
+          <p class="panel-kaki">Garis tegak itu rata-rata delapan kelurahan. Makin kiri, makin hemat.</p>
         </div>
       </div>
 
@@ -105,9 +110,8 @@
         <div class="gr-wadah"><div id="grafikPakai"></div></div>
       </div>
 
-      <div class="dua-kolom">
-        <!-- ---------- Peta panas ---------- -->
-        <div class="kotak">
+      <!-- ---------- Peta panas ---------- -->
+      <div class="kotak">
           <div class="kotak-kepala">
             <div>
               <h2>Kapan rumah paling boros</h2>
@@ -115,19 +119,18 @@
             </div>
           </div>
           <div class="gr-wadah"><div id="petaPanas"></div></div>
-          <p class="gr-keterangan">Kolom menunjukkan jam 00 sampai 23. Sabtu dan Minggu terlihat lebih pekat karena penghuni di rumah sepanjang hari.</p>
-        </div>
+        <p class="gr-keterangan">Kolom menunjukkan jam 00 sampai 23. Sabtu dan Minggu terlihat lebih pekat karena penghuni di rumah sepanjang hari.</p>
+      </div>
 
-        <!-- ---------- Rincian per alat ---------- -->
-        <div class="kotak">
+      <!-- ---------- Rincian per alat ---------- -->
+      <div class="kotak">
           <div class="kotak-kepala">
             <div>
               <h2>Rincian per alat</h2>
               <p>Bulan berjalan, dalam kWh. Dipisahkan sensor jalur utama dan jalur dapur.</p>
             </div>
           </div>
-          <div id="rincianAlat"></div>
-        </div>
+        <div id="rincianAlat"></div>
       </div>
 
       <!-- ---------- Kejanggalan ---------- -->

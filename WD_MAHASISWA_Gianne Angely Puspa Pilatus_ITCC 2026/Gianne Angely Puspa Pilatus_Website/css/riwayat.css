@@ -77,18 +77,26 @@
 .ukur-kaki { display: block; font-size: 1.15rem; color: var(--hemat); }
 
 /* ---------- Sebaran tahap ---------- */
-.sebaran { display: flex; gap: 2px; height: 10px; margin: var(--s3) 0 var(--s3); }
+/* Tingginya disamakan dengan grafik mungil di kartu sebelahnya */
+.sebaran { display: flex; gap: 2px; height: 38px; align-items: center; margin: 2px 0 0; }
+.sebaran-bagian { height: 10px; }
 .sebaran-bagian { display: block; border-radius: 2px; }
 .sb-terpasang { background: var(--hemat); }
 .sb-jadwal { background: var(--listrik); }
 .sb-ajukan { background: var(--ink-3); }
 .sb-batal { background: var(--waspada); }
-.sebaran-kunci { display: grid; gap: 3px; }
-.sebaran-kunci li { display: flex; align-items: center; gap: 7px; font-size: var(--fs-xs); color: var(--ink-3); }
-.sebaran-kunci i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
 
 @media (max-width: 900px) {
   .aj-isi-kisi { grid-template-columns: 1fr; }
   .jejak-titik + .jejak-titik { margin-left: 26px; }
   .jejak-titik + .jejak-titik::before { right: 9px; width: 26px; }
 }
+
+/* Petak jumlah: satu kotak kecil untuk tiap pengajuan.
+   Tingginya sengaja disamakan dengan grafik mungil di kartu lain. */
+.petak { display: flex; align-items: center; gap: 4px; height: 38px; margin: 2px 0 0; }
+.petak i {
+  display: block; width: 14px; height: 14px; border-radius: 3px;
+  background: var(--line-2); border: 1px solid var(--line);
+}
+.petak i.isi { background: var(--hemat); border-color: var(--hemat); }

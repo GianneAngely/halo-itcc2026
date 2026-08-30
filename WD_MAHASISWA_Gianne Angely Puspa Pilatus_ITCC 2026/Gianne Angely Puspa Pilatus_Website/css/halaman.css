@@ -7,7 +7,10 @@
   background: var(--surface); border-bottom: 1px solid var(--line);
   padding-block: var(--s7) var(--s6);
 }
-.kepala-kisi { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s7); align-items: start; }
+/* Deret angka di kanan dirapatkan ke dasar kolom kiri. Kalau dibiarkan
+   rata atas, angkanya menggantung dan menyisakan rongga di bawahnya. */
+.kepala-kisi { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s7); align-items: end; }
+.kepala-kisi > *:last-child { padding-bottom: 4px; }
 .kepala h1 { margin-bottom: var(--s3); }
 .remah { display: flex; gap: var(--s2); font-size: var(--fs-xs); color: var(--ink-3); margin-bottom: var(--s4); }
 .remah a:hover { color: var(--ink); text-decoration: underline; }
@@ -88,6 +91,15 @@
 .naik { color: var(--waspada); }
 .turun { color: var(--hemat); }
 
+/* Semua kartu ringkas berstruktur sama: nama, angka, satu visual,
+   satu baris kaki. Isinya dirapatkan ke atas dan baris kakinya
+   menyediakan ruang yang sama, jadi tidak ada kartu yang menyisakan
+   rongga hanya karena keterangannya lebih pendek. */
+.panel-kisi .panel { display: grid; align-content: start; gap: var(--s2); }
+.panel-kisi .panel-angka { margin-top: 2px; }
+.panel-kisi .panel-kaki { min-height: 2.9em; align-items: flex-start; margin-top: var(--s2); }
+.panel-kilau { height: 38px; margin: 2px 0 0; }
+
 /* ---------- Kotak isi ---------- */
 .kotak { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s5) var(--s6); }
 .kotak-kepala { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s4); margin-bottom: var(--s5); flex-wrap: wrap; }
@@ -95,7 +107,7 @@
 .kotak-kepala p { font-size: var(--fs-sm); color: var(--ink-3); margin-top: 2px; }
 
 /* ---------- Susunan dua kolom ---------- */
-.dua-kolom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s5); }
+.dua-kolom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s5); align-items: start; }
 .kolom-berat { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--s5); align-items: start; }
 .tumpuk { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s5); }
 
@@ -111,4 +123,11 @@
 @media (max-width: 520px) {
   .panel-kisi { grid-template-columns: 1fr; }
   .kotak { padding: var(--s4); }
+}
+
+/* Di layar sempit rak tab membungkus, bukan menggulir ke samping —
+   lima tab yang tersembunyi di luar layar sulit ditemukan pengguna. */
+@media (max-width: 640px) {
+  .tab-rak { flex-wrap: wrap; gap: var(--s4) var(--s5); overflow-x: visible; padding-bottom: var(--s2); }
+  .tab-rak button { padding-block: var(--s2); }
 }

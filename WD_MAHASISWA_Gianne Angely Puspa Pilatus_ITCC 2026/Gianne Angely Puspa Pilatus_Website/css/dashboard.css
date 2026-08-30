@@ -7,9 +7,6 @@
 .kepala-angka span { font-size: var(--fs-xs); color: var(--ink-3); }
 
 .panel-kilau { height: 34px; margin: var(--s2) 0; }
-.panel-cincin { display: grid; justify-items: center; text-align: center; }
-.panel-cincin .panel-nama { justify-self: start; }
-.panel-cincin > div { width: 100%; max-width: 150px; margin-block: var(--s2); }
 
 /* ---------- Kartu kejanggalan ---------- */
 .an-daftar { display: grid; gap: var(--s4); }
@@ -36,17 +33,39 @@
   .an-atas { flex-wrap: wrap; }
 }
 
-/* Isi kartu ringkas dirapatkan ke atas supaya tidak menyisakan
-   ruang kosong ketika kartu bersebelahan dengan kartu bercincin. */
-.panel-kisi .panel { display: flex; flex-direction: column; align-items: stretch; }
-.panel-cincin { align-items: center; }
-.panel-cincin > div { max-width: 118px; }
-.panel-cincin .panel-kaki { margin-top: auto; }
-.panel-kilau { margin-bottom: auto; }
 
 /* Di layar sempit peta panas digulir mendatar di dalam kotaknya sendiri,
    supaya tiap sel tetap cukup besar untuk disentuh dan dibaca. */
-@media (max-width: 700px) {
-  #petaPanas { overflow-x: auto; }
-  #petaPanas .gr { min-width: 560px; }
+/* Peta panas selalu punya lebar minimum supaya selnya tetap enak
+   dilihat dan disentuh; kalau tidak muat, kotaknya yang digulir. */
+#petaPanas { overflow-x: auto; }
+#petaPanas .gr { min-width: 620px; }
+
+/* ---------- Kartu ringkas ----------
+   Keempatnya berstruktur sama: nama, angka, satu grafik mungil,
+   lalu satu baris kaki. Tidak ada lagi jarak otomatis yang
+   menyisakan rongga ketika kartu bersebelahan dengan yang lebih tinggi. */
+.panel-kisi .panel { display: grid; align-content: start; gap: var(--s2); }
+.panel-kisi .panel-angka { margin-top: 2px; }
+.panel-kilau { height: 38px; margin: 2px 0 0; }
+.panel-kaki { margin-top: var(--s2); }
+
+/* Batang pembanding pada kartu keempat, tingginya disamakan
+   dengan grafik mungil di tiga kartu lainnya. */
+.banding {
+  position: relative; height: 38px; display: flex; align-items: center;
+  margin: 2px 0 0;
 }
+.banding::before {
+  content: ''; position: absolute; left: 0; right: 0; height: 10px;
+  background: var(--line-2); border-radius: 999px;
+}
+.banding-isi {
+  position: relative; height: 10px; width: 0; border-radius: 999px;
+  transition: width .9s cubic-bezier(.22,.61,.36,1);
+}
+.banding-acuan {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 2px; height: 20px; background: var(--ink); border-radius: 1px;
+}
+

@@ -48,8 +48,22 @@ const Grafik = (function () {
     if (!k) { k = document.createElement('div'); k.className = 'gr-tip'; wadah.appendChild(k); }
     return {
       tampil(html, x, y) {
-        k.innerHTML = html; k.classList.add('nyala');
-        k.style.left = x + 'px'; k.style.top = y + 'px';
+        k.innerHTML = html;
+        k.classList.add('nyala');
+        /* Ditempatkan dulu, baru diukur, baru dikoreksi — kotaknya
+           tidak boleh keluar dari wadah grafiknya sendiri. */
+        k.style.left = x + 'px';
+        k.style.top = y + 'px';
+        const lebarWadah = wadah.clientWidth;
+        const lebarTip = k.offsetWidth;
+        const tinggiTip = k.offsetHeight;
+        const tepi = 6;
+        /* Mendatar: pusat kotak dijaga supaya kedua sisinya tetap di dalam */
+        const minX = lebarTip / 2 + tepi;
+        const maksX = lebarWadah - lebarTip / 2 - tepi;
+        k.style.left = Math.max(minX, Math.min(maksX, x)) + 'px';
+        /* Tegak: dibalik ke bawah kalau ruang di atasnya tidak cukup */
+        k.classList.toggle('bawah', y < tinggiTip + 10);
       },
       sembunyi() { k.classList.remove('nyala'); }
     };

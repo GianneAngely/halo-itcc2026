@@ -119,6 +119,26 @@ document.addEventListener('DOMContentLoaded', function () {
     b.querySelector('.jumlah').textContent = s === 'semua' ? semua.length : hitungStatus(s);
   });
 
+  /* ---------- Petak jumlah ----------
+     Satu kotak kecil untuk tiap pengajuan; yang sudah terpasang diisi
+     penuh. Memberi kartu ringkas visual yang tingginya sama dengan
+     grafik mungil di kartu sebelahnya. */
+  function gambarPetak(id, terisi) {
+    const kotak = document.getElementById(id);
+    if (!kotak) return;
+    kotak.innerHTML = semua.map((_, i) =>
+      '<i class="' + (i < terisi ? 'isi' : '') + '"></i>').join('');
+  }
+  gambarPetak('petakTotal', semua.length);
+  gambarPetak('petakTerpasang', hitungStatus('terpasang'));
+
+  /* Garis mungil penghematan yang menumpuk */
+  const kotakKilauHemat = document.getElementById('kilauHemat');
+  if (kotakKilauHemat) {
+    const hb = HALO.riwayat.filter(r => r.hematTerukur).reduce((a, b) => a + b.hematTerukur, 0);
+    Grafik.kilau(kotakKilauHemat, Array.from({ length: 12 }, (_, i) => hb * (i + 1)), 'var(--hemat)');
+  }
+
   /* ---------- Sebaran tahap ikut menyesuaikan jumlah sebenarnya ---------- */
   const kotakSebaran = document.getElementById('sebaranTahap');
   if (kotakSebaran) {
@@ -129,9 +149,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const urut = ['terpasang', 'dijadwalkan', 'diverifikasi', 'diajukan', 'batal'].filter(k => hitung[k]);
     kotakSebaran.innerHTML = urut.map(k =>
       '<span class="sebaran-bagian ' + kelas[k] + '" style="flex:' + hitung[k] + '" title="' + hitung[k] + ' ' + nama[k] + '"></span>').join('');
-    const kunci = kotakSebaran.parentElement.querySelector('.sebaran-kunci');
-    if (kunci) kunci.innerHTML = urut.map(k =>
-      '<li><i class="' + kelas[k] + '"></i>' + hitung[k] + ' ' + nama[k] + '</li>').join('');
+    const kunci = document.getElementById('sebaranKunci');
+    if (kunci) kunci.textContent = urut.map(k => hitung[k] + ' ' + nama[k]).join(' · ');
+    const jumlahEl2 = document.getElementById('ringkasSebaran');
+    if (jumlahEl2) jumlahEl2.innerHTML = semua.length + ' <small>pengajuan</small>';
   }
 
   /* ---------- Grafik penghematan yang menumpuk ---------- */

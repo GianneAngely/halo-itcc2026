@@ -63,32 +63,31 @@
         <div class="panel">
           <p class="panel-nama">Total pengajuan</p>
           <p class="panel-angka tnum" id="ringkasTotal">6</p>
+          <div class="petak" id="petakTotal" aria-hidden="true"></div>
           <p class="panel-kaki">sejak bergabung September 2025</p>
         </div>
         <div class="panel">
           <p class="panel-nama">Sudah terpasang</p>
           <p class="panel-angka tnum" id="ringkasTerpasang">3</p>
-          <p class="panel-kaki">satu dijadwalkan, satu menunggu verifikasi</p>
+          <div class="petak" id="petakTerpasang" aria-hidden="true"></div>
+          <p class="panel-kaki">tiga dari enam pengajuan selesai dikerjakan</p>
         </div>
         <div class="panel">
           <p class="panel-nama">Penghematan terukur</p>
           <p class="panel-angka turun tnum" id="ringkasHemat">Rp270.200</p>
-          <p class="panel-kaki"><i class="bx bx-down-arrow-alt"></i> per bulan, diukur setelah pemasangan</p>
+          <div class="panel-kilau" id="kilauHemat"></div>
+          <p class="panel-kaki">per bulan, diukur ulang setelah pemasangan</p>
         </div>
         <div class="panel">
           <p class="panel-nama">Sebaran tahap</p>
+          <p class="panel-angka tnum" id="ringkasSebaran">6 <small>pengajuan</small></p>
           <div class="sebaran" id="sebaranTahap">
             <span class="sebaran-bagian sb-terpasang" style="flex:3" title="3 terpasang"></span>
             <span class="sebaran-bagian sb-jadwal" style="flex:1" title="1 dijadwalkan"></span>
             <span class="sebaran-bagian sb-ajukan" style="flex:1" title="1 diajukan"></span>
             <span class="sebaran-bagian sb-batal" style="flex:1" title="1 batal"></span>
           </div>
-          <ul class="sebaran-kunci">
-            <li><i class="sb-terpasang"></i>3 terpasang</li>
-            <li><i class="sb-jadwal"></i>1 dijadwalkan</li>
-            <li><i class="sb-ajukan"></i>1 diajukan</li>
-            <li><i class="sb-batal"></i>1 batal</li>
-          </ul>
+          <p class="panel-kaki" id="sebaranKunci">3 terpasang · 1 dijadwalkan · 1 diajukan · 1 batal</p>
         </div>
       </div>
 

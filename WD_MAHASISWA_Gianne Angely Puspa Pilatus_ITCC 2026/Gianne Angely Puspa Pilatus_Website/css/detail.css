@@ -96,3 +96,13 @@ input[type="range"]:focus-visible { outline-offset: 6px; }
    jadi ukurannya menyesuaikan lebar kotak. */
 .sim-angka .panel-angka { font-size: clamp(1.15rem, 1rem + .9vw, 1.5rem); overflow-wrap: anywhere; }
 .sim-angka .panel-nama { min-height: 2.2em; display: flex; align-items: flex-start; }
+
+/* Kolom kanan jauh lebih pendek daripada kolom kiri, jadi dibuat
+   menempel dan ikut bergulir. Tanpa ini ada sekitar 600 piksel kosong
+   di sisi kanan begitu pembaca sampai ke garis waktu pengerjaan. */
+@media (min-width: 1001px) {
+  /* Petaknya dibiarkan setinggi kolom kiri supaya isinya punya ruang
+     jelajah; yang menempel pembungkus di dalamnya, bukan petaknya. */
+  .kolom-berat > .sisi { align-self: stretch; }
+  .sisi-lekat { position: sticky; top: 78px; }
+}

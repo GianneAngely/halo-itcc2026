@@ -155,14 +155,14 @@
   .unggulan { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .angka-kisi { grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
+  .angka-kisi { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5) var(--s4); }
   .hero { padding-block: var(--s5) var(--s7); }
   .alat-kaki { grid-template-columns: 1fr; gap: var(--s4); }
 }
 @media (max-width: 560px) {
   .alur-daftar { grid-template-columns: 1fr; }
   .unggulan { grid-template-columns: 1fr; }
-  .angka-kisi { grid-template-columns: 1fr; }
+
   .bukti-angka { gap: var(--s5); }
 }
 
@@ -170,3 +170,73 @@
 .panas-kepala { display: grid; grid-template-columns: 5fr 7fr; gap: var(--s7); align-items: start; margin-bottom: var(--s5); }
 .panas-kepala h2 { max-width: 16ch; }
 @media (max-width: 1000px) { .panas-kepala { grid-template-columns: 1fr; gap: var(--s4); } }
+
+/* Di layar paling sempit deret angka tetap dua kolom. Satu kolom
+   membuat tiap barisnya menyisakan separuh lebar yang kosong. */
+@media (max-width: 420px) {
+  .angka-kisi { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5) var(--s3); }
+  .angka-besar { font-size: 1.7rem; }
+  .angka-kisi li { padding-left: var(--s3); }
+}
+
+/* ============================================================
+   Skala dan target dunia
+   ============================================================ */
+.skala { background: var(--surface); }
+.skala-kepala { display: grid; grid-template-columns: 5fr 7fr; gap: var(--s7); align-items: start; margin-bottom: var(--s7); }
+.skala-kepala h2 { max-width: 18ch; }
+
+/* Perbandingan skala sekarang dengan potensinya */
+.skala-banding {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--s6);
+  align-items: stretch;
+}
+.skala-sisi { border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s5) var(--s6); }
+.skala-sisi-besar { background: var(--paper); border-color: var(--ink); }
+.skala-angka {
+  font-family: 'Plex Serif', Georgia, serif; font-size: 2.3rem; line-height: 1.1;
+  margin: 6px 0 var(--s5);
+}
+.skala-angka .alat-unit { font-size: var(--fs-sm); }
+.skala-rinci { display: grid; gap: var(--s3); }
+.skala-rinci li {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3);
+  padding-bottom: var(--s3); border-bottom: 1px solid var(--line-2);
+  font-size: var(--fs-sm);
+}
+.skala-rinci li:last-child { border-bottom: none; padding-bottom: 0; }
+.skala-rinci span { color: var(--ink-3); }
+.skala-rinci strong { text-align: right; }
+.skala-panah { display: grid; place-items: center; }
+.skala-panah svg { width: 60px; height: auto; }
+.skala-catatan { margin-top: var(--s4); }
+
+/* Target pembangunan berkelanjutan.
+   Nomor dan judulnya memakai warna situs; garis tipis di atas tiap
+   kartu memakai warna resmi PBB supaya targetnya cepat dikenali
+   tanpa membanjiri halaman dengan warna baru. */
+.skala-sdg-judul { margin-top: var(--s8); }
+.sdg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s5); }
+.sdg li { border-top: 3px solid var(--line); padding-top: var(--s4); }
+.sdg-6  { border-top-color: #26bde2; }
+.sdg-7  { border-top-color: #fcc30b; }
+.sdg-11 { border-top-color: #fd9d24; }
+.sdg-13 { border-top-color: #3f7e44; }
+.sdg-no {
+  display: block; font-family: 'Plex Serif', Georgia, serif; font-size: 1.5rem;
+  line-height: 1; color: var(--ink-3); font-variant-numeric: tabular-nums; margin-bottom: 6px;
+}
+.sdg h3 { font-size: 1rem; margin-bottom: var(--s2); }
+.sdg p { font-size: var(--fs-sm); color: var(--ink-2); }
+
+@media (max-width: 1000px) {
+  .skala-kepala { grid-template-columns: 1fr; gap: var(--s4); }
+  .skala-banding { grid-template-columns: 1fr; gap: var(--s4); }
+  .skala-panah { transform: rotate(90deg); }
+  .skala-panah svg { width: 40px; }
+  .sdg { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5) var(--s4); }
+}
+@media (max-width: 560px) {
+  .sdg { grid-template-columns: 1fr; }
+  .skala-sisi { padding: var(--s4) var(--s5); }
+}

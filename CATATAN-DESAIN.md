@@ -95,6 +95,40 @@ jadi pita tetap ada kalau JavaScript mati.
 - **Rata atas** — semua kepala bagian dan kartu memakai `align-items: start`.
 - **Angka** — huruf tabular, satuan berdiri sendiri, dan tiap angka besar punya satu baris pembanding.
 
+## 2c. Kaitan dengan tema lomba
+
+Guidebook menyebut daftar contoh platform yang diterima, dan salah satunya persis
+HALO: *"…dapat berupa carbon market, **sistem monitoring energi pintar**, portal
+green supply chain, platform circular economy…"*
+
+Yang perlu disiapkan jawabannya kalau juri menekan:
+
+**"Ini kan cuma dashboard?"** — Guidebook menulis *"tidak terbatas pada sistem
+pemantauan (dashboard)"*. HALO menjawabnya lewat lapisan alur kerja di atas
+pemantauan: satu temuan sensor berjalan melewati empat pihak sampai hasilnya
+terukur. Tunjukkan halaman Riwayat, jejak lima tahapnya.
+
+**"Di mana sisi globalnya?"** — Ini bagian yang paling perlu latihan. Jawabannya:
+skala sekarang memang delapan kelurahan, tapi modelnya tidak terikat tempat.
+Yang dibutuhkan cuma sensor, satu pengelola kawasan, dan teknisi setempat —
+ketiganya ada di hampir semua daerah. Bagian **Skala** di beranda menghitungnya:
+kalau pola yang sama berjalan di satu persen rumah tangga Indonesia, yaitu
+710.000 rumah, penghematannya 12,6 juta kWh sebulan dan emisi yang dicegah
+132.034 ton CO₂e setahun.
+
+Angka itu dihitung, bukan dikarang: 17,8 kWh dan 0,55 m³ per rumah tiap bulan
+(rata-rata rumah yang sudah terhubung), dikali 710.000, dikali faktor emisi
+0,87 kg CO₂e per kWh.
+
+**Empat target SDG yang dibantu** — hafalkan nomornya:
+- **SDG 6** air bersih, khususnya target 6.4 soal efisiensi pemakaian air
+- **SDG 7** energi bersih, target 7.3 soal menggandakan laju perbaikan efisiensi
+- **SDG 11** kota berkelanjutan, target 11.6 soal menekan dampak lingkungan kawasan
+- **SDG 13** aksi iklim
+
+UN Sustainable Development Goals adalah salah satu situs rujukan yang panitia
+sebut sendiri di guidebook, jadi kaitan ini memakai pintu yang mereka buka.
+
 ## 3. Warna
 
 Semua warna **rata, tanpa satu pun gradasi**. Referensi yang panitia sebut

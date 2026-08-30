@@ -366,9 +366,13 @@ const Grafik = (function () {
     const d = data.map((v, i) => (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + py(v).toFixed(1)).join(' ');
     const svg = bingkai(W, H, 'gr-kilau');
     svg.setAttribute('aria-hidden', 'true');
+    /* Dibiarkan melar mengikuti lebar wadahnya supaya tidak terdampar
+       di kiri pada layar sempit. Tebal garis dikunci lewat
+       vector-effect, jadi tidak ikut gepeng saat direntangkan. */
+    svg.setAttribute('preserveAspectRatio', 'none');
     svg.appendChild(el('path', { d: d + ' L' + px(data.length - 1) + ' ' + H + ' L' + px(0) + ' ' + H + ' Z', fill: warna, opacity: '.12' }));
-    svg.appendChild(el('path', { d: d, fill: 'none', stroke: warna, 'stroke-width': 1.8, 'stroke-linejoin': 'round' }));
-    svg.appendChild(el('circle', { cx: px(data.length - 1), cy: py(data[data.length - 1]), r: 2.6, fill: warna }));
+    svg.appendChild(el('path', { d: d, fill: 'none', stroke: warna, 'stroke-width': 1.8, 'stroke-linejoin': 'round', 'vector-effect': 'non-scaling-stroke' }));
+    svg.appendChild(el('circle', { cx: px(data.length - 1), cy: py(data[data.length - 1]), r: 2.6, fill: warna, 'vector-effect': 'non-scaling-stroke' }));
     wadah.innerHTML = ''; wadah.appendChild(svg);
   }
 

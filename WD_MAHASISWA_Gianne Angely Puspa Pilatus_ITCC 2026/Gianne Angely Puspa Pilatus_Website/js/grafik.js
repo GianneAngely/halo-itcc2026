@@ -358,6 +358,123 @@ const Grafik = (function () {
     wadah.innerHTML = ''; wadah.appendChild(svg);
   }
 
+  /* ---------------------------------------------------------
+     Grafik cermin dua aliran.
+     Satu sumbu jam di tengah. Listrik naik ke atas dalam watt,
+     air turun ke bawah dalam liter per jam. Keduanya berskala
+     sendiri-sendiri — kalau dipaksa berbagi satu sumbu, kurva air
+     akan gepeng menempel dasar karena besarannya jauh berbeda.
+     opsi: { listrik:[24], air:[24], tandaAir:{jamAwal,jamAkhir,nilai,teks} }
+     --------------------------------------------------------- */
+  function aliranGanda(wadah, opsi) {
+    const W = 760, H = 340, kiri = 46, kanan = 14, atas = 16, bawah = 22;
+    const sumbuY = 170;
+    const n = 24;
+    const maksL = Math.max(...opsi.listrik);
+    const maksA = Math.max(...opsi.air);
+    const tinggiAtas = sumbuY - atas;
+    const tinggiBawah = (H - bawah) - sumbuY;
+
+    const px = i => kiri + (i / (n - 1)) * (W - kiri - kanan);
+    const pyL = v => sumbuY - (v / maksL) * tinggiAtas;
+    const pyA = v => sumbuY + (v / maksA) * tinggiBawah;
+
+    const svg = bingkai(W, H, 'gr-aliran');
+    svg.setAttribute('aria-label',
+      'Grafik cermin: pemakaian listrik dalam watt ke arah atas dan pemakaian air dalam liter per jam ke arah bawah, sepanjang dua puluh empat jam');
+
+    /* Bidang listrik di atas sumbu */
+    const jalurL = opsi.listrik.map((v, i) => (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + pyL(v).toFixed(1)).join(' ');
+    svg.appendChild(el('path', {
+      d: jalurL + ' L' + px(n - 1) + ' ' + sumbuY + ' L' + px(0) + ' ' + sumbuY + ' Z',
+      fill: 'var(--listrik)', 'fill-opacity': '.10'
+    }));
+    const garisL = el('path', { d: jalurL, fill: 'none', stroke: 'var(--listrik)', 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+    svg.appendChild(garisL);
+
+    /* Bidang air di bawah sumbu */
+    const jalurA = opsi.air.map((v, i) => (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + pyA(v).toFixed(1)).join(' ');
+    svg.appendChild(el('path', {
+      d: jalurA + ' L' + px(n - 1) + ' ' + sumbuY + ' L' + px(0) + ' ' + sumbuY + ' Z',
+      fill: 'var(--air)', 'fill-opacity': '.10'
+    }));
+    const garisA = el('path', { d: jalurA, fill: 'none', stroke: 'var(--air)', 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+    svg.appendChild(garisA);
+
+    /* Sumbu jam di tengah */
+    svg.appendChild(el('line', { x1: kiri, y1: sumbuY, x2: W - kanan, y2: sumbuY, stroke: 'var(--ink)', 'stroke-width': 1 }));
+    for (let j = 0; j < n; j += 3) {
+      const t = el('text', { x: px(j), y: sumbuY + 14, class: 'gr-sumbu', 'text-anchor': 'middle' });
+      t.textContent = String(j).padStart(2, '0');
+      svg.appendChild(t);
+    }
+
+    /* Nama arah di tepi kiri */
+    const namaAtas = el('text', { x: 4, y: atas + 10, class: 'gr-satuan' });
+    namaAtas.textContent = 'WATT';
+    svg.appendChild(namaAtas);
+    const namaBawah = el('text', { x: 4, y: H - bawah - 2, class: 'gr-satuan' });
+    namaBawah.textContent = 'LITER/JAM';
+    svg.appendChild(namaBawah);
+
+    /* Penanda puncak listrik, angkanya dihitung bukan ditulis tangan */
+    const jamPuncak = opsi.listrik.indexOf(maksL);
+    svg.appendChild(el('circle', { cx: px(jamPuncak), cy: pyL(maksL), r: 4, fill: 'var(--listrik)' }));
+    const labelPuncak = el('text', { x: px(jamPuncak), y: pyL(maksL) - 11, class: 'gr-tanda', 'text-anchor': 'middle' });
+    labelPuncak.textContent = 'puncak ' + Math.round(maksL) + ' W · ' + String(jamPuncak).padStart(2, '0') + '.00';
+    svg.appendChild(labelPuncak);
+
+    /* Penanda kebocoran sebelum diperbaiki */
+    if (opsi.tandaAir) {
+      const ta = opsi.tandaAir;
+      const y = pyA(ta.nilai);
+      svg.appendChild(el('line', {
+        x1: px(ta.jamAwal), y1: y, x2: px(ta.jamAkhir), y2: y,
+        stroke: 'var(--waspada)', 'stroke-width': 2, 'stroke-dasharray': '6 5', 'stroke-linecap': 'round'
+      }));
+      const t = el('text', { x: px(ta.jamAkhir) + 8, y: y + 4, class: 'gr-tanda gr-tanda-waspada' });
+      t.textContent = ta.teks;
+      svg.appendChild(t);
+    }
+
+    wadah.innerHTML = '';
+    wadah.appendChild(svg);
+    const tip = pasangKotak(wadah);
+
+    /* Garis bidik yang menampilkan kedua nilai sekaligus */
+    const bidik = el('line', { y1: atas, y2: H - bawah, stroke: 'var(--ink-3)', 'stroke-width': 1, opacity: 0 });
+    svg.appendChild(bidik);
+    const titikL = el('circle', { r: 4, fill: '#fff', stroke: 'var(--listrik)', 'stroke-width': 2.5, opacity: 0 });
+    const titikA = el('circle', { r: 4, fill: '#fff', stroke: 'var(--air)', 'stroke-width': 2.5, opacity: 0 });
+    svg.appendChild(titikL); svg.appendChild(titikA);
+
+    const tangkap = el('rect', { x: kiri, y: atas, width: W - kiri - kanan, height: H - atas - bawah, fill: 'transparent' });
+    svg.appendChild(tangkap);
+
+    tangkap.addEventListener('mousemove', ev => {
+      const kotak = svg.getBoundingClientRect();
+      const rasio = W / kotak.width;
+      let i = Math.round((((ev.clientX - kotak.left) * rasio - kiri) / (W - kiri - kanan)) * (n - 1));
+      i = Math.max(0, Math.min(n - 1, i));
+      bidik.setAttribute('x1', px(i)); bidik.setAttribute('x2', px(i)); bidik.setAttribute('opacity', .45);
+      titikL.setAttribute('cx', px(i)); titikL.setAttribute('cy', pyL(opsi.listrik[i])); titikL.setAttribute('opacity', 1);
+      titikA.setAttribute('cx', px(i)); titikA.setAttribute('cy', pyA(opsi.air[i])); titikA.setAttribute('opacity', 1);
+      tip.tampil(
+        '<strong>Pukul ' + String(i).padStart(2, '0') + '.00</strong>' +
+        '<span class="gr-tip-baris"><i style="background:var(--listrik)"></i>Listrik <b>' + F.angka(opsi.listrik[i], 0) + ' W</b></span>' +
+        '<span class="gr-tip-baris"><i style="background:var(--air)"></i>Air <b>' + F.angka(opsi.air[i], 0) + ' L/jam</b></span>',
+        px(i) / rasio, atas / rasio);
+    });
+    tangkap.addEventListener('mouseleave', () => {
+      bidik.setAttribute('opacity', 0);
+      titikL.setAttribute('opacity', 0); titikA.setAttribute('opacity', 0);
+      tip.sembunyi();
+    });
+
+    saatTerlihat(wadah, () => { gambarkan(garisL); gambarkan(garisA); });
+    return svg;
+  }
+
   /* Angka sumbu dipendekkan supaya tidak memakan tempat.
      Jumlah angka di belakang koma mengikuti besar langkah sumbunya,
      supaya ambang seperti 0,25 tidak terbaca menjadi 0,3. */
@@ -367,5 +484,5 @@ const Grafik = (function () {
     return F.angka(v, desimal !== undefined ? desimal : (v % 1 === 0 ? 0 : 1));
   }
 
-  return { garis, batang, batangDatar, cincin, petaPanas, kilau, ringkas };
+  return { garis, batang, batangDatar, cincin, petaPanas, kilau, aliranGanda, ringkas };
 })();

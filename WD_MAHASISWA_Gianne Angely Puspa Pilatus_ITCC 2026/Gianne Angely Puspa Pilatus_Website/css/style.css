@@ -126,6 +126,8 @@ h3 { font-size: var(--fs-h3); font-family: 'Plex Sans', sans-serif; font-weight:
   display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s4);
 }
 .judul-kecil::after { content: ''; height: 1px; flex: 1; background: var(--line); }
+/* Kalau sudah ada pita ukur di atasnya, garis ekor ini mubazir */
+.rel-tik + .judul-kecil::after { display: none; }
 .gelap .judul-kecil { color: #9aa8a2; }
 .gelap .judul-kecil::after { background: #2c3b36; }
 
@@ -390,3 +392,126 @@ h3 { font-size: var(--fs-h3); font-family: 'Plex Sans', sans-serif; font-weight:
 .akun-teks strong { font-size: var(--fs-sm); font-weight: 600; }
 .akun-teks small { font-size: var(--fs-xs); color: var(--ink-3); }
 @media (max-width: 560px) { .akun-teks { display: none; } }
+
+/* ============================================================
+   ALAT UKUR — lapisan bersama
+   Situs ini dibaca sebagai instrumen, bukan brosur. Semua yang
+   di bawah ini dipakai lintas halaman supaya kedelapan halaman
+   terbaca sebagai satu dokumen yang disusun orang yang sama.
+   ============================================================ */
+
+/* ---------- Angka dan satuan ---------- */
+.ukur {
+  font-family: 'Plex Sans', sans-serif; font-weight: 600;
+  font-variant-numeric: tabular-nums slashed-zero; letter-spacing: -.01em;
+}
+.satuan {
+  font-family: 'Plex Sans', sans-serif; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .14em; color: var(--ink-3);
+}
+
+/* ---------- Plat nama ----------
+   Kepanjangan HALO ditulis di sini. Huruf A memakai warna air dan
+   huruf L memakai warna listrik, jadi plat ini sekaligus mengajarkan
+   kode warna seluruh situs sebelum warnanya muncul di grafik. */
+.plat { display: inline-block; border-top: 2px solid var(--ink); padding-top: 7px; }
+.plat-nama {
+  display: block; font-family: 'Plex Serif', Georgia, serif; font-weight: 600;
+  font-size: 1.55rem; line-height: 1; letter-spacing: .02em;
+}
+.plat-a { color: var(--air); }
+.plat-l { color: var(--listrik); }
+.plat-arti {
+  display: block; margin-top: 5px;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--ink-3);
+}
+.gelap .plat { border-top-color: var(--paper); }
+.gelap .plat-nama { color: var(--paper); }
+.gelap .plat-arti { color: #9aa8a2; }
+
+/* ---------- Foto sebagai cetakan berbingkai ---------- */
+.bingkai {
+  padding: 6px; background: var(--surface); border: 1px solid var(--line);
+}
+.bingkai img { border-radius: 0; display: block; width: 100%; }
+.gbr {
+  display: block; margin-top: var(--s3);
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--ink-3);
+}
+.gbr + span, .gbr-teks {
+  display: block; margin-top: 4px; font-size: var(--fs-xs); color: var(--ink-3); line-height: 1.55;
+}
+
+/* ---------- Pita ukur bertakik ----------
+   Bentuk dasarnya garis biasa yang ditulis di CSS, jadi pita ini
+   tetap ada walau JavaScript mati. Takiknya elemen sungguhan,
+   bukan gradasi berulang, karena gradasi dilarang di situs ini. */
+.rel-tik {
+  position: relative; height: 30px; margin-bottom: var(--s5);
+  border-top: 1px solid var(--line);
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.rel-tik .tik { display: block; width: 1px; flex: none; height: 4px; background: var(--line); }
+.rel-tik .tik.panjang { height: 9px; background: var(--ink-3); }
+.rel-tik .reg {
+  position: absolute; right: 0; top: 12px;
+  font-family: 'Plex Sans', sans-serif; font-size: 10px; font-weight: 600;
+  font-variant-numeric: tabular-nums; letter-spacing: .14em; color: var(--ink-3);
+}
+.gelap .rel-tik { border-top-color: #2c3b36; }
+.gelap .rel-tik .tik { background: #2c3b36; }
+.gelap .rel-tik .tik.panjang { background: #7d8b85; }
+.gelap .rel-tik .reg { color: #7d8b85; }
+
+/* ---------- Kisi dua belas kolom ----------
+   Seluruh situs hanya memakai dua lebar kolom, 5/12 dan 7/12,
+   dan sisi lebarnya berselang-seling tiap bagian. */
+.kisi12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s7); align-items: start; }
+.k5 { grid-column: span 5; }
+.k7 { grid-column: span 7; }
+.k12 { grid-column: span 12; }
+
+/* ---------- Sel pembacaan ---------- */
+.sel { border-left: 3px solid var(--line); padding-left: var(--s4); }
+.sel-listrik { border-left-color: var(--listrik); }
+.sel-air { border-left-color: var(--air); }
+.sel-hemat { border-left-color: var(--hemat); }
+.sel-satuan { display: block; margin-bottom: 3px; }
+.sel-angka {
+  display: block; font-family: 'Plex Serif', Georgia, serif; font-size: 1.9rem;
+  line-height: 1.1; font-variant-numeric: tabular-nums slashed-zero;
+}
+.sel-kaki { display: block; margin-top: 4px; font-size: var(--fs-xs); color: var(--ink-3); }
+
+/* ---------- Retrofit lintas halaman ----------
+   Tujuh halaman dalam ikut berubah lewat blok ini saja, tanpa
+   satu baris HTML-nya disentuh. */
+.kartu, .panel, .kotak { box-shadow: none; }
+.kartu-klik:hover, .kl:hover, .ung:hover, .terkait-kartu:hover {
+  box-shadow: none; border-color: var(--ink); transform: translateY(-2px);
+}
+.kartu img, .panel img, .kl img, .ung img, .kartu figure img { border-radius: 0; }
+.panel-angka, .angka-besar, .tnum, .kepala-angka strong, .sel-angka {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+.gulir-x { overflow-x: auto; }
+
+@media (max-width: 1000px) {
+  .kisi12 { gap: var(--s6); }
+  .k5, .k7 { grid-column: span 12; }
+}
+
+/* Label penanda di dalam grafik */
+.gr-tanda {
+  font-size: 11px; font-weight: 600; fill: var(--ink-2);
+  font-family: 'Plex Sans', sans-serif; font-variant-numeric: tabular-nums;
+}
+.gr-tanda-waspada { fill: var(--waspada); }
+
+/* Kepanjangan nama di kaki halaman */
+.kaki-plat {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .14em; color: #8f9c97; margin-bottom: var(--s3);
+}

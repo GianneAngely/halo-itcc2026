@@ -1,10 +1,17 @@
 /* ============================================================
    HALO — halaman Masuk & Daftar
    ============================================================ */
-.masuk { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); min-height: calc(100vh - 62px); }
+.masuk { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: start; }
 
-/* ---------- Panel kiri: foto dengan lapisan warna rata ---------- */
-.masuk-kiri { position: relative; display: grid; place-items: center; padding: var(--s8) var(--s7); }
+/* ---------- Panel kiri: foto dengan lapisan warna rata ----------
+   Dipaku setinggi layar supaya isinya tidak ikut bergeser ketika
+   pengguna berpindah antara tab Masuk dan Daftar yang tingginya beda. */
+.masuk-kiri {
+  position: sticky; top: 62px;
+  height: calc(100vh - 62px);
+  display: grid; place-items: center; padding: var(--s8) var(--s7);
+  overflow: hidden;
+}
 .masuk-kiri img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .masuk-kiri::after {
   content: ''; position: absolute; inset: 0;
@@ -19,7 +26,11 @@
 .masuk-guna span { font-size: var(--fs-sm); color: #a9b5b0; }
 
 /* ---------- Panel kanan: formulir ---------- */
-.masuk-kanan { display: grid; place-items: center; padding: var(--s7) var(--s5); background: var(--surface); }
+.masuk-kanan {
+  display: grid; place-items: start center;
+  padding: var(--s8) var(--s5); background: var(--surface);
+  min-height: calc(100vh - 62px);
+}
 .masuk-kotak { width: 100%; max-width: 440px; }
 .masuk-kotak .tab-rak { margin-bottom: var(--s6); }
 .masuk-kotak h1 { font-size: 1.7rem; margin-bottom: var(--s2); }
@@ -74,8 +85,9 @@
 .demo span { font-size: var(--fs-xs); color: var(--ink-3); }
 
 @media (max-width: 940px) {
-  .masuk { grid-template-columns: 1fr; min-height: 0; }
-  .masuk-kiri { padding: var(--s7) var(--s5); }
+  .masuk { grid-template-columns: 1fr; }
+  .masuk-kiri { position: static; height: auto; padding: var(--s7) var(--s5); }
+  .masuk-kanan { min-height: 0; padding-block: var(--s7); }
   .masuk-kiri-isi h2 { font-size: 1.4rem; margin-bottom: var(--s5); }
   .masuk-guna { gap: var(--s4); }
 }
@@ -83,3 +95,15 @@
   .pilihan-kisi { grid-template-columns: 1fr; }
   .pilihan-btn { grid-template-columns: 22px 1fr; justify-items: start; text-align: left; }
 }
+
+/* ---------- Kedua panel benar-benar sejajar ----------
+   Lebar dalam, rata atas, dan jarak atas dibuat identik supaya
+   plat HALO di kiri dan di kanan berdiri pada garis yang sama. */
+.masuk-kiri { align-content: start; place-items: initial; justify-items: start; }
+.masuk-kiri-isi { width: min(440px, 100%); max-width: none; padding-top: var(--s8); }
+.masuk-kanan { align-content: start; justify-items: start; }
+.masuk-kotak { width: min(440px, 100%); max-width: none; padding-top: var(--s8); }
+.masuk-kiri-isi .plat, .masuk-kotak .plat { margin-bottom: var(--s6); }
+.masuk-kiri-isi .plat { border-top-color: var(--paper); }
+.masuk-kiri-isi .plat-nama { color: var(--paper); }
+.masuk-kiri-isi .plat-arti { color: #9aa8a2; }

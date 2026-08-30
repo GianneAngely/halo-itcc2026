@@ -3,20 +3,45 @@
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Pembacaan daya yang berdenyut di kartu meteran ----------
-     Angkanya diturunkan dari pola pemakaian jam berjalan, lalu diberi
-     variasi kecil supaya terasa seperti data sensor yang terus masuk. */
+  /* ---------- Kartu alat ukur ----------
+     Grafik cermin: listrik ke atas dalam watt, air ke bawah dalam
+     liter per jam, keduanya berskala sendiri. */
+  const wadahAliran = document.getElementById('grafikAliran');
+  const dayaPerJam = HALO.kurvaHari(HALO.polaListrik, HALO.listrikHarian[29]).map(v => Math.round(v * 1000));
+  const airPerJam  = HALO.kurvaHari(HALO.polaAir, HALO.airHarian[29]).map(v => Math.round(v));
+
+  if (wadahAliran) {
+    Grafik.aliranGanda(wadahAliran, {
+      listrik: dayaPerJam,
+      air: airPerJam,
+      tandaAir: { jamAwal: 2, jamAkhir: 5, nilai: 38, teks: 'sebelum perbaikan · 38 L/jam' }
+    });
+  }
+
+  /* Jam berjalan di kepala kartu — bukti bahwa pembacaannya hidup */
+  const kotakJam = document.getElementById('jamAlat');
+  if (kotakJam) {
+    const tulisJam = () => {
+      const t = new Date();
+      kotakJam.textContent = String(t.getHours()).padStart(2, '0') + '.' +
+                             String(t.getMinutes()).padStart(2, '0') + ' WITA';
+    };
+    tulisJam();
+    setInterval(tulisJam, 20000);
+  }
+
+  /* Daya sesaat yang menyegarkan diri, diturunkan dari pola jam berjalan */
   const kotakWatt = document.getElementById('wattKini');
-  const kotakKilau = document.getElementById('kilauMeteran');
   if (kotakWatt) {
-    const jam = new Date().getHours();
-    const dasar = HALO.kurvaHari(HALO.polaListrik, HALO.listrikHarian[29])[jam] * 1000;
-    let sebelum = 0;
+    const dasar = dayaPerJam[new Date().getHours()];
+    let sebelum = dasar;
+    kotakWatt.textContent = F.angka(dasar);
 
     const perbarui = () => {
       const nilai = Math.round(dasar * (0.94 + Math.random() * 0.12));
-      const diam = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (diam) { kotakWatt.textContent = F.angka(nilai); sebelum = nilai; return; }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        kotakWatt.textContent = F.angka(nilai); sebelum = nilai; return;
+      }
       const awal = sebelum, mulai = performance.now();
       const jalan = w => {
         const maju = Math.min((w - mulai) / 700, 1);
@@ -26,14 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(jalan);
       sebelum = nilai;
     };
-    perbarui();
     setInterval(perbarui, 3200);
-
-    if (kotakKilau) {
-      const kurva = HALO.kurvaHari(HALO.polaListrik, HALO.listrikHarian[29])
-        .slice(Math.max(0, jam - 11), jam + 1).map(v => v * 1000);
-      Grafik.kilau(kotakKilau, kurva.length > 2 ? kurva : [dasar * .9, dasar, dasar * 1.05], 'var(--listrik)');
-    }
   }
 
   /* ---------- Garis mungil di deret angka ---------- */
@@ -53,6 +71,15 @@ document.addEventListener('DOMContentLoaded', function () {
       satuanTip: ' kWh',
       judulAria: 'Pemakaian listrik dua belas bulan terakhir dalam kilowatt jam',
       maksLabelX: 12
+    });
+  }
+
+  /* ---------- Peta panas sepekan ---------- */
+  const wadahPanas = document.getElementById('petaPanasBeranda');
+  if (wadahPanas) {
+    Grafik.petaPanas(wadahPanas, {
+      matriks: HALO.petaPanas, barisLabel: HALO.hariPekan,
+      warna: 'var(--listrik)', satuan: 'kWh'
     });
   }
 

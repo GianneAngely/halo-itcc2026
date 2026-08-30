@@ -196,6 +196,28 @@ function siapkanPencacah() {
   kotak.forEach(el => pengamat.observe(el));
 }
 
+/* ---------- Pita ukur bertakik ----------
+   Takiknya elemen sungguhan, bukan gradasi berulang, karena
+   gradasi tidak dipakai di mana pun pada situs ini. Bentuk dasar
+   pitanya sudah ada di CSS, jadi kalau skrip gagal pita tetap
+   tampil sebagai garis biasa. */
+function siapkanPita() {
+  document.querySelectorAll('.rel-tik').forEach(pita => {
+    if (pita.children.length) return;
+    const potong = document.createDocumentFragment();
+    for (let i = 0; i < 40; i++) {
+      const t = document.createElement('i');
+      t.className = 'tik' + (i % 5 === 0 ? ' panjang' : '');
+      potong.appendChild(t);
+    }
+    const reg = document.createElement('span');
+    reg.className = 'reg';
+    reg.textContent = 'REG ' + (pita.dataset.reg || '01');
+    potong.appendChild(reg);
+    pita.appendChild(potong);
+  });
+}
+
 /* ---------- Tahun berjalan di kaki halaman ---------- */
 function siapkanTahun() {
   document.querySelectorAll('[data-tahun]').forEach(el => { el.textContent = new Date().getFullYear(); });
@@ -208,5 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
   siapkanBilah();
   siapkanMuncul();
   siapkanPencacah();
+  siapkanPita();
   siapkanTahun();
 });

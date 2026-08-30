@@ -67,3 +67,22 @@
 }
 .baris-sorot { outline: 2px solid var(--ink); outline-offset: -2px; }
 .peta-balik { fill: #fdf9f3; }
+
+/* ---------- Kepala berfoto ----------
+   Foto udara jadi latar, ditutup lapisan warna rata (bukan gradasi)
+   supaya tulisan tetap terbaca. */
+.kepala-berfoto { position: relative; isolation: isolate; padding-block: var(--s8) var(--s7); }
+.kepala-foto {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.kepala-berfoto::after {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: rgba(20, 32, 28, .82);
+}
+.kepala-berfoto, .kepala-berfoto h1 { color: var(--paper); }
+.kepala-berfoto .pengantar { color: #c3ccc8; }
+.kepala-berfoto .remah, .kepala-berfoto .remah a { color: #9aa8a2; }
+.kepala-berfoto .remah a:hover { color: var(--paper); }
+.kepala-berfoto .kepala-angka strong { color: var(--paper); }
+.kepala-berfoto .kepala-angka span { color: #9aa8a2; }

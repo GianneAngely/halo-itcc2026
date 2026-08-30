@@ -1,0 +1,52 @@
+/* ============================================================
+   HALO — halaman Dashboard rumah
+   ============================================================ */
+.kepala-angka { display: flex; gap: var(--s7); }
+.kepala-angka li { display: grid; }
+.kepala-angka strong { font-family: 'Plex Serif', Georgia, serif; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kepala-angka span { font-size: var(--fs-xs); color: var(--ink-3); }
+
+.panel-kilau { height: 34px; margin: var(--s2) 0; }
+.panel-cincin { display: grid; justify-items: center; text-align: center; }
+.panel-cincin .panel-nama { justify-self: start; }
+.panel-cincin > div { width: 100%; max-width: 150px; margin-block: var(--s2); }
+
+/* ---------- Kartu kejanggalan ---------- */
+.an-daftar { display: grid; gap: var(--s4); }
+.an { border: 1px solid var(--line); border-left-width: 3px; border-radius: var(--r-sm); padding: var(--s4) var(--s5); background: var(--surface); }
+.an-tinggi { border-left-color: var(--waspada); background: var(--waspada-lo); }
+.an-sedang { border-left-color: var(--listrik); }
+.an-rendah { border-left-color: var(--line); }
+.an-atas { display: flex; align-items: flex-start; gap: var(--s3); margin-bottom: var(--s3); }
+.an-ikon { font-size: 1.4rem; color: var(--ink-2); line-height: 1; flex: none; margin-top: 1px; }
+.an-tinggi .an-ikon { color: var(--waspada); }
+.an-sedang .an-ikon { color: var(--listrik); }
+.an-atas > div { flex: 1; min-width: 0; }
+.an h3 { font-size: 1rem; }
+.an-kode { font-size: var(--fs-xs); color: var(--ink-3); }
+.an-atas .pil { flex: none; }
+.an-alasan { font-size: var(--fs-sm); color: var(--ink-2); }
+.an-bawah { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s4); margin-top: var(--s4); flex-wrap: wrap; }
+.an-dampak { display: grid; }
+.an-dampak span { font-size: var(--fs-xs); color: var(--ink-3); }
+.an-dampak strong { font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 620px) {
+  .kepala-angka { gap: var(--s5); flex-wrap: wrap; }
+  .an-atas { flex-wrap: wrap; }
+}
+
+/* Isi kartu ringkas dirapatkan ke atas supaya tidak menyisakan
+   ruang kosong ketika kartu bersebelahan dengan kartu bercincin. */
+.panel-kisi .panel { display: flex; flex-direction: column; align-items: stretch; }
+.panel-cincin { align-items: center; }
+.panel-cincin > div { max-width: 118px; }
+.panel-cincin .panel-kaki { margin-top: auto; }
+.panel-kilau { margin-bottom: auto; }
+
+/* Di layar sempit peta panas digulir mendatar di dalam kotaknya sendiri,
+   supaya tiap sel tetap cukup besar untuk disentuh dan dibaca. */
+@media (max-width: 700px) {
+  #petaPanas { overflow-x: auto; }
+  #petaPanas .gr { min-width: 560px; }
+}

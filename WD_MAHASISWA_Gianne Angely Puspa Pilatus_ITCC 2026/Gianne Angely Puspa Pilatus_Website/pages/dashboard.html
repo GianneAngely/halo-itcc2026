@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id" class="tanpa-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard rumah — HALO</title>
+<meta name="description" content="Pemantauan listrik dan air rumah per jam, deteksi kejanggalan, dan perkiraan tagihan akhir bulan.">
+<link rel="icon" href="../assets/ill/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../lib/boxicons/css/boxicons.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/halaman.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body data-dalam="pages">
+
+<div id="muat" aria-hidden="true">
+  <svg viewBox="0 0 32 32" fill="none">
+    <path class="garis" stroke="#14201c" stroke-width="1.4" fill="none"
+      d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Z"/>
+  </svg>
+</div>
+
+<a class="lewati" href="#isi">Lompat ke isi</a>
+
+<header class="bilah">
+  <div class="wrap bilah-isi">
+    <a class="merek" href="../index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+      HALO
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="../index.html">Beranda</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="kawasan.html">Kawasan</a>
+      <a href="teknologi.html">Teknologi</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="bilah-aksi" id="bilahAksi"></div>
+    <button class="bilah-tombol" id="bilahTombol" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><i class="bx bx-menu"></i></button>
+  </div>
+</header>
+
+<main id="isi">
+  <section class="kepala">
+    <div class="wrap kepala-kisi">
+      <div>
+        <nav class="remah" aria-label="Jejak halaman"><a href="../index.html">Beranda</a> <span>/</span> <span>Dashboard</span></nav>
+        <h1 id="judulDash">Dashboard rumah</h1>
+        <p class="pengantar" id="subDash">
+          Pembacaan sensor jalur utama, diperbarui tiap lima belas menit. Angka bulan berjalan
+          dihitung dari 1 Agustus sampai hari ini.
+        </p>
+      </div>
+      <ul class="kepala-angka">
+        <li><strong class="tnum">2</strong><span>sensor terpasang</span></li>
+        <li><strong class="tnum">1300</strong><span>VA daya tersambung</span></li>
+        <li><strong class="tnum">4</strong><span>penghuni</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bagian-rapat">
+    <div class="wrap tumpuk">
+
+      <!-- ---------- Empat angka ringkas ---------- -->
+      <div class="panel-kisi">
+        <div class="panel">
+          <p class="panel-nama">Listrik hari ini</p>
+          <p class="panel-angka tnum" id="nListrik">8,7 <small>kWh</small></p>
+          <div class="panel-kilau" data-kilau="listrik"></div>
+          <p class="panel-kaki"><span id="bandingListrik">—</span> dibanding kemarin</p>
+        </div>
+        <div class="panel">
+          <p class="panel-nama">Air hari ini</p>
+          <p class="panel-angka tnum" id="nAir">661 <small>liter</small></p>
+          <div class="panel-kilau" data-kilau="air"></div>
+          <p class="panel-kaki"><span id="bandingAir">—</span> dibanding kemarin</p>
+        </div>
+        <div class="panel">
+          <p class="panel-nama">Perkiraan tagihan Agustus</p>
+          <p class="panel-angka tnum" id="nTagihan">Rp439.700</p>
+          <p class="panel-kaki" id="nTagihanKaki">listrik dan air digabung</p>
+        </div>
+        <div class="panel panel-cincin">
+          <p class="panel-nama">Dibanding rata-rata kawasan</p>
+          <div id="cincinBanding"></div>
+          <p class="panel-kaki">Di bawah 100 berarti lebih hemat daripada rata-rata delapan kelurahan.</p>
+        </div>
+      </div>
+
+      <!-- ---------- Grafik pemakaian ---------- -->
+      <div class="kotak">
+        <div class="kotak-kepala">
+          <div>
+            <h2>Pemakaian listrik</h2>
+            <p id="ketRentang">Dua puluh empat jam terakhir, dalam kilowatt jam per jam.</p>
+          </div>
+          <div class="saring-grup" id="rentangGrafik" role="group" aria-label="Pilih rentang waktu">
+            <button class="cip" data-rentang="24" aria-pressed="true">24 jam</button>
+            <button class="cip" data-rentang="7" aria-pressed="false">7 hari</button>
+            <button class="cip" data-rentang="30" aria-pressed="false">30 hari</button>
+          </div>
+        </div>
+        <div class="gr-wadah"><div id="grafikPakai"></div></div>
+      </div>
+
+      <div class="dua-kolom">
+        <!-- ---------- Peta panas ---------- -->
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Kapan rumah paling boros</h2>
+              <p>Rata-rata pemakaian listrik tiap jam untuk setiap hari dalam sepekan. Semakin pekat, semakin besar.</p>
+            </div>
+          </div>
+          <div class="gr-wadah"><div id="petaPanas"></div></div>
+          <p class="gr-keterangan">Kolom menunjukkan jam 00 sampai 23. Sabtu dan Minggu terlihat lebih pekat karena penghuni di rumah sepanjang hari.</p>
+        </div>
+
+        <!-- ---------- Rincian per alat ---------- -->
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Rincian per alat</h2>
+              <p>Bulan berjalan, dalam kWh. Dipisahkan sensor jalur utama dan jalur dapur.</p>
+            </div>
+          </div>
+          <div id="rincianAlat"></div>
+        </div>
+      </div>
+
+      <!-- ---------- Kejanggalan ---------- -->
+      <div class="kotak">
+        <div class="kotak-kepala">
+          <div>
+            <h2>Kejanggalan yang ditemukan</h2>
+            <p>Lapisan AI membandingkan pola rumahmu dengan pola normalnya sendiri selama tiga bulan terakhir, bukan dengan patokan umum.</p>
+          </div>
+        </div>
+        <div class="an-daftar">
+          <article class="an an-tinggi">
+            <div class="an-atas">
+              <span class="an-ikon"><i class="bx bx-water"></i></span>
+              <div><h3>Pemakaian air dini hari tidak wajar</h3><span class="an-kode">AN-08 · terdeteksi lapisan AI</span></div>
+              <span class="pil pil-waspada">Perlu segera ditangani</span>
+            </div>
+            <p class="an-alasan">Antara pukul 02.00 dan 05.00 selama empat hari berturut-turut, aliran air bertahan di 38 liter per jam. Pada rumah dengan pola seperti ini angka normalnya di bawah 5 liter per jam. Aliran yang tetap saat tidak ada aktivitas hampir selalu berarti kebocoran.</p>
+            <div class="an-bawah">
+              <p class="an-dampak"><span>Perkiraan kerugian</span><strong>Sekitar 3.400 liter per bulan, setara Rp16.700.</strong></p>
+              <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=kebocoran">Ajukan penelusuran & perbaikan kebocoran</a>
+            </div>
+          </article>
+          <article class="an an-sedang">
+            <div class="an-atas">
+              <span class="an-ikon"><i class="bx bx-bolt-circle"></i></span>
+              <div><h3>Pompa air menyala terlalu sering</h3><span class="an-kode">AN-07 · terdeteksi lapisan AI</span></div>
+              <span class="pil pil-listrik">Perlu diperiksa</span>
+            </div>
+            <p class="an-alasan">Pompa menyala 11 kali sehari dengan durasi pendek. Pola menyala-mati sesering ini menandakan tekanan tandon tidak stabil, dan arus awal setiap penyalaan jauh lebih besar daripada saat berjalan tetap.</p>
+            <div class="an-bawah">
+              <p class="an-dampak"><span>Perkiraan kerugian</span><strong>Sekitar 14 kWh per bulan, setara Rp20.200.</strong></p>
+              <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=timer-pompa">Ajukan pengatur waktu pompa air</a>
+            </div>
+          </article>
+          <article class="an an-rendah">
+            <div class="an-atas">
+              <span class="an-ikon"><i class="bx bx-bolt-circle"></i></span>
+              <div><h3>Kulkas bekerja lebih berat dari biasanya</h3><span class="an-kode">AN-06 · terdeteksi lapisan AI</span></div>
+              <span class="pil pil-netral">Pantau dulu</span>
+            </div>
+            <p class="an-alasan">Konsumsi kulkas naik 9 persen dalam tiga pekan sementara suhu ruangan tidak berubah. Biasanya ini tanda karet pintu mulai longgar atau kisi belakang tertutup debu.</p>
+            <div class="an-bawah">
+              <p class="an-dampak"><span>Perkiraan kerugian</span><strong>Sekitar 3,2 kWh per bulan, setara Rp4.600.</strong></p>
+              <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=kulkas-inverter">Ajukan tukar tambah kulkas inverter</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="dua-kolom">
+        <!-- ---------- Prediksi tagihan ---------- -->
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Perkiraan tagihan sampai akhir bulan</h2>
+              <p>Garis tebal adalah perkiraan tengah, area terangnya rentang kemungkinan.</p>
+            </div>
+          </div>
+          <div class="gr-wadah"><div id="grafikPrediksi"></div></div>
+          <div class="gr-legenda">
+            <span><i style="background:var(--listrik)"></i>Sudah terbaca sensor</span>
+            <span><i style="background:var(--air)"></i>Perkiraan sampai akhir bulan</span>
+          </div>
+          <p class="gr-keterangan">
+            Perkiraan disusun dari pola tiga puluh hari terakhir, disesuaikan dengan jumlah hari kerja
+            dan akhir pekan yang tersisa. Rentangnya melebar makin jauh ke depan karena ketidakpastiannya bertambah.
+          </p>
+        </div>
+
+        <!-- ---------- Banding kawasan ---------- -->
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Dibanding kelurahan lain</h2>
+              <p>Rata-rata pemakaian listrik per rumah bulan ini, dalam kWh.</p>
+            </div>
+          </div>
+          <div class="gr-wadah"><div id="grafikKawasan"></div></div>
+          <p class="gr-keterangan">Batang berwarna gelap adalah kelurahan rumahmu, Peliatan.</p>
+          <a class="btn btn-garis btn-kecil" href="kawasan.html">Buka halaman kawasan</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="kaki">
+  <div class="wrap">
+    <div class="kaki-kisi">
+      <div>
+        <div class="merek">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+          HALO
+        </div>
+        <p>Ekosistem pemantauan listrik dan air rumah tangga untuk kawasan permukiman di Indonesia.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <a href="layanan.html">Katalog layanan</a>
+        <a href="kawasan.html">Data kawasan</a>
+        <a href="teknologi.html">Cara kerja teknologi</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Akun</h4>
+        <a href="masuk.html">Masuk</a>
+        <a href="masuk.html?tab=daftar">Daftar</a>
+        <a href="riwayat.html">Riwayat aktivitas</a>
+      </div>
+      <div>
+        <h4>Mitra</h4>
+        <a href="layanan.html">Koperasi Energi Gianyar</a>
+        <a href="layanan.html">Tirta Karya</a>
+        <a href="layanan.html">Nusa Meter</a>
+      </div>
+    </div>
+    <div class="kaki-bawah">
+      <span>&copy; <span data-tahun>2026</span> HALO — Gianne Angely Puspa Pilatus</span>
+      <span>Karya untuk Lomba Web Design ITCC 2026 · data pada situs ini merupakan simulasi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/grafik.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

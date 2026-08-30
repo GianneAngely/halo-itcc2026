@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id" class="tanpa-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katalog layanan — HALO</title>
+<meta name="description" content="Dua belas layanan hemat listrik dan air dari mitra terverifikasi, lengkap dengan perkiraan penghematan dan titik balik modal.">
+<link rel="icon" href="../assets/ill/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../lib/boxicons/css/boxicons.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/halaman.css">
+<link rel="stylesheet" href="../css/layanan.css">
+</head>
+<body data-dalam="pages">
+
+<div id="muat" aria-hidden="true">
+  <svg viewBox="0 0 32 32" fill="none">
+    <path class="garis" stroke="#14201c" stroke-width="1.4" fill="none"
+      d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Z"/>
+  </svg>
+</div>
+
+<a class="lewati" href="#isi">Lompat ke isi</a>
+
+<header class="bilah">
+  <div class="wrap bilah-isi">
+    <a class="merek" href="../index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+      HALO
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="../index.html">Beranda</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="kawasan.html">Kawasan</a>
+      <a href="teknologi.html">Teknologi</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="bilah-aksi" id="bilahAksi"></div>
+    <button class="bilah-tombol" id="bilahTombol" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><i class="bx bx-menu"></i></button>
+  </div>
+</header>
+
+<main id="isi">
+  <section class="kepala">
+    <div class="wrap kepala-kisi">
+      <div>
+        <nav class="remah" aria-label="Jejak halaman"><a href="../index.html">Beranda</a> <span>/</span> <span>Layanan</span></nav>
+        <h1>Dua belas layanan hemat listrik dan air</h1>
+        <p class="pengantar">
+          Semua layanan dikerjakan mitra terverifikasi di kawasan Gianyar. Angka penghematan
+          dihitung dari rata-rata rumah yang sudah memakainya, bukan dari klaim penyedia.
+        </p>
+      </div>
+      <ul class="kepala-angka">
+        <li><strong class="tnum">12</strong><span>layanan tersedia</span></li>
+        <li><strong class="tnum">3</strong><span>mitra penyedia</span></li>
+        <li><strong class="tnum">27</strong><span>teknisi aktif</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bagian-rapat">
+    <div class="wrap">
+
+      <div class="saring-bilah">
+        <div class="saring">
+          <div class="cari">
+            <i class="bx bx-search"></i>
+            <input class="masukan" type="search" id="cariLayanan" placeholder="Cari layanan atau penyedia" aria-label="Cari layanan">
+          </div>
+          <div class="saring-grup" id="saringKategori" role="group" aria-label="Saring menurut kategori">
+            <button class="cip" data-kategori="semua" aria-pressed="true">Semua</button>
+            <button class="cip" data-kategori="listrik" aria-pressed="false">Listrik</button>
+            <button class="cip" data-kategori="air" aria-pressed="false">Air</button>
+            <button class="cip" data-kategori="sensor" aria-pressed="false">Sensor</button>
+            <button class="cip" data-kategori="audit" aria-pressed="false">Audit</button>
+          </div>
+        </div>
+
+        <div class="saring-bawah">
+          <p class="saring-hasil"><strong id="jumlahHasil">12</strong> layanan ditampilkan</p>
+          <div class="saring-kanan">
+            <label class="urut">
+              <span>Urutkan</span>
+              <select class="masukan" id="urutLayanan">
+                <option value="hemat">Paling hemat</option>
+                <option value="murah">Termurah</option>
+                <option value="balik">Paling cepat balik modal</option>
+              </select>
+            </label>
+            <div class="tampilan" role="group" aria-label="Ganti tampilan">
+              <button class="tampilan-btn" data-tampilan="kisi" aria-pressed="true" aria-label="Tampilan kisi"><i class="bx bx-grid-alt"></i></button>
+              <button class="tampilan-btn" data-tampilan="daftar" aria-pressed="false" aria-label="Tampilan daftar"><i class="bx bx-list-ul"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kl-kisi" id="kisiLayanan">
+      <article class="kl kl-gambar" data-id="audit-rumah" data-kategori="audit" data-nama="audit energi rumah koperasi energi gianyar" data-hemat="85000" data-biaya="350000" data-balik="5">
+        <a href="detail-layanan.html?id=audit-rumah">
+        <img src="../assets/img/teknisi-lapangan.jpg" width="1000" height="750" alt="Teknisi memeriksa panel peralatan di lapangan" loading="lazy">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-netral">Audit</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.8 <small>(126)</small></span></div>
+            <h3>Audit energi rumah</h3>
+            <p class="kl-ringkas">Petugas menelusuri seluruh titik listrik dan air di rumah, lalu menyusun daftar prioritas perbaikan.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp85.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp350.000 <small>/ paket</small></dd></div>
+              <div><dt>Balik modal</dt><dd>5 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Koperasi Energi Gianyar · pengerjaan sehari</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl kl-gambar" data-id="sensor-listrik" data-kategori="sensor" data-nama="sensor listrik pintar nusa meter" data-hemat="120000" data-biaya="680000" data-balik="6">
+        <a href="detail-layanan.html?id=sensor-listrik">
+        <img src="../assets/img/tiang-listrik.jpg" width="1000" height="750" alt="Tiang listrik dengan kabel distribusi di atas permukiman" loading="lazy">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Sensor</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.7 <small>(284)</small></span></div>
+            <h3>Sensor listrik pintar</h3>
+            <p class="kl-ringkas">Penjepit arus pada kotak MCB yang mengirim pemakaian tiap 15 menit ke HALO.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp120.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp680.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>6 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Nusa Meter · pengerjaan 2 jam</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl" data-id="sensor-air" data-kategori="sensor" data-nama="sensor air ultrasonik nusa meter" data-hemat="65000" data-biaya="540000" data-balik="9">
+        <a href="detail-layanan.html?id=sensor-air">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Sensor</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.6 <small>(171)</small></span></div>
+            <h3>Sensor air ultrasonik</h3>
+            <p class="kl-ringkas">Dipasang pada pipa induk, membaca debit tanpa memotong saluran. Mengenali kebocoran dini.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp65.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp540.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>9 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Nusa Meter · pengerjaan 2 jam</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl" data-id="lampu-led" data-kategori="listrik" data-nama="penggantian lampu led terang bali" data-hemat="4800" data-biaya="35000" data-balik="8">
+        <a href="detail-layanan.html?id=lampu-led">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Listrik</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.5 <small>(412)</small></span></div>
+            <h3>Penggantian lampu LED</h3>
+            <p class="kl-ringkas">Mengganti lampu pijar dan neon dengan LED setara. Harga dihitung per titik.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp4.800</dd></div>
+              <div><dt>Biaya</dt><dd>Rp35.000 <small>/ titik</small></dd></div>
+              <div><dt>Balik modal</dt><dd>8 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Terang Bali · pengerjaan 1 jam</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl" data-id="timer-pompa" data-kategori="air" data-nama="pengatur waktu pompa air tirta karya" data-hemat="47000" data-biaya="310000" data-balik="7">
+        <a href="detail-layanan.html?id=timer-pompa">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-air">Air</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.4 <small>(98)</small></span></div>
+            <h3>Pengatur waktu pompa air</h3>
+            <p class="kl-ringkas">Pompa hanya menyala pada jadwal dan berhenti otomatis saat tandon penuh.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp47.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp310.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>7 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Tirta Karya · pengerjaan 3 jam</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl kl-gambar" data-id="kebocoran" data-kategori="air" data-nama="penelusuran & perbaikan kebocoran tirta karya" data-hemat="92000" data-biaya="275000" data-balik="3">
+        <a href="detail-layanan.html?id=kebocoran">
+        <img src="../assets/img/pipa-air.jpg" width="1000" height="750" alt="Sambungan pipa air lama di luar bangunan" loading="lazy">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-air">Air</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.9 <small>(203)</small></span></div>
+            <h3>Penelusuran & perbaikan kebocoran</h3>
+            <p class="kl-ringkas">Menelusuri pipa tertanam dengan alat dengar, lalu menambal titik bocor yang ditemukan.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp92.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp275.000 <small>/ paket</small></dd></div>
+              <div><dt>Balik modal</dt><dd>3 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Tirta Karya · pengerjaan setengah hari</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl kl-gambar" data-id="surya-450" data-kategori="listrik" data-nama="panel surya atap 450 wp surya dewata" data-hemat="310000" data-biaya="4850000" data-balik="16">
+        <a href="detail-layanan.html?id=surya-450">
+        <img src="../assets/img/panel-surya-atap.jpg" width="1000" height="750" alt="Panel surya terpasang di atap genteng" loading="lazy">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Listrik</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.7 <small>(64)</small></span></div>
+            <h3>Panel surya atap 450 Wp</h3>
+            <p class="kl-ringkas">Satu larik panel dengan inverter, memangkas tagihan siang hari secara langsung.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp310.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp4.850.000 <small>/ larik</small></dd></div>
+              <div><dt>Balik modal</dt><dd>16 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Surya Dewata · pengerjaan 2 hari</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl" data-id="tampung-hujan" data-kategori="air" data-nama="penampung air hujan 1.000 l tirta karya" data-hemat="78000" data-biaya="2150000" data-balik="28">
+        <a href="detail-layanan.html?id=tampung-hujan">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-air">Air</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.3 <small>(57)</small></span></div>
+            <h3>Penampung air hujan 1.000 L</h3>
+            <p class="kl-ringkas">Tandon dan penyaring untuk keperluan siram dan cuci, mengurangi tarikan dari PDAM.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp78.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp2.150.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>28 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Tirta Karya · pengerjaan sehari</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl" data-id="servis-ac" data-kategori="listrik" data-nama="servis dan isi ulang ac adem servis" data-hemat="32000" data-biaya="185000" data-balik="6">
+        <a href="detail-layanan.html?id=servis-ac">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Listrik</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.6 <small>(389)</small></span></div>
+            <h3>Servis dan isi ulang AC</h3>
+            <p class="kl-ringkas">Pencucian penukar panas dan penyetelan tekanan. AC kotor menyedot daya jauh lebih besar.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp32.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp185.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>6 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Adem Servis · pengerjaan 1 jam</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl" data-id="kulkas-inverter" data-kategori="listrik" data-nama="tukar tambah kulkas inverter koperasi energi gianyar" data-hemat="96000" data-biaya="3400000" data-balik="36">
+        <a href="detail-layanan.html?id=kulkas-inverter">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Listrik</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.5 <small>(41)</small></span></div>
+            <h3>Tukar tambah kulkas inverter</h3>
+            <p class="kl-ringkas">Kulkas lama ditukar dengan model inverter berlabel hemat. Kulkas lama didaur ulang.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp96.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp3.400.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>36 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Koperasi Energi Gianyar · pengerjaan sehari</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl kl-gambar" data-id="aerator" data-kategori="air" data-nama="pemasangan aerator keran tirta karya" data-hemat="5100" data-biaya="30000" data-balik="6">
+        <a href="detail-layanan.html?id=aerator">
+        <img src="../assets/img/keran-air.jpg" width="1000" height="750" alt="Air mengalir dari keran ke sepasang tangan" loading="lazy">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-air">Air</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.2 <small>(245)</small></span></div>
+            <h3>Pemasangan aerator keran</h3>
+            <p class="kl-ringkas">Penyaring berudara yang memangkas debit tanpa mengurangi rasa kuat air. Per titik keran.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp5.100</dd></div>
+              <div><dt>Biaya</dt><dd>Rp30.000 <small>/ titik</small></dd></div>
+              <div><dt>Balik modal</dt><dd>6 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Tirta Karya · pengerjaan 30 menit</p>
+          </div>
+        </a>
+      </article>
+      <article class="kl kl-gambar" data-id="pemanas-surya" data-kategori="listrik" data-nama="pemanas air tenaga surya surya dewata" data-hemat="185000" data-biaya="5900000" data-balik="32">
+        <a href="detail-layanan.html?id=pemanas-surya">
+        <img src="../assets/img/atap-genteng.jpg" width="1000" height="750" alt="Deretan genteng tanah liat pada atap rumah" loading="lazy">
+          <div class="kl-isi">
+            <div class="kl-atas"><span class="pil pil-listrik">Listrik</span><span class="kl-nilai"><i class="bx bxs-star"></i>4.8 <small>(73)</small></span></div>
+            <h3>Pemanas air tenaga surya</h3>
+            <p class="kl-ringkas">Tabung penyerap panas di atap menggantikan pemanas listrik untuk kebutuhan mandi.</p>
+            <dl class="kl-angka">
+              <div><dt>Hemat tiap bulan</dt><dd class="hemat">Rp185.000</dd></div>
+              <div><dt>Biaya</dt><dd>Rp5.900.000 <small>/ unit</small></dd></div>
+              <div><dt>Balik modal</dt><dd>32 bulan</dd></div>
+            </dl>
+            <p class="kl-kaki">Surya Dewata · pengerjaan 2 hari</p>
+          </div>
+        </a>
+      </article>
+      </div>
+
+      <div class="kosong" id="kosongLayanan" hidden>
+        <svg viewBox="0 0 160 120" fill="none" aria-hidden="true">
+          <rect x="18" y="26" width="94" height="74" rx="4" stroke="#ded8cd" stroke-width="2.5" stroke-dasharray="7 6"/>
+          <path d="M64 48c0 0 13 14.6 13 22.2C77 76.7 71.2 82 64 82s-13-5.3-13-11.8C51 62.6 64 48 64 48Z" fill="#dcebef"/>
+          <circle cx="112" cy="62" r="24" stroke="#b8501a" stroke-width="3" fill="#fff" fill-opacity=".65"/>
+          <path d="M129 79l14 14" stroke="#b8501a" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M104 62h16M112 54v16" stroke="#b8501a" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
+        </svg>
+        <h3>Tidak ada layanan yang cocok</h3>
+        <p>Coba ganti kata pencarian atau pilih kategori lain.</p>
+        <button class="btn btn-garis btn-kecil" id="hapusSaring">Hapus semua saringan</button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bagian-rapat putih ajak">
+    <div class="wrap ajak-kisi">
+      <div>
+        <h2>Belum yakin mulai dari mana?</h2>
+        <p class="pengantar">Audit energi memetakan seluruh titik boros di rumah lalu menyusun urutan perbaikannya, dari yang paling murah dan paling cepat balik modal.</p>
+      </div>
+      <a class="btn btn-utama" href="detail-layanan.html?id=audit-rumah">Lihat audit energi rumah</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="kaki">
+  <div class="wrap">
+    <div class="kaki-kisi">
+      <div>
+        <div class="merek">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+          HALO
+        </div>
+        <p>Ekosistem pemantauan listrik dan air rumah tangga untuk kawasan permukiman di Indonesia.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <a href="layanan.html">Katalog layanan</a>
+        <a href="kawasan.html">Data kawasan</a>
+        <a href="teknologi.html">Cara kerja teknologi</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Akun</h4>
+        <a href="masuk.html">Masuk</a>
+        <a href="masuk.html?tab=daftar">Daftar</a>
+        <a href="riwayat.html">Riwayat aktivitas</a>
+      </div>
+      <div>
+        <h4>Mitra</h4>
+        <a href="layanan.html">Koperasi Energi Gianyar</a>
+        <a href="layanan.html">Tirta Karya</a>
+        <a href="layanan.html">Nusa Meter</a>
+      </div>
+    </div>
+    <div class="kaki-bawah">
+      <span>&copy; <span data-tahun>2026</span> HALO — Gianne Angely Puspa Pilatus</span>
+      <span>Karya untuk Lomba Web Design ITCC 2026 · data pada situs ini merupakan simulasi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/grafik.js"></script>
+<script src="../js/layanan.js"></script>
+</body>
+</html>

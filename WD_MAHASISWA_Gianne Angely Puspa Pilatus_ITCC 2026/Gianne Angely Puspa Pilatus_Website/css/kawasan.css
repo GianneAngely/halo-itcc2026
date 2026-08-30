@@ -1,0 +1,69 @@
+/* ============================================================
+   HALO — halaman Data kawasan
+   ============================================================ */
+.kepala-angka { display: flex; gap: var(--s7); }
+.kepala-angka li { display: grid; }
+.kepala-angka strong { font-family: 'Plex Serif', Georgia, serif; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kepala-angka span { font-size: var(--fs-xs); color: var(--ink-3); }
+
+/* ---------- Peta blok ---------- */
+.peta-bungkus { background: var(--paper); border-radius: var(--r-sm); padding: var(--s4); }
+.peta-blok { cursor: pointer; transition: fill-opacity .16s var(--ease), stroke-width .16s var(--ease); }
+.peta-blok:hover { fill-opacity: 1 !important; }
+.peta-terpilih { stroke: var(--ink); stroke-width: 2.5; }
+.peta-nama { font-size: 12px; font-weight: 600; fill: var(--ink); font-family: 'Plex Sans', sans-serif; pointer-events: none; }
+.peta-nilai { font-size: 10px; fill: var(--ink-2); font-family: 'Plex Sans', sans-serif; font-variant-numeric: tabular-nums; pointer-events: none; }
+.peta-skala { display: flex; align-items: center; gap: var(--s3); margin-top: var(--s4); }
+.peta-skala-teks { font-size: var(--fs-xs); color: var(--ink-3); }
+.peta-skala-bar {
+  flex: 1; height: 8px; border-radius: 4px;
+  /* Deret warna rata bertingkat, bukan gradasi */
+  background:
+    linear-gradient(to right,
+      #f0e6dc 0 20%, #e2c6ad 20% 40%, #d3a37e 40% 60%, #c47c4c 60% 80%, #b8501a 80% 100%);
+}
+
+/* ---------- Rincian kelurahan terpilih ---------- */
+.rk-angka { display: grid; gap: var(--s3); }
+.rk-angka > div { display: flex; justify-content: space-between; gap: var(--s3); padding-bottom: var(--s3); border-bottom: 1px solid var(--line-2); }
+.rk-angka > div:last-child { border-bottom: none; padding-bottom: 0; }
+.rk-angka dt { font-size: var(--fs-sm); color: var(--ink-3); }
+.rk-angka dd { font-size: var(--fs-sm); font-weight: 600; }
+.rk-catatan { font-size: var(--fs-sm); color: var(--ink-2); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--line-2); }
+
+.baris-kamu { background: var(--listrik-lo) !important; }
+.baris-kamu th { font-weight: 700; }
+.tabel th .pil { margin-left: var(--s2); }
+
+/* ---------- Program hemat ---------- */
+.prog { display: grid; gap: var(--s5); }
+.prog-atas { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); }
+.prog-nama { font-size: var(--fs-sm); font-weight: 600; }
+.prog-angka { font-size: var(--fs-sm); color: var(--ink-2); }
+.prog-alur { height: 8px; background: var(--line-2); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+.prog-isi { display: block; height: 100%; width: 0; background: var(--hemat); border-radius: 999px; transition: width .9s cubic-bezier(.22,.61,.36,1); }
+.prog-kaki { font-size: var(--fs-xs); color: var(--ink-3); margin-top: 6px; }
+
+/* ---------- Antrean verifikasi ---------- */
+.antre-daftar { display: grid; gap: var(--s3); }
+.antre {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s5);
+  padding: var(--s4) var(--s5); border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface);
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.antre.pergi { opacity: 0; transform: translateX(24px); }
+.antre-kiri { display: grid; gap: 2px; min-width: 0; }
+.antre-kode { font-size: var(--fs-xs); color: var(--ink-3); letter-spacing: .04em; }
+.antre-nama { font-weight: 600; font-size: var(--fs-sm); }
+.antre-sub { font-size: var(--fs-xs); color: var(--ink-3); }
+.antre-alasan { font-size: var(--fs-sm); color: var(--ink-2); margin-top: var(--s2); }
+.antre-aksi { display: flex; gap: var(--s2); flex: none; }
+
+@media (max-width: 760px) {
+  .kepala-angka { gap: var(--s5); flex-wrap: wrap; }
+  .antre { flex-direction: column; gap: var(--s3); }
+  .antre-aksi { width: 100%; }
+  .antre-aksi .btn { flex: 1; }
+}
+.baris-sorot { outline: 2px solid var(--ink); outline-offset: -2px; }
+.peta-balik { fill: #fdf9f3; }

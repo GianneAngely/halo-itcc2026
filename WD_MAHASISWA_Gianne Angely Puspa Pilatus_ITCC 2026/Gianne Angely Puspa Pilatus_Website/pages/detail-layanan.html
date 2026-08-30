@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id" class="tanpa-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detail layanan — HALO</title>
+<meta name="description" content="Rincian layanan hemat listrik dan air, lengkap dengan simulasi penghematan dan perkiraan titik balik modal.">
+<link rel="icon" href="../assets/ill/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../lib/boxicons/css/boxicons.min.css">
+<link rel="stylesheet" href="../lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="../lib/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/halaman.css">
+<link rel="stylesheet" href="../css/detail.css">
+</head>
+<body data-dalam="pages">
+
+<div id="muat" aria-hidden="true">
+  <svg viewBox="0 0 32 32" fill="none">
+    <path class="garis" stroke="#14201c" stroke-width="1.4" fill="none"
+      d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Z"/>
+  </svg>
+</div>
+
+<a class="lewati" href="#isi">Lompat ke isi</a>
+
+<header class="bilah">
+  <div class="wrap bilah-isi">
+    <a class="merek" href="../index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+      HALO
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="../index.html">Beranda</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="kawasan.html">Kawasan</a>
+      <a href="teknologi.html">Teknologi</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="bilah-aksi" id="bilahAksi"></div>
+    <button class="bilah-tombol" id="bilahTombol" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><i class="bx bx-menu"></i></button>
+  </div>
+</header>
+
+<main id="isi">
+  <section class="kepala detail-kepala">
+    <div class="wrap">
+      <nav class="remah" aria-label="Jejak halaman">
+        <a href="../index.html">Beranda</a> <span>/</span>
+        <a href="layanan.html">Layanan</a> <span>/</span>
+        <span id="remahNama">Penelusuran dan perbaikan kebocoran</span>
+      </nav>
+      <div class="detail-atas">
+        <div>
+          <span class="pil pil-air" id="dKategori">Air</span>
+          <h1 id="dNama">Penelusuran dan perbaikan kebocoran</h1>
+          <p class="pengantar" id="dRingkas">Menelusuri pipa tertanam dengan alat dengar, lalu menambal titik bocor yang ditemukan.</p>
+          <ul class="detail-meta">
+            <li><i class="bx bxs-star"></i><span id="dNilai">4.9</span> <small>(<span id="dUlasan">203</span> ulasan)</small></li>
+            <li><i class="bx bx-buildings"></i><span id="dPenyedia">Tirta Karya</span></li>
+            <li><i class="bx bx-time-five"></i>pengerjaan <span id="dDurasi">setengah hari</span></li>
+          </ul>
+        </div>
+        <div class="detail-aksi">
+          <p class="detail-harga"><span>Mulai dari</span><strong id="dBiaya">Rp275.000</strong></p>
+          <button class="btn btn-utama" id="tombolAjukan">Ajukan pemasangan</button>
+          <button class="btn btn-garis" id="tombolRencana"><i class="bx bx-bookmark"></i> Simpan ke rencana</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bagian-rapat">
+    <div class="wrap kolom-berat">
+
+      <div class="tumpuk">
+        <!-- ---------- Galeri ---------- -->
+        <div class="galeri" id="galeri">
+          <a href="../assets/img/pipa-air.jpg" data-fancybox="galeri" data-caption="Sambungan pipa yang menjadi titik pemeriksaan utama">
+            <img src="../assets/img/pipa-air.jpg" width="1000" height="750" alt="Sambungan pipa air lama di luar bangunan">
+          </a>
+          <a href="../assets/img/teknisi-lapangan.jpg" data-fancybox="galeri" data-caption="Teknisi memverifikasi temuan sensor di lokasi">
+            <img src="../assets/img/teknisi-lapangan.jpg" width="1200" height="800" alt="Dua teknisi memeriksa panel peralatan" loading="lazy">
+          </a>
+          <a href="../assets/img/keran-air.jpg" data-fancybox="galeri" data-caption="Uji aliran setelah penambalan">
+            <img src="../assets/img/keran-air.jpg" width="1000" height="750" alt="Air mengalir dari keran ke sepasang tangan" loading="lazy">
+          </a>
+        </div>
+
+        <!-- ---------- Simulasi hemat ---------- -->
+        <div class="kotak simulasi">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Hitung sendiri untung ruginya</h2>
+              <p>Geser pengaturnya, angka di bawah ikut berubah seketika.</p>
+            </div>
+          </div>
+
+          <div class="sim-kisi">
+            <div class="sim-atur">
+              <div class="geser">
+                <label for="simUnit">Jumlah <span id="simSatuan">paket</span> <strong class="tnum" id="simUnitNilai">1</strong></label>
+                <input type="range" id="simUnit" min="1" max="1" value="1" step="1">
+              </div>
+              <div class="geser">
+                <label for="simTarif">Tarif air per meter kubik <strong class="tnum" id="simTarifNilai">Rp4.900</strong></label>
+                <input type="range" id="simTarif" min="3500" max="9000" value="4900" step="100">
+                <p class="geser-bantu">Tarif PDAM berbeda tiap daerah. Naikkan kalau tarif di tempatmu lebih tinggi.</p>
+              </div>
+              <div class="geser">
+                <label for="simPakai">Tingkat pemakaian dibanding rumah rata-rata <strong class="tnum" id="simPakaiNilai">100%</strong></label>
+                <input type="range" id="simPakai" min="50" max="180" value="100" step="5">
+              </div>
+            </div>
+
+            <div class="sim-hasil">
+              <div class="sim-angka">
+                <p class="panel-nama">Hemat tiap bulan</p>
+                <p class="panel-angka hemat-warna tnum" id="hasilBulan">Rp92.000</p>
+              </div>
+              <div class="sim-angka">
+                <p class="panel-nama">Hemat setahun</p>
+                <p class="panel-angka tnum" id="hasilTahun">Rp1.104.000</p>
+              </div>
+              <div class="sim-angka">
+                <p class="panel-nama">Balik modal</p>
+                <p class="panel-angka tnum" id="hasilBalik">3 bulan</p>
+              </div>
+              <div class="sim-angka">
+                <p class="panel-nama">Selisih bersih 5 tahun</p>
+                <p class="panel-angka tnum" id="hasilLima">Rp5.245.000</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gr-wadah sim-grafik">
+            <div id="grafikBalik"></div>
+          </div>
+          <div class="gr-legenda">
+            <span><i style="background:var(--hemat)"></i>Penghematan terkumpul</span>
+            <span><i style="background:var(--ink-3)"></i>Biaya pemasangan</span>
+            <span class="sim-catatan">Titik potong kedua garis adalah bulan balik modal.</span>
+          </div>
+        </div>
+
+        <!-- ---------- Cara pengerjaan ---------- -->
+        <div class="kotak">
+          <div class="kotak-kepala"><h2>Cara pengerjaannya</h2></div>
+          <ol class="lini">
+            <li class="selesai">
+              <div class="lini-atas"><span class="lini-judul">Pemeriksaan awal</span><span class="lini-tanggal">30 menit</span></div>
+              <p>Teknisi membaca riwayat sensor untuk menandai rentang jam yang mencurigakan, lalu menutup semua keran untuk menguji apakah meteran tetap berputar.</p>
+            </li>
+            <li class="selesai">
+              <div class="lini-atas"><span class="lini-judul">Penelusuran jalur</span><span class="lini-tanggal">1–2 jam</span></div>
+              <p>Alat dengar ditempelkan sepanjang jalur pipa. Suara desis air bertekanan yang keluar dari retakan terdengar berbeda dari aliran normal.</p>
+            </li>
+            <li class="selesai">
+              <div class="lini-atas"><span class="lini-judul">Pembongkaran setempat</span><span class="lini-tanggal">1 jam</span></div>
+              <p>Hanya bagian yang ditandai yang dibongkar, jadi kerusakan taman atau lantai bisa ditekan seminimal mungkin.</p>
+            </li>
+            <li class="selesai">
+              <div class="lini-atas"><span class="lini-judul">Penambalan dan uji tekan</span><span class="lini-tanggal">1 jam</span></div>
+              <p>Titik bocor diganti atau ditambal, lalu jalur diuji tekan untuk memastikan tidak ada rembesan yang tersisa.</p>
+            </li>
+            <li class="kini">
+              <div class="lini-atas"><span class="lini-judul">Pemantauan lanjutan</span><span class="lini-tanggal">7 hari</span></div>
+              <p>Sensor terus membaca pemakaian dini hari selama sepekan. Kalau angkanya kembali normal, pekerjaan ditandai berhasil dan selisihnya masuk ke laporan.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- ---------- Sisi kanan ---------- -->
+      <aside class="tumpuk">
+        <div class="kotak">
+          <div class="kotak-kepala"><h3>Rincian teknis</h3></div>
+          <table class="tabel-rinci">
+            <tbody>
+              <tr><th scope="row">Kategori</th><td id="rKategori">Air</td></tr>
+              <tr><th scope="row">Penyedia</th><td id="rPenyedia">Tirta Karya</td></tr>
+              <tr><th scope="row">Lama pengerjaan</th><td id="rDurasi">Setengah hari</td></tr>
+              <tr><th scope="row">Satuan</th><td id="rSatuan">Per paket rumah</td></tr>
+              <tr><th scope="row">Garansi pengerjaan</th><td>90 hari</td></tr>
+              <tr><th scope="row">Perlu sensor terpasang</th><td id="rSensor">Tidak wajib, tapi hasilnya lebih akurat</td></tr>
+              <tr><th scope="row">Cakupan wilayah</th><td>Gianyar dan sekitarnya</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="kotak dampak">
+          <div class="kotak-kepala"><h3>Dampak lingkungan</h3></div>
+          <p class="dampak-angka tnum" id="dampakNilai">41 <small>kg CO₂e setahun</small></p>
+          <p class="dampak-teks" id="dampakTeks">
+            Air bersih perlu dipompa dan diolah sebelum sampai ke rumah, dan itu memakai listrik.
+            Setiap meter kubik yang tidak terbuang ikut memangkas emisi dari proses tersebut.
+          </p>
+          <p class="dampak-banding" id="dampakBanding">Setara dengan tidak menyalakan satu AC selama 68 jam.</p>
+        </div>
+
+        <div class="kotak">
+          <div class="kotak-kepala"><h3>Kenapa layanan ini muncul untukmu</h3></div>
+          <p class="alasan-teks" id="alasanTeks">
+            HALO menandai aliran air yang bertahan di 38 liter per jam antara pukul 02.00 dan 05.00
+            selama empat hari berturut-turut di rumahmu. Pada rumah dengan pola pemakaian serupa,
+            angka normal di jam tersebut ada di bawah lima liter per jam.
+          </p>
+          <a class="btn btn-garis btn-kecil" href="dashboard.html">Lihat datanya di dashboard</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ---------- Layanan terkait ---------- -->
+  <section class="bagian-rapat putih">
+    <div class="wrap">
+      <div class="kotak-kepala"><h2>Layanan lain yang sering diambil bersamaan</h2></div>
+      <div class="swiper terkait" id="terkait">
+        <div class="swiper-wrapper" id="terkaitIsi"></div>
+        <div class="swiper-button-prev" aria-label="Sebelumnya"></div>
+        <div class="swiper-button-next" aria-label="Berikutnya"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="kaki">
+  <div class="wrap">
+    <div class="kaki-kisi">
+      <div>
+        <div class="merek">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+          HALO
+        </div>
+        <p>Ekosistem pemantauan listrik dan air rumah tangga untuk kawasan permukiman di Indonesia.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <a href="layanan.html">Katalog layanan</a>
+        <a href="kawasan.html">Data kawasan</a>
+        <a href="teknologi.html">Cara kerja teknologi</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Akun</h4>
+        <a href="masuk.html">Masuk</a>
+        <a href="masuk.html?tab=daftar">Daftar</a>
+        <a href="riwayat.html">Riwayat aktivitas</a>
+      </div>
+      <div>
+        <h4>Mitra</h4>
+        <a href="layanan.html">Koperasi Energi Gianyar</a>
+        <a href="layanan.html">Tirta Karya</a>
+        <a href="layanan.html">Nusa Meter</a>
+      </div>
+    </div>
+    <div class="kaki-bawah">
+      <span>&copy; <span data-tahun>2026</span> HALO — Gianne Angely Puspa Pilatus</span>
+      <span>Karya untuk Lomba Web Design ITCC 2026 · data pada situs ini merupakan simulasi</span>
+    </div>
+  </div>
+</footer>
+<script src="../lib/fancybox/fancybox.umd.js"></script>
+<script src="../lib/swiper/swiper-bundle.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/grafik.js"></script>
+<script src="../js/detail.js"></script>
+</body>
+</html>

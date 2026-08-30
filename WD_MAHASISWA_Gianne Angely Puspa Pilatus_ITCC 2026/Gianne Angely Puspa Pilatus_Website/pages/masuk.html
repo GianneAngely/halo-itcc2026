@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id" class="tanpa-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masuk atau daftar — HALO</title>
+<meta name="description" content="Masuk ke HALO atau buat akun baru untuk memantau pemakaian listrik dan air rumah.">
+<link rel="icon" href="../assets/ill/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../lib/boxicons/css/boxicons.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/halaman.css">
+<link rel="stylesheet" href="../css/masuk.css">
+</head>
+<body data-dalam="pages">
+
+<div id="muat" aria-hidden="true">
+  <svg viewBox="0 0 32 32" fill="none">
+    <path class="garis" stroke="#14201c" stroke-width="1.4" fill="none"
+      d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Z"/>
+  </svg>
+</div>
+
+<a class="lewati" href="#isi">Lompat ke isi</a>
+
+<header class="bilah">
+  <div class="wrap bilah-isi">
+    <a class="merek" href="../index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+      HALO
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="../index.html">Beranda</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="kawasan.html">Kawasan</a>
+      <a href="teknologi.html">Teknologi</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="bilah-aksi" id="bilahAksi"></div>
+    <button class="bilah-tombol" id="bilahTombol" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><i class="bx bx-menu"></i></button>
+  </div>
+</header>
+
+<main id="isi">
+  <section class="masuk">
+    <div class="masuk-kiri">
+      <img src="../assets/img/keran-air.jpg" width="1000" height="750" alt="Sepasang tangan dicuci di bawah keran air yang mengalir">
+      <div class="masuk-kiri-isi">
+        <h2>Sudah 2.337 rumah yang meterannya terbaca.</h2>
+        <ul class="masuk-guna">
+          <li><i class="bx bx-line-chart"></i><div><strong>Pemakaian per jam</strong><span>Lihat jam berapa listrik dan air paling banyak terpakai, bukan cuma total sebulan.</span></div></li>
+          <li><i class="bx bx-bell"></i><div><strong>Peringatan dini</strong><span>Kejanggalan seperti kebocoran ditandai sebelum masuk ke tagihan.</span></div></li>
+          <li><i class="bx bx-wrench"></i><div><strong>Perbaikan yang terlacak</strong><span>Pengajuan berjalan dari verifikasi kawasan sampai hasilnya terukur.</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="masuk-kanan">
+      <div class="masuk-kotak">
+        <div class="tab-rak" role="tablist" aria-label="Pilih masuk atau daftar">
+          <button id="tabMasuk" role="tab" aria-selected="true" aria-controls="panelMasuk">Masuk</button>
+          <button id="tabDaftar" role="tab" aria-selected="false" aria-controls="panelDaftar">Daftar</button>
+        </div>
+
+        <!-- ---------- Formulir masuk ---------- -->
+        <form id="panelMasuk" role="tabpanel" aria-labelledby="tabMasuk" novalidate>
+          <h1>Masuk ke akun</h1>
+          <p class="masuk-sub">Lanjutkan memantau rumah yang sudah terhubung.</p>
+
+          <div class="kolom">
+            <label for="mEmail">Alamat surel</label>
+            <input class="masukan" type="email" id="mEmail" name="email" autocomplete="email" placeholder="nama@surel.com">
+            <p class="pesan-salah" data-untuk="mEmail"></p>
+          </div>
+          <div class="kolom">
+            <label for="mSandi">Kata sandi</label>
+            <div class="sandi-bungkus">
+              <input class="masukan" type="password" id="mSandi" name="sandi" autocomplete="current-password" placeholder="Kata sandi">
+              <button type="button" class="sandi-intip" data-intip="mSandi" aria-label="Tampilkan kata sandi"><i class="bx bx-show"></i></button>
+            </div>
+            <p class="pesan-salah" data-untuk="mSandi"></p>
+          </div>
+
+          <button class="btn btn-utama masuk-kirim" type="submit">Masuk</button>
+
+          <div class="masuk-pisah"><span>atau coba tanpa daftar</span></div>
+
+          <p class="masuk-demo-tanda">Tiap peran melihat halaman yang berbeda:</p>
+          <div class="masuk-demo">
+            <button type="button" class="demo" data-peran="Warga">
+              <i class="bx bx-home-alt"></i><strong>Warga</strong><span>Dashboard rumah, riwayat, pengajuan layanan</span>
+            </button>
+            <button type="button" class="demo" data-peran="Pengelola kawasan">
+              <i class="bx bx-map-alt"></i><strong>Pengelola kawasan</strong><span>Agregat wilayah dan antrean verifikasi</span>
+            </button>
+            <button type="button" class="demo" data-peran="Teknisi">
+              <i class="bx bx-wrench"></i><strong>Teknisi</strong><span>Daftar pekerjaan yang sudah diverifikasi</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- ---------- Formulir daftar ---------- -->
+        <form id="panelDaftar" role="tabpanel" aria-labelledby="tabDaftar" hidden novalidate>
+          <h1>Buat akun baru</h1>
+          <p class="masuk-sub">Akun disimpan di peramban ini saja, tidak dikirim ke mana pun.</p>
+
+          <div class="kolom">
+            <label for="dNama">Nama lengkap</label>
+            <input class="masukan" type="text" id="dNama" name="nama" autocomplete="name" placeholder="Nama sesuai kartu identitas">
+            <p class="pesan-salah" data-untuk="dNama"></p>
+          </div>
+          <div class="kolom">
+            <label for="dEmail">Alamat surel</label>
+            <input class="masukan" type="email" id="dEmail" name="email" autocomplete="email" placeholder="nama@surel.com">
+            <p class="pesan-salah" data-untuk="dEmail"></p>
+          </div>
+          <div class="kolom">
+            <label for="dSandi">Kata sandi <span class="bantu">— sedikitnya delapan huruf</span></label>
+            <div class="sandi-bungkus">
+              <input class="masukan" type="password" id="dSandi" name="sandi" autocomplete="new-password" placeholder="Buat kata sandi">
+              <button type="button" class="sandi-intip" data-intip="dSandi" aria-label="Tampilkan kata sandi"><i class="bx bx-show"></i></button>
+            </div>
+            <div class="kuat" id="kuatSandi" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <p class="kuat-teks" id="kuatTeks"></p>
+            <p class="pesan-salah" data-untuk="dSandi"></p>
+          </div>
+
+          <fieldset class="kolom pilihan">
+            <legend>Peran di HALO</legend>
+            <div class="pilihan-kisi" id="pilihPeran">
+              <button type="button" class="pilihan-btn" data-nilai="Warga" aria-pressed="true"><i class="bx bx-home-alt"></i>Warga</button>
+              <button type="button" class="pilihan-btn" data-nilai="Pengelola kawasan" aria-pressed="false"><i class="bx bx-map-alt"></i>Pengelola kawasan</button>
+              <button type="button" class="pilihan-btn" data-nilai="Teknisi" aria-pressed="false"><i class="bx bx-wrench"></i>Teknisi</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="kolom pilihan">
+            <legend>Jenis tempat</legend>
+            <div class="pilihan-kisi" id="pilihTempat">
+              <button type="button" class="pilihan-btn" data-nilai="Rumah" aria-pressed="true"><i class="bx bx-home"></i>Rumah</button>
+              <button type="button" class="pilihan-btn" data-nilai="Kos" aria-pressed="false"><i class="bx bx-building-house"></i>Kos</button>
+              <button type="button" class="pilihan-btn" data-nilai="UMKM" aria-pressed="false"><i class="bx bx-store"></i>UMKM</button>
+            </div>
+          </fieldset>
+
+          <div class="kolom">
+            <label for="dWilayah">Wilayah <span class="bantu">— boleh dikosongkan</span></label>
+            <input class="masukan" type="text" id="dWilayah" name="wilayah" placeholder="mis. Peliatan, Gianyar">
+          </div>
+
+          <button class="btn btn-utama masuk-kirim" type="submit">Buat akun</button>
+          <p class="masuk-kaki">Dengan mendaftar, kamu setuju data pemakaian disimpan di peramban ini untuk keperluan demonstrasi.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="kaki">
+  <div class="wrap">
+    <div class="kaki-kisi">
+      <div>
+        <div class="merek">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+          HALO
+        </div>
+        <p>Ekosistem pemantauan listrik dan air rumah tangga untuk kawasan permukiman di Indonesia.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <a href="layanan.html">Katalog layanan</a>
+        <a href="kawasan.html">Data kawasan</a>
+        <a href="teknologi.html">Cara kerja teknologi</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Akun</h4>
+        <a href="masuk.html">Masuk</a>
+        <a href="masuk.html?tab=daftar">Daftar</a>
+        <a href="riwayat.html">Riwayat aktivitas</a>
+      </div>
+      <div>
+        <h4>Mitra</h4>
+        <a href="layanan.html">Koperasi Energi Gianyar</a>
+        <a href="layanan.html">Tirta Karya</a>
+        <a href="layanan.html">Nusa Meter</a>
+      </div>
+    </div>
+    <div class="kaki-bawah">
+      <span>&copy; <span data-tahun>2026</span> HALO — Gianne Angely Puspa Pilatus</span>
+      <span>Karya untuk Lomba Web Design ITCC 2026 · data pada situs ini merupakan simulasi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/grafik.js"></script>
+<script src="../js/masuk.js"></script>
+</body>
+</html>

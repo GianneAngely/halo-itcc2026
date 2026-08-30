@@ -1,0 +1,98 @@
+/* ============================================================
+   HALO — halaman Detail layanan
+   ============================================================ */
+.detail-kepala { padding-bottom: var(--s7); }
+.detail-atas { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: var(--s7); align-items: start; }
+.detail-atas h1 { margin: var(--s3) 0 var(--s3); }
+.detail-meta { display: flex; flex-wrap: wrap; gap: var(--s5); margin-top: var(--s5); font-size: var(--fs-sm); color: var(--ink-2); }
+.detail-meta li { display: inline-flex; align-items: center; gap: 6px; }
+.detail-meta i { color: var(--ink-3); font-size: 1.05rem; }
+.detail-meta .bxs-star { color: var(--listrik); }
+.detail-meta small { color: var(--ink-3); }
+.detail-aksi { display: grid; gap: var(--s3); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s5); }
+.detail-harga { display: grid; margin-bottom: var(--s2); }
+.detail-harga span { font-size: var(--fs-xs); color: var(--ink-3); }
+.detail-harga strong { font-family: 'Plex Serif', Georgia, serif; font-size: 1.75rem; font-variant-numeric: tabular-nums; }
+
+/* ---------- Galeri ---------- */
+.galeri { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: repeat(2, 1fr); gap: var(--s2); }
+.galeri a { overflow: hidden; border-radius: var(--r-md); }
+.galeri a:first-child { grid-row: 1 / 3; }
+.galeri img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease); }
+.galeri a:first-child img { min-height: 320px; }
+.galeri a:not(:first-child) img { height: 156px; }
+.galeri a:hover img { transform: scale(1.04); }
+
+/* ---------- Simulasi ---------- */
+.sim-kisi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s6); }
+.sim-atur { display: grid; gap: var(--s5); align-content: start; }
+.geser label { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); font-size: var(--fs-sm); font-weight: 500; margin-bottom: var(--s2); }
+.geser label strong { font-weight: 700; font-size: 1rem; }
+.geser-bantu { font-size: var(--fs-xs); color: var(--ink-3); margin-top: 6px; }
+
+/* Pengatur geser digambar sendiri supaya seragam antar peramban */
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: var(--line); border-radius: 2px; }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ink); border: 3px solid var(--surface); box-shadow: var(--shadow-2); cursor: grab;
+  transition: transform .13s var(--ease);
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; }
+input[type="range"]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--ink);
+  border: 3px solid var(--surface); box-shadow: var(--shadow-2); cursor: grab;
+}
+input[type="range"]:focus-visible { outline-offset: 6px; }
+
+.sim-hasil { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4); align-content: start; }
+.sim-angka { background: var(--paper); border-radius: var(--r-sm); padding: var(--s4); }
+.sim-angka .panel-angka { font-size: 1.5rem; transition: color .2s var(--ease); }
+.hemat-warna { color: var(--hemat); }
+.sim-grafik { margin-top: var(--s6); }
+.sim-catatan { color: var(--ink-3); }
+.berubah { animation: kedip .45s var(--ease); }
+@keyframes kedip { 0% { background: var(--hemat-lo); } 100% { background: var(--paper); } }
+
+/* ---------- Rincian dan dampak ---------- */
+.tabel-rinci th, .tabel-rinci td { padding: var(--s3) 0; border-bottom: 1px solid var(--line-2); font-size: var(--fs-sm); text-align: left; vertical-align: top; }
+.tabel-rinci th { color: var(--ink-3); font-weight: 500; width: 45%; }
+.tabel-rinci tr:last-child th, .tabel-rinci tr:last-child td { border-bottom: none; }
+.dampak { background: var(--hemat-lo); border-color: #c9dccb; }
+.dampak-angka { font-family: 'Plex Serif', Georgia, serif; font-size: 2.1rem; color: var(--hemat); line-height: 1.15; }
+.dampak-angka small { font-family: 'Plex Sans', sans-serif; font-size: var(--fs-sm); font-weight: 400; }
+.dampak-teks, .alasan-teks { font-size: var(--fs-sm); color: var(--ink-2); margin-top: var(--s3); }
+.dampak-banding { font-size: var(--fs-xs); color: var(--hemat); font-weight: 600; margin-top: var(--s3); }
+.alasan-teks + .btn { margin-top: var(--s4); }
+
+/* ---------- Layanan terkait ---------- */
+.terkait { padding-inline: 0; }
+.terkait .swiper-slide { height: auto; }
+.terkait-kartu {
+  display: flex; flex-direction: column; gap: var(--s2); height: 100%;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: var(--s5); transition: transform .16s var(--ease), border-color .16s var(--ease);
+}
+.terkait-kartu:hover { transform: translateY(-3px); border-color: var(--ink-3); }
+.terkait-kartu h3 { font-size: 1rem; }
+.terkait-kartu p { font-size: var(--fs-xs); color: var(--ink-3); }
+.terkait-kartu .harga { margin-top: auto; padding-top: var(--s3); font-size: var(--fs-sm); font-weight: 600; }
+.terkait .swiper-button-prev, .terkait .swiper-button-next { color: var(--ink); }
+.terkait .swiper-button-prev::after, .terkait .swiper-button-next::after { font-size: 1.1rem; font-weight: 700; }
+
+@media (max-width: 1000px) {
+  .detail-atas { grid-template-columns: 1fr; }
+  .sim-kisi { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .galeri { grid-template-columns: 1fr; }
+  .galeri a:first-child { grid-row: auto; }
+  .galeri a:first-child img { min-height: 220px; }
+  .galeri a:not(:first-child) img { height: 130px; }
+  .sim-hasil { grid-template-columns: 1fr; }
+}
+
+/* Angka hasil simulasi bisa jadi panjang (jutaan rupiah),
+   jadi ukurannya menyesuaikan lebar kotak. */
+.sim-angka .panel-angka { font-size: clamp(1.15rem, 1rem + .9vw, 1.5rem); overflow-wrap: anywhere; }
+.sim-angka .panel-nama { min-height: 2.2em; display: flex; align-items: flex-start; }

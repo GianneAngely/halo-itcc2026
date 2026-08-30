@@ -1,0 +1,81 @@
+/* ============================================================
+   HALO — halaman Cara kerja teknologi
+   ============================================================ */
+.kepala-angka { display: flex; gap: var(--s7); }
+.kepala-angka li { display: grid; }
+.kepala-angka strong { font-family: 'Plex Serif', Georgia, serif; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kepala-angka span { font-size: var(--fs-xs); color: var(--ink-3); }
+
+/* ---------- Bercerita sambil digulir ---------- */
+.cerita { background: var(--surface); border-block: 1px solid var(--line); }
+.cerita-kisi { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: var(--s8); align-items: start; }
+
+/* Panggung dipaku setinggi layar dan isinya ditengahkan, supaya
+   diagram tetap sejajar mata selagi daftar langkah bergulir melewatinya */
+.cerita-panggung {
+  position: sticky; top: 0;
+  height: 100vh; display: grid; align-content: center;
+  padding-block: var(--s6);
+}
+.diagram { width: 100%; height: auto; }
+
+/* Semua bagian diagram meredup, hanya yang sedang dibahas yang menyala */
+#diagram > g { opacity: .2; transition: opacity .55s var(--ease); }
+#diagram > g.nyala { opacity: 1; }
+#dRumah { opacity: .7 !important; }
+#dRumah.nyala { opacity: 1 !important; }
+.dg-judul { font-size: 17px; font-weight: 600; fill: var(--ink); font-family: 'Plex Sans', sans-serif; }
+.dg-kecil { font-size: 13px; fill: var(--ink-2); font-family: 'Plex Sans', sans-serif; }
+.dg-judul-terang { font-size: 17px; font-weight: 600; fill: #f5f2ec; font-family: 'Plex Sans', sans-serif; text-anchor: middle; }
+.dg-kecil-terang { font-size: 12px; fill: #9aa8a2; font-family: 'Plex Sans', sans-serif; text-anchor: middle; }
+.dg-tanda { font-size: 13.5px; fill: var(--ink-3); font-family: 'Plex Sans', sans-serif; }
+
+/* Garis alur digambar bertahap ketika bagiannya menyala */
+.alur { stroke-dasharray: 400; stroke-dashoffset: 400; }
+#diagram > g.nyala .alur { animation: tarikGaris 1s var(--ease) forwards; }
+@keyframes tarikGaris { to { stroke-dashoffset: 0; } }
+#dKirim.nyala .alur { stroke-dasharray: 6 7; stroke-dashoffset: 0; animation: jalanTitik 1.4s linear infinite; }
+@keyframes jalanTitik { to { stroke-dashoffset: -26; } }
+.nadi { animation: denyutSensor 2.2s ease-in-out infinite; }
+@keyframes denyutSensor { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+.cerita-langkah { padding-block: var(--s8); }
+.cerita-langkah li {
+  min-height: 74vh; display: flex; flex-direction: column; justify-content: center;
+  opacity: .3; transition: opacity .5s var(--ease);
+  padding-block: var(--s6);
+}
+.cerita-langkah li.aktif { opacity: 1; }
+.cerita-nomor { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .14em; color: var(--listrik); margin-bottom: var(--s3); }
+.cerita-langkah h2 { margin-bottom: var(--s4); }
+.cerita-langkah p { color: var(--ink-2); margin-bottom: var(--s3); }
+.cerita-catatan {
+  font-size: var(--fs-sm); color: var(--ink-3);
+  border-left: 2px solid var(--line); padding-left: var(--s4); margin-top: var(--s4);
+}
+
+.tabel-sensor { min-width: 460px; }
+
+.aman-kisi { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s5); margin-top: var(--s2); }
+.aman-kisi li { border-top: 2px solid #2c3b36; padding-top: var(--s4); }
+.aman-kisi h3 { color: var(--paper); margin-bottom: var(--s2); font-size: 1rem; }
+.aman-kisi p { font-size: var(--fs-sm); color: #a9b5b0; }
+
+@media (max-width: 1000px) {
+  .cerita-kisi { grid-template-columns: 1fr; gap: var(--s4); }
+  .cerita-panggung { position: sticky; top: 62px; height: auto; background: var(--surface); padding-block: var(--s4); z-index: 2; border-bottom: 1px solid var(--line-2); }
+  .cerita-langkah li { min-height: 0; padding-block: var(--s6); opacity: 1; }
+  .cerita-langkah { padding-block: var(--s6); }
+  .aman-kisi { grid-template-columns: repeat(2, 1fr); }
+  .kepala-angka { gap: var(--s5); flex-wrap: wrap; }
+}
+@media (max-width: 560px) {
+  .aman-kisi { grid-template-columns: 1fr; }
+}
+
+/* Kalau pengguna mematikan animasi, seluruh diagram tampil penuh */
+@media (prefers-reduced-motion: reduce) {
+  #diagram > g { opacity: 1 !important; }
+  .cerita-langkah li { opacity: 1 !important; }
+  .alur { stroke-dashoffset: 0 !important; animation: none !important; }
+}

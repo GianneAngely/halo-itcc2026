@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id" class="tanpa-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data kawasan — HALO</title>
+<meta name="description" content="Agregat pemakaian listrik dan air delapan kelurahan di sekitar Ubud, beserta program hemat dan antrean verifikasi.">
+<link rel="icon" href="../assets/ill/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../lib/boxicons/css/boxicons.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/halaman.css">
+<link rel="stylesheet" href="../css/kawasan.css">
+</head>
+<body data-dalam="pages">
+
+<div id="muat" aria-hidden="true">
+  <svg viewBox="0 0 32 32" fill="none">
+    <path class="garis" stroke="#14201c" stroke-width="1.4" fill="none"
+      d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Z"/>
+  </svg>
+</div>
+
+<a class="lewati" href="#isi">Lompat ke isi</a>
+
+<header class="bilah">
+  <div class="wrap bilah-isi">
+    <a class="merek" href="../index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+      HALO
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="../index.html">Beranda</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="kawasan.html">Kawasan</a>
+      <a href="teknologi.html">Teknologi</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="bilah-aksi" id="bilahAksi"></div>
+    <button class="bilah-tombol" id="bilahTombol" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><i class="bx bx-menu"></i></button>
+  </div>
+</header>
+
+<main id="isi">
+  <section class="kepala">
+    <div class="wrap kepala-kisi">
+      <div>
+        <nav class="remah" aria-label="Jejak halaman"><a href="../index.html">Beranda</a> <span>/</span> <span>Kawasan</span></nav>
+        <h1>Delapan kelurahan di sekitar Ubud</h1>
+        <p class="pengantar">
+          Data seluruh rumah yang terhubung digabungkan per kelurahan. Pengelola kawasan memakai
+          halaman ini untuk menemukan wilayah yang paling boros, lalu mengarahkan program hemat
+          ke sana lebih dulu.
+        </p>
+      </div>
+      <ul class="kepala-angka">
+        <li><strong class="tnum">2.337</strong><span>rumah terhubung</span></li>
+        <li><strong class="tnum">8</strong><span>kelurahan</span></li>
+        <li><strong class="tnum">18</strong><span>program berjalan</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bagian-rapat">
+    <div class="wrap tumpuk">
+
+      <div class="kolom-berat">
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Peta pemakaian per kelurahan</h2>
+              <p>Semakin pekat warnanya, semakin besar rata-rata pemakaian listrik per rumah. Klik satu blok untuk melihat rinciannya.</p>
+            </div>
+          </div>
+          <div class="gr-wadah peta-bungkus"><div id="petaKawasan"></div></div>
+          <div class="peta-skala">
+            <span class="peta-skala-teks">Hemat</span>
+            <span class="peta-skala-bar"></span>
+            <span class="peta-skala-teks">Boros</span>
+          </div>
+        </div>
+
+        <div class="kotak" id="rincianKawasan">
+          <div class="kotak-kepala"><h3 id="rkNama">Peliatan</h3></div>
+          <dl class="rk-angka">
+            <div><dt>Rumah terhubung</dt><dd class="tnum" id="rkRumah">412</dd></div>
+            <div><dt>Listrik per rumah</dt><dd class="tnum" id="rkListrik">243 kWh</dd></div>
+            <div><dt>Air per rumah</dt><dd class="tnum" id="rkAir">18,1 m³</dd></div>
+            <div><dt>Penghematan tahun ini</dt><dd class="tnum turun" id="rkHemat">14,2%</dd></div>
+            <div><dt>Program berjalan</dt><dd class="tnum" id="rkProgram">3</dd></div>
+          </dl>
+          <p class="rk-catatan" id="rkCatatan">Kelurahan ini berada di bawah rata-rata kawasan, sebagian besar karena program penggantian lampu yang berjalan sejak Juni.</p>
+        </div>
+      </div>
+
+      <div class="kotak">
+        <div class="kotak-kepala">
+          <div>
+            <h2>Peringkat kelurahan</h2>
+            <p>Diurutkan dari yang paling hemat. Klik judul kolom untuk mengurutkan ulang.</p>
+          </div>
+        </div>
+        <div class="tabel-bungkus">
+          <table class="tabel" id="tabelKawasan">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"><button class="tabel-urut" data-kolom="nama">Kelurahan <i class="bx bx-sort-alt-2"></i></button></th>
+                <th scope="col" class="kanan"><button class="tabel-urut" data-kolom="rumah">Rumah <i class="bx bx-sort-alt-2"></i></button></th>
+                <th scope="col" class="kanan"><button class="tabel-urut" data-kolom="listrik">Listrik (kWh) <i class="bx bx-sort-alt-2"></i></button></th>
+                <th scope="col" class="kanan"><button class="tabel-urut" data-kolom="air">Air (m³) <i class="bx bx-sort-alt-2"></i></button></th>
+                <th scope="col" class="kanan"><button class="tabel-urut" data-kolom="hemat">Hemat <i class="bx bx-sort-alt-2"></i></button></th>
+                <th scope="col" class="kanan">Program</th>
+              </tr>
+            </thead>
+            <tbody id="tubuhKawasan">
+            <tr data-nama="Lodtunduh">
+              <td class="tnum">1</td>
+              <th scope="row">Lodtunduh</th>
+              <td class="kanan tnum">233</td>
+              <td class="kanan tnum">214</td>
+              <td class="kanan tnum">16,9</td>
+              <td class="kanan tnum">16,7%</td>
+              <td class="kanan tnum">3</td>
+            </tr>
+            <tr data-nama="Petulu">
+              <td class="tnum">2</td>
+              <th scope="row">Petulu</th>
+              <td class="kanan tnum">186</td>
+              <td class="kanan tnum">228</td>
+              <td class="kanan tnum">17,4</td>
+              <td class="kanan tnum">9,4%</td>
+              <td class="kanan tnum">1</td>
+            </tr>
+            <tr data-nama="Mas">
+              <td class="tnum">3</td>
+              <th scope="row">Mas</th>
+              <td class="kanan tnum">264</td>
+              <td class="kanan tnum">237</td>
+              <td class="kanan tnum">18,7</td>
+              <td class="kanan tnum">12,9%</td>
+              <td class="kanan tnum">2</td>
+            </tr>
+            <tr data-nama="Peliatan" class="baris-kamu">
+              <td class="tnum">4</td>
+              <th scope="row">Peliatan <span class="pil pil-listrik">kelurahanmu</span></th>
+              <td class="kanan tnum">412</td>
+              <td class="kanan tnum">243</td>
+              <td class="kanan tnum">18,1</td>
+              <td class="kanan tnum">14,2%</td>
+              <td class="kanan tnum">3</td>
+            </tr>
+            <tr data-nama="Singakerta">
+              <td class="tnum">5</td>
+              <th scope="row">Singakerta</th>
+              <td class="kanan tnum">301</td>
+              <td class="kanan tnum">259</td>
+              <td class="kanan tnum">20,1</td>
+              <td class="kanan tnum">10,5%</td>
+              <td class="kanan tnum">2</td>
+            </tr>
+            <tr data-nama="Ubud">
+              <td class="tnum">6</td>
+              <th scope="row">Ubud</th>
+              <td class="kanan tnum">508</td>
+              <td class="kanan tnum">271</td>
+              <td class="kanan tnum">19,6</td>
+              <td class="kanan tnum">11,8%</td>
+              <td class="kanan tnum">4</td>
+            </tr>
+            <tr data-nama="Sayan">
+              <td class="tnum">7</td>
+              <th scope="row">Sayan</th>
+              <td class="kanan tnum">274</td>
+              <td class="kanan tnum">296</td>
+              <td class="kanan tnum">21,3</td>
+              <td class="kanan tnum">6,1%</td>
+              <td class="kanan tnum">2</td>
+            </tr>
+            <tr data-nama="Kedewatan">
+              <td class="tnum">8</td>
+              <th scope="row">Kedewatan</th>
+              <td class="kanan tnum">159</td>
+              <td class="kanan tnum">318</td>
+              <td class="kanan tnum">22,8</td>
+              <td class="kanan tnum">4,3%</td>
+              <td class="kanan tnum">1</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dua-kolom">
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Tren kawasan</h2>
+              <p>Rata-rata pemakaian listrik per rumah di seluruh kawasan, dua belas bulan terakhir.</p>
+            </div>
+          </div>
+          <div class="gr-wadah"><div id="grafikTren"></div></div>
+          <p class="gr-keterangan">Penurunan mulai konsisten sejak Februari, bertepatan dengan program Ganti Lampu Serentak di Peliatan dan Mas.</p>
+        </div>
+
+        <div class="kotak">
+          <div class="kotak-kepala">
+            <div>
+              <h2>Program hemat yang berjalan</h2>
+              <p>Sasaran dihitung dari jumlah rumah yang memenuhi syarat, bukan dari seluruh rumah.</p>
+            </div>
+          </div>
+          <ul class="prog">
+          <li>
+            <div class="prog-atas"><span class="prog-nama">Ganti Lampu Serentak</span><span class="prog-angka tnum">1.631 / 2.400</span></div>
+            <div class="prog-alur"><span class="prog-isi" data-lebar="68%"></span></div>
+            <p class="prog-kaki">Peliatan & Mas · ditutup 30 Sep 2026 · <strong>68%</strong> tercapai</p>
+          </li>
+          <li>
+            <div class="prog-atas"><span class="prog-nama">Buru Bocor Kawasan</span><span class="prog-angka tnum">74 / 180</span></div>
+            <div class="prog-alur"><span class="prog-isi" data-lebar="41%"></span></div>
+            <p class="prog-kaki">Sayan & Kedewatan · ditutup 15 Okt 2026 · <strong>41%</strong> tercapai</p>
+          </li>
+          <li>
+            <div class="prog-atas"><span class="prog-nama">Atap Surya Bersama</span><span class="prog-angka tnum">23 / 60</span></div>
+            <div class="prog-alur"><span class="prog-isi" data-lebar="38%"></span></div>
+            <p class="prog-kaki">Ubud · ditutup 31 Des 2026 · <strong>38%</strong> tercapai</p>
+          </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="kotak antre-kotak">
+        <div class="kotak-kepala">
+          <div>
+            <h2>Antrean verifikasi</h2>
+            <p id="antreSub">Pengajuan warga yang menunggu keputusan pengelola kawasan. Setiap keputusan langsung mengubah antrean teknisi.</p>
+          </div>
+          <span class="pil pil-listrik" id="antreJumlah">4 menunggu</span>
+        </div>
+        <ul class="antre-daftar" id="antreDaftar">
+          <li class="antre" data-id="AJ-2615">
+            <div class="antre-kiri">
+              <span class="antre-kode tnum">AJ-2615</span>
+              <span class="antre-nama">Audit energi rumah</span>
+              <span class="antre-sub">Jl. Raya Pengosekan 42 · diajukan 30 Ags 2026</span>
+              <p class="antre-alasan">Tagihan naik 22 persen dalam dua bulan.</p>
+            </div>
+            <div class="antre-aksi">
+              <button class="btn btn-utama btn-kecil" data-putusan="terima">Setujui</button>
+              <button class="btn btn-garis btn-kecil" data-putusan="tolak">Tolak</button>
+            </div>
+          </li>
+          <li class="antre" data-id="AJ-2617">
+            <div class="antre-kiri">
+              <span class="antre-kode tnum">AJ-2617</span>
+              <span class="antre-nama">Sensor air ultrasonik</span>
+              <span class="antre-sub">Br. Kalah, Peliatan · diajukan 30 Ags 2026</span>
+              <p class="antre-alasan">Curiga bocor, meteran terus berputar.</p>
+            </div>
+            <div class="antre-aksi">
+              <button class="btn btn-utama btn-kecil" data-putusan="terima">Setujui</button>
+              <button class="btn btn-garis btn-kecil" data-putusan="tolak">Tolak</button>
+            </div>
+          </li>
+          <li class="antre" data-id="AJ-2618">
+            <div class="antre-kiri">
+              <span class="antre-kode tnum">AJ-2618</span>
+              <span class="antre-nama">Penggantian lampu LED</span>
+              <span class="antre-sub">Jl. Hanoman 8 · diajukan 29 Ags 2026</span>
+              <p class="antre-alasan">18 titik masih memakai lampu pijar.</p>
+            </div>
+            <div class="antre-aksi">
+              <button class="btn btn-utama btn-kecil" data-putusan="terima">Setujui</button>
+              <button class="btn btn-garis btn-kecil" data-putusan="tolak">Tolak</button>
+            </div>
+          </li>
+          <li class="antre" data-id="AJ-2620">
+            <div class="antre-kiri">
+              <span class="antre-kode tnum">AJ-2620</span>
+              <span class="antre-nama">Servis dan isi ulang AC</span>
+              <span class="antre-sub">Br. Teges, Peliatan · diajukan 29 Ags 2026</span>
+              <p class="antre-alasan">Tiga unit belum diservis setahun.</p>
+            </div>
+            <div class="antre-aksi">
+              <button class="btn btn-utama btn-kecil" data-putusan="terima">Setujui</button>
+              <button class="btn btn-garis btn-kecil" data-putusan="tolak">Tolak</button>
+            </div>
+          </li>
+        </ul>
+        <div class="kosong" id="antreKosong" hidden>
+          <svg viewBox="0 0 160 120" fill="none" aria-hidden="true">
+            <circle cx="80" cy="60" r="34" fill="#e2ebe3" stroke="#38684a" stroke-width="2.5"/>
+            <path d="M66 60l10 11 20-23" stroke="#38684a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 34h18M24 52h22M30 70h16" stroke="#ded8cd" stroke-width="3" stroke-linecap="round"/>
+            <path d="M114 34h18M114 52h22M114 70h16" stroke="#ded8cd" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <h3>Antrean bersih</h3>
+          <p>Semua pengajuan sudah diputuskan. Pengajuan baru dari warga akan muncul di sini.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="kaki">
+  <div class="wrap">
+    <div class="kaki-kisi">
+      <div>
+        <div class="merek">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6c.5 0 .9.2 1.2.6 2.3 2.8 4.8 5.9 6.7 8.9 1.9 2.9 3.4 6 3.4 8.9 0 6.2-5.1 11.2-11.3 11.2S4.7 26.2 4.7 20c0-2.9 1.5-6 3.4-8.9 1.9-3 4.4-6.1 6.7-8.9.3-.4.7-.6 1.2-.6Zm2.9 8.9-7.3 10.4c-.3.4-.3.9 0 1.3.2.4.6.6 1.1.6h3.1l-1.1 5.1c-.1.6.2 1.2.8 1.4.5.2 1.1 0 1.4-.5l7.3-10.4c.3-.4.3-.9 0-1.3-.2-.4-.6-.6-1.1-.6h-3.1l1.1-5.1c.1-.6-.2-1.2-.8-1.4-.5-.2-1.1 0-1.4.5Z"/></svg>
+          HALO
+        </div>
+        <p>Ekosistem pemantauan listrik dan air rumah tangga untuk kawasan permukiman di Indonesia.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <a href="layanan.html">Katalog layanan</a>
+        <a href="kawasan.html">Data kawasan</a>
+        <a href="teknologi.html">Cara kerja teknologi</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Akun</h4>
+        <a href="masuk.html">Masuk</a>
+        <a href="masuk.html?tab=daftar">Daftar</a>
+        <a href="riwayat.html">Riwayat aktivitas</a>
+      </div>
+      <div>
+        <h4>Mitra</h4>
+        <a href="layanan.html">Koperasi Energi Gianyar</a>
+        <a href="layanan.html">Tirta Karya</a>
+        <a href="layanan.html">Nusa Meter</a>
+      </div>
+    </div>
+    <div class="kaki-bawah">
+      <span>&copy; <span data-tahun>2026</span> HALO — Gianne Angely Puspa Pilatus</span>
+      <span>Karya untuk Lomba Web Design ITCC 2026 · data pada situs ini merupakan simulasi</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/grafik.js"></script>
+<script src="../js/kawasan.js"></script>
+</body>
+</html>

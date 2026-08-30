@@ -1,0 +1,9 @@
+# Sampah macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Berkas sementara editor
+*.swp
+*~

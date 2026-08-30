@@ -40,8 +40,9 @@ backend.
 dan dalam bahasa Indonesia dipakai sebagai sapaan — cocok untuk platform yang
 bicara langsung ke pemilik rumah.
 
-> ⚠️ **Perlu dicek sebelum kirim:** apakah panduan lomba mewajibkan nama karya
-> memakai akronim bahasa Indonesia. Kalau iya, nama harus diganti.
+> **Sudah dicek:** guidebook ITCC 2026 tidak mengatur nama karya maupun bahasanya.
+> Aturan penamaan yang ada hanya menyangkut nama folder pengumpulan. Jadi nama
+> HALO tidak melanggar apa pun.
 
 **Logo.** Bentuknya satu tetesan air, dan ruang kosong di dalamnya membentuk
 petir. Jadi dua hal yang dipantau HALO — air dan listrik — menyatu dalam satu

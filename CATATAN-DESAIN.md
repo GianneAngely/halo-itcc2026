@@ -36,13 +36,18 @@ backend.
 
 ## 2. Nama dan logo
 
-**HALO** = *Home And Living Optimizer*. Kata "halo" juga berarti lingkaran cahaya,
-dan dalam bahasa Indonesia dipakai sebagai sapaan — cocok untuk platform yang
-bicara langsung ke pemilik rumah.
+**HALO = Hemat Air dan Listrik Otomatis.** Kepanjangannya berbahasa Indonesia dan
+ditulis di empat tempat: plat di beranda tepat di atas judul, plat yang sama di
+puncak kedua panel halaman masuk, baris kecil di kaki kedelapan halaman, dan di
+judul serta deskripsi halaman.
+
+Pada plat itu huruf **A** diwarnai biru air dan huruf **L** diwarnai oranye listrik.
+Jadi plat namanya sekaligus mengajarkan kode warna seluruh situs sebelum warna itu
+muncul di grafik mana pun. Ini jawaban kalau juri bertanya kenapa dua warna itu yang
+dipakai.
 
 > **Sudah dicek:** guidebook ITCC 2026 tidak mengatur nama karya maupun bahasanya.
-> Aturan penamaan yang ada hanya menyangkut nama folder pengumpulan. Jadi nama
-> HALO tidak melanggar apa pun.
+> Aturan penamaan yang ada hanya menyangkut nama folder pengumpulan.
 
 **Logo.** Bentuknya satu tetesan air, dan ruang kosong di dalamnya membentuk
 petir. Jadi dua hal yang dipantau HALO — air dan listrik — menyatu dalam satu
@@ -56,6 +61,39 @@ Arah bentuknya dicari lewat Gemini, lalu digambar ulang sendiri sebagai SVG
 bersih — keluaran generator berupa raster dan pecah kalau diperbesar.
 
 ---
+
+## 2b. Arah desain: situs sebagai alat ukur
+
+Versi pertama situs ini terlihat rapi tapi biasa — seperti brosur institusional yang
+bercerita *tentang* meteran. Arahnya diubah: **situs ini berhenti bercerita dan mulai
+berlaku sebagai alat ukur.**
+
+Tiga benda yang membawa arah itu:
+
+**1. Grafik cermin dua aliran** — tokoh utama layar pertama, menggantikan foto rumah.
+Satu sumbu jam 00–23 di tengah. Listrik naik ke atas dalam watt, air turun ke bawah
+dalam liter per jam. Keduanya berskala sendiri-sendiri; kalau dipaksa berbagi satu
+sumbu, kurva air akan gepeng menempel dasar karena besarannya jauh berbeda. Bentuk
+cermin itulah yang menjelaskan produknya tanpa perlu dibaca: dua hal masuk ke rumah,
+HALO membaca keduanya per jam. Garis putus-putus merah di jam 02–05 menandai 38 liter
+per jam sebelum kebocoran ditambal — satu titik yang menyampaikan urgensi.
+Kodenya `Grafik.aliranGanda()` di `js/grafik.js`.
+
+**2. Plat HALO** — lihat bagian 2 di atas.
+
+**3. Pita ukur bertakik** — pita 30px bernomor register di atas tiap kepala bagian.
+Takiknya elemen `<i>` sungguhan yang diisi `js/app.js`, bukan gradasi berulang, karena
+gradasi tidak dipakai di mana pun. Bentuk dasarnya garis biasa yang ditulis di CSS,
+jadi pita tetap ada kalau JavaScript mati.
+
+### Aturan konsistensi yang diberlakukan
+
+- **Kartu** — satu bentuk untuk seluruh situs: pita kepala, gambar, badan, kaki. Tanpa bayangan.
+- **Gambar** — dalam satu kisi, semua bergambar atau tidak sama sekali. Tidak pernah campur.
+  Rasio dikunci 16/10 untuk kartu layanan. Sudut foto nol.
+- **Kolom** — hanya dua lebar di seluruh situs, 5/12 dan 7/12, sisi lebarnya berselang-seling.
+- **Rata atas** — semua kepala bagian dan kartu memakai `align-items: start`.
+- **Angka** — huruf tabular, satuan berdiri sendiri, dan tiap angka besar punya satu baris pembanding.
 
 ## 3. Warna
 

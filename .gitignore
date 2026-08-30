@@ -7,3 +7,4 @@
 # Berkas sementara editor
 *.swp
 *~
+.vercel

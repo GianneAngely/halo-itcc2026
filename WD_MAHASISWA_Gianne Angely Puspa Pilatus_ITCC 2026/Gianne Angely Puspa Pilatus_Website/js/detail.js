@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const kotakGaleri = document.getElementById('galeri');
   if (kotakGaleri && foto) {
     kotakGaleri.innerHTML = foto.map(([berkas, alt, ket]) =>
-      '<a href="../assets/img/' + berkas + '" data-fancybox="galeri" data-caption="' + ket + '">' +
+      '<a href="../assets/img/' + berkas + '" data-fancybox="galeri" data-caption="' + ket + '"' +
+      ' aria-label="Perbesar gambar: ' + alt + '">' +
       '<img src="../assets/img/' + berkas + '" alt="' + alt + '" loading="lazy"></a>').join('');
   }
 

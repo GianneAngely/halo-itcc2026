@@ -31,11 +31,21 @@
 .geser-bantu { font-size: var(--fs-xs); color: var(--ink-3); margin-top: 6px; }
 
 /* Pengatur geser digambar sendiri supaya seragam antar peramban */
-input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: var(--line); border-radius: 2px; }
+/* Kotak slider dibuat setinggi 24px supaya gampang dikenai jari,
+   sementara relnya tetap tipis lewat penggayaan track. */
+input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 24px; background: transparent; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px; background: var(--line); border-radius: 2px;
+}
+input[type="range"]::-moz-range-track { height: 4px; background: var(--line); border-radius: 2px; }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%;
   background: var(--ink); border: 3px solid var(--surface); box-shadow: var(--shadow-2); cursor: grab;
   transition: transform .13s var(--ease);
+  margin-top: -7px;              /* menengahkan bulatan pada rel 4px */
 }
 input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
 input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; }
@@ -94,7 +104,9 @@ input[type="range"]:focus-visible { outline-offset: 6px; }
 
 /* Angka hasil simulasi bisa jadi panjang (jutaan rupiah),
    jadi ukurannya menyesuaikan lebar kotak. */
-.sim-angka .panel-angka { font-size: clamp(1.15rem, 1rem + .9vw, 1.5rem); overflow-wrap: anywhere; }
+/* Angka tidak boleh patah di tengah. Kolomnya yang menyesuaikan,
+   bukan angkanya yang dipotong. */
+.sim-angka .panel-angka { font-size: clamp(1.05rem, .95rem + .5vw, 1.35rem); white-space: nowrap; }
 .sim-angka .panel-nama { min-height: 2.2em; display: flex; align-items: flex-start; }
 
 /* Kolom kanan jauh lebih pendek daripada kolom kiri, jadi dibuat
@@ -106,3 +118,33 @@ input[type="range"]:focus-visible { outline-offset: 6px; }
   .kolom-berat > .sisi { align-self: stretch; }
   .sisi-lekat { position: sticky; top: 78px; }
 }
+
+/* ---------- Simulator versi gelap ----------
+   Balik modal dijadikan angka utama karena itu satu-satunya angka
+   yang benar-benar dipakai orang untuk memutuskan. */
+.simulasi .geser label { color: #c3ccc8; }
+.simulasi .geser label strong { color: var(--paper); }
+.simulasi .geser-bantu, .simulasi .sim-catatan { color: #7d8b85; }
+.simulasi input[type="range"]::-webkit-slider-runnable-track { background: #2c3b36; }
+.simulasi input[type="range"]::-moz-range-track { background: #2c3b36; }
+.simulasi input[type="range"]::-webkit-slider-thumb { background: var(--paper); border-color: var(--ink); }
+.simulasi input[type="range"]::-moz-range-thumb { background: var(--paper); border-color: var(--ink); }
+
+.sim-hasil { grid-template-columns: minmax(0, 1fr); }
+.sim-utama {
+  background: #1b2a26; border-radius: var(--r-sm);
+  padding: var(--s5); border-left: 3px solid var(--listrik);
+}
+.sim-utama .satuan { color: #8f9c97; }
+.sim-besar {
+  font-family: 'Plex Serif', Georgia, serif; font-weight: 600;
+  font-size: clamp(2.4rem, 1.4rem + 3vw, 3.6rem); line-height: 1;
+  color: var(--paper); margin-top: 6px; letter-spacing: -.02em;
+}
+.simulasi .sim-angka { background: #1b2a26; }
+.simulasi .sim-angka .panel-nama { color: #7d8b85; }
+.simulasi .sim-angka .panel-angka { color: var(--paper); }
+.simulasi .hemat-warna { color: #7fb894; }
+
+.simulasi .berubah { animation: kedipGelap .45s var(--ease); }
+@keyframes kedipGelap { 0% { background: #24382f; } 100% { background: #1b2a26; } }

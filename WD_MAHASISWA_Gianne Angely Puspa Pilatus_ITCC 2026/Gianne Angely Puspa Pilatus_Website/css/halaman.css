@@ -43,7 +43,7 @@
 .tabel tbody tr:hover { background: var(--paper); }
 .tabel tbody tr:last-child td { border-bottom: none; }
 .tabel .kanan { text-align: right; }
-.tabel-urut { display: inline-flex; align-items: center; gap: 4px; }
+.tabel-urut { display: inline-flex; align-items: center; gap: 4px; min-height: 26px; padding-block: 2px; }
 .tabel-urut i { opacity: .35; font-size: .95rem; }
 .tabel-urut[aria-sort] i { opacity: 1; }
 
@@ -131,3 +131,39 @@
   .tab-rak { flex-wrap: wrap; gap: var(--s4) var(--s5); overflow-x: visible; padding-bottom: var(--s2); }
   .tab-rak button { padding-block: var(--s2); }
 }
+
+/* ============================================================
+   Kotak gelap
+   Dipakai untuk satu bagian terpenting di tiap halaman dalam,
+   supaya halaman punya titik berhenti dan tidak rata krem dari
+   atas sampai bawah. Warnanya menandai arti, bukan hiasan:
+   yang gelap adalah bagian yang paling perlu ditindaklanjuti.
+   ============================================================ */
+.kotak-gelap { background: var(--ink); border-color: var(--ink); }
+.kotak-gelap .kotak-kepala h2,
+.kotak-gelap .kotak-kepala h3 { color: var(--paper); }
+.kotak-gelap .kotak-kepala p { color: #8f9c97; }
+.kotak-gelap .satuan, .kotak-gelap .panel-nama { color: #7d8b85; }
+.kotak-gelap .gr-keterangan, .kotak-gelap .gr-legenda { color: #8f9c97; }
+.kotak-gelap .gr-bantu { stroke: #2c3b36; }
+.kotak-gelap .gr-sumbu { fill: #7d8b85; }
+.kotak-gelap .gr-satuan { fill: #7d8b85; }
+.kotak-gelap .tabel-bungkus { background: transparent; border-color: #2c3b36; }
+.kotak-gelap .btn-garis { background: transparent; border-color: #46534e; color: var(--paper); }
+.kotak-gelap .btn-garis:hover { border-color: var(--paper); }
+.kotak-gelap .btn-utama { background: var(--paper); color: var(--ink); }
+.kotak-gelap .btn-utama:hover { background: #fff; }
+.kotak-gelap .sel-angka { color: var(--paper); }
+.kotak-gelap .alat-unit { color: #8f9c97; }
+.kotak-gelap .sel-kaki { color: #8f9c97; }
+
+/* Kartu peringatan di dalam kotak gelap */
+.kotak-gelap .an { background: #1b2a26; border-color: #2c3b36; }
+.kotak-gelap .an-tinggi { background: #2a1a15; border-left-color: var(--waspada); }
+.kotak-gelap .an h3 { color: var(--paper); }
+.kotak-gelap .an-alasan { color: #b9c4bf; }
+.kotak-gelap .an-kode, .kotak-gelap .an-dampak span { color: #7d8b85; }
+.kotak-gelap .an-dampak strong { color: var(--paper); }
+.kotak-gelap .an-ikon { color: #8f9c97; }
+.kotak-gelap .an-tinggi .an-ikon { color: #e0755a; }
+.kotak-gelap .pil-netral { background: #2c3b36; color: #b9c4bf; }

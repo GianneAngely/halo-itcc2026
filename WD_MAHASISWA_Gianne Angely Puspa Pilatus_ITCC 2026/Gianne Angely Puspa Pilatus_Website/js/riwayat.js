@@ -14,13 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Judul menyesuaikan peran yang sedang masuk ---------- */
   const pengguna = Sesi.aktif();
+  /* Kalimat pengantar diganti lewat innerHTML supaya penanda
+     "hanya di layar" tidak ikut hilang. */
   if (pengguna && pengguna.peran === 'Teknisi') {
     document.getElementById('judulRiwayat').textContent = 'Pekerjaan yang ditugaskan';
     document.getElementById('subRiwayat').textContent =
       'Daftar pekerjaan yang sudah lolos verifikasi pengelola kawasan dan masuk ke antreanmu, lengkap dengan temuan sensor yang menjadi dasarnya.';
   } else if (pengguna) {
-    document.getElementById('subRiwayat').textContent =
-      'Halo ' + pengguna.nama.split(' ')[0] + '. Setiap pengajuan berjalan melewati verifikasi pengelola kawasan dan penugasan teknisi sebelum hasilnya diukur ulang oleh sensor yang sama.';
+    document.getElementById('subRiwayat').innerHTML =
+      'Halo ' + pengguna.nama.split(' ')[0] + '. Setiap pengajuan berjalan melewati verifikasi pengelola kawasan dan penugasan teknisi sebelum hasilnya diukur ulang oleh sensor yang sama.' +
+      '<span class="hanya-layar"> Klik satu baris untuk melihat jejaknya.</span>';
   }
 
   /* ---------- Jejak lima tahap ----------

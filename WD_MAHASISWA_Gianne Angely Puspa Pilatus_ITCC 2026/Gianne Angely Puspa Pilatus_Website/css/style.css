@@ -119,6 +119,12 @@ h3 { font-size: var(--fs-h3); font-family: 'Plex Sans', sans-serif; font-weight:
 }
 .lewati:focus { transform: translateY(0); outline: 2px solid var(--air); outline-offset: 2px; }
 
+/* Terbaca pembaca layar, tidak terlihat di layar */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
 /* ---------- Tata letak ---------- */
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--s5); }
 .wrap-sempit { max-width: var(--wrap-narrow); }
@@ -303,8 +309,15 @@ h3 { font-size: var(--fs-h3); font-family: 'Plex Sans', sans-serif; font-weight:
 
 /* ---------- Cetak ---------- */
 @media print {
-  .bilah, .kaki, .toast-rak, #muat, .btn { display: none !important; }
+  /* Yang hanya berguna di layar tidak ikut tercetak: bilah atas,
+     kaki halaman, tombol, tautan lompat, pita ukur, dan pemberitahuan. */
+  .bilah, .kaki, .toast-rak, #muat, .btn, .lewati, .rel-tik,
+  .tab-rak, .aj-panah, .hanya-layar { display: none !important; }
   body { background: #fff; }
+  /* Baris pengajuan dibuka semua supaya kertasnya berisi riwayat utuh */
+  .aj-isi[hidden] { display: block !important; }
+  .aj-bukti { display: none; }
+  a[href]::after { content: ''; }
   .kartu { break-inside: avoid; border-color: #ccc; }
 }
 

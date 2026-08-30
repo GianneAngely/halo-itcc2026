@@ -105,11 +105,19 @@ h3 { font-size: var(--fs-h3); font-family: 'Plex Sans', sans-serif; font-weight:
 
 :focus-visible { outline: 2px solid var(--air); outline-offset: 2px; border-radius: var(--r-xs); }
 
+/* Tautan lompat untuk pengguna papan ketik.
+   Disembunyikan dengan digeser ke atas layar, bukan dengan
+   left: -9999px — offset raksasa begitu bisa tidak berlaku lagi
+   begitu ada leluhur yang mengurung isinya. */
 .lewati {
-  position: absolute; left: -9999px; top: 0; z-index: 200;
-  background: var(--ink); color: var(--paper); padding: var(--s3) var(--s4);
+  position: fixed; top: var(--s4); left: var(--s4); z-index: 300;
+  background: var(--ink); color: var(--paper);
+  padding: var(--s3) var(--s5); border-radius: var(--r-sm);
+  font-size: var(--fs-sm); font-weight: 600;
+  transform: translateY(calc(-100% - var(--s5)));
+  transition: transform .16s var(--ease);
 }
-.lewati:focus { left: var(--s4); top: var(--s4); }
+.lewati:focus { transform: translateY(0); outline: 2px solid var(--air); outline-offset: 2px; }
 
 /* ---------- Tata letak ---------- */
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--s5); }

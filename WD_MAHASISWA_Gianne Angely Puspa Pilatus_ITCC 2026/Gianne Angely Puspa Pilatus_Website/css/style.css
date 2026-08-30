@@ -369,3 +369,9 @@ h3 { font-size: var(--fs-h3); font-family: 'Plex Sans', sans-serif; font-weight:
   .gr-sumbu { font-size: 13px; }
   .gr-satuan { font-size: 12px; }
 }
+
+/* Nama dan peran pada bilah atas disusun bertumpuk, bukan sebaris */
+.akun-teks { display: grid; line-height: 1.25; }
+.akun-teks strong { font-size: var(--fs-sm); font-weight: 600; }
+.akun-teks small { font-size: var(--fs-xs); color: var(--ink-3); }
+@media (max-width: 560px) { .akun-teks { display: none; } }

@@ -166,28 +166,102 @@
         </p>
       </div>
       <div class="alur-panggung" id="alurPanggung">
-        <ol class="alur-daftar">
+        <ol class="alur-daftar" role="tablist" aria-label="Empat pemeran dalam alur HALO">
           <li data-alur="1">
-            <span class="alur-nomor">01</span>
-            <h3>Rumah tangga</h3>
-            <p>Sensor pada meteran mengirim pemakaian listrik dan air tiap lima belas menit. Warga melihat rinciannya per jam dan per alat.</p>
+            <button class="alur-btn" role="tab" aria-selected="true" data-peran="warga" id="tabWarga" aria-controls="panelWarga">
+              <span class="alur-nomor">01</span>
+              <span class="alur-judul">Rumah tangga</span>
+              <span class="alur-teks">Sensor mengirim pemakaian tiap lima belas menit. Warga melihat rinciannya per jam.</span>
+            </button>
           </li>
           <li data-alur="2">
-            <span class="alur-nomor">02</span>
-            <h3>Pengelola kawasan</h3>
-            <p>Pengurus desa atau kelurahan melihat agregat wilayahnya, menemukan titik boros, lalu memverifikasi pengajuan warga.</p>
+            <button class="alur-btn" role="tab" aria-selected="false" data-peran="kawasan" id="tabKawasan" aria-controls="panelKawasan">
+              <span class="alur-nomor">02</span>
+              <span class="alur-judul">Pengelola kawasan</span>
+              <span class="alur-teks">Melihat agregat wilayahnya, menemukan titik boros, lalu memverifikasi pengajuan.</span>
+            </button>
           </li>
           <li data-alur="3">
-            <span class="alur-nomor">03</span>
-            <h3>Teknisi mitra</h3>
-            <p>Pekerjaan yang sudah diverifikasi masuk ke antrean teknisi terdekat, lengkap dengan alamat dan temuan sensornya.</p>
+            <button class="alur-btn" role="tab" aria-selected="false" data-peran="teknisi" id="tabTeknisi" aria-controls="panelTeknisi">
+              <span class="alur-nomor">03</span>
+              <span class="alur-judul">Teknisi mitra</span>
+              <span class="alur-teks">Menerima pekerjaan yang sudah diverifikasi, lengkap dengan temuan sensornya.</span>
+            </button>
           </li>
           <li data-alur="4">
-            <span class="alur-nomor">04</span>
-            <h3>Laporan dampak</h3>
-            <p>Setelah perbaikan, sensor yang sama mengukur selisihnya. Hasilnya masuk ke laporan warga sekaligus rekap kawasan.</p>
+            <button class="alur-btn" role="tab" aria-selected="false" data-peran="dampak" id="tabDampak" aria-controls="panelDampak">
+              <span class="alur-nomor">04</span>
+              <span class="alur-judul">Laporan dampak</span>
+              <span class="alur-teks">Sensor yang sama mengukur selisihnya. Lingkarannya tertutup di sini.</span>
+            </button>
           </li>
         </ol>
+
+        <div class="alur-panel">
+          <div class="alur-isi" id="panelWarga" role="tabpanel" aria-labelledby="tabWarga" data-peran="warga">
+            <div class="alur-isi-kisi">
+              <div class="alur-uraian">
+                <p class="satuan">Yang dilihat</p>
+                <p>Pemakaian listrik dan air per jam, kejanggalan yang ditandai beserta alasannya, dan perkiraan tagihan sampai akhir bulan.</p>
+                <p class="satuan">Yang tidak bisa dilihat</p>
+                <p class="alur-tidak">Data rumah lain, termasuk tetangga sendiri. Angka pembanding yang muncul sudah dilucuti identitasnya.</p>
+              </div>
+              <div class="alur-sel">
+                <div class="sel sel-listrik"><span class="satuan sel-satuan">Pembacaan</span><span class="sel-angka">96 <span class="alat-unit">/ hari</span></span></div>
+                <div class="sel sel-air"><span class="satuan sel-satuan">Sensor terpasang</span><span class="sel-angka">2</span></div>
+                <a class="btn btn-garis btn-kecil" href="pages/dashboard.html">Buka dashboard rumah</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="alur-isi" id="panelKawasan" role="tabpanel" aria-labelledby="tabKawasan" data-peran="kawasan" hidden>
+            <div class="alur-isi-kisi">
+              <div class="alur-uraian">
+                <p class="satuan">Yang dilihat</p>
+                <p>Angka gabungan tiap kelurahan, peringkat antar wilayah, dan antrean pengajuan warga yang menunggu keputusan.</p>
+                <p class="satuan">Yang tidak bisa dilihat</p>
+                <p class="alur-tidak">Pemakaian per jam milik rumah tertentu. Yang sampai ke sini hanya angka yang sudah digabung.</p>
+              </div>
+              <div class="alur-sel">
+                <div class="sel sel-air"><span class="satuan sel-satuan">Rumah terhubung</span><span class="sel-angka">2.337</span></div>
+                <div class="sel sel-listrik"><span class="satuan sel-satuan">Kelurahan</span><span class="sel-angka">8</span></div>
+                <a class="btn btn-garis btn-kecil" href="pages/kawasan.html">Buka data kawasan</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="alur-isi" id="panelTeknisi" role="tabpanel" aria-labelledby="tabTeknisi" data-peran="teknisi" hidden>
+            <div class="alur-isi-kisi">
+              <div class="alur-uraian">
+                <p class="satuan">Yang dilihat</p>
+                <p>Pekerjaan yang sudah lolos verifikasi, alamatnya, dan temuan sensor yang menjadi dasar pengajuan itu.</p>
+                <p class="satuan">Yang tidak bisa dilihat</p>
+                <p class="alur-tidak">Riwayat pemakaian rumah tersebut di luar temuan yang sedang dikerjakan.</p>
+              </div>
+              <div class="alur-sel">
+                <div class="sel sel-listrik"><span class="satuan sel-satuan">Teknisi aktif</span><span class="sel-angka">27</span></div>
+                <div class="sel sel-air"><span class="satuan sel-satuan">Mitra penyedia</span><span class="sel-angka">3</span></div>
+                <a class="btn btn-garis btn-kecil" href="pages/riwayat.html">Lihat alur pekerjaan</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="alur-isi" id="panelDampak" role="tabpanel" aria-labelledby="tabDampak" data-peran="dampak" hidden>
+            <div class="alur-isi-kisi">
+              <div class="alur-uraian">
+                <p class="satuan">Yang diukur</p>
+                <p>Selisih sebelum dan sesudah perbaikan, oleh sensor yang sama yang menemukan masalahnya. Bukan perkiraan, bukan klaim penyedia.</p>
+                <p class="satuan">Ke mana angkanya pergi</p>
+                <p class="alur-tidak">Ke laporan pemilik rumah, dan sebagai angka gabungan ke rekap kawasan.</p>
+              </div>
+              <div class="alur-sel">
+                <div class="sel sel-hemat"><span class="satuan sel-satuan">Emisi dicegah</span><span class="sel-angka">442 <span class="alat-unit">ton / thn</span></span></div>
+                <div class="sel sel-hemat"><span class="satuan sel-satuan">Peringatan ke selesai</span><span class="sel-angka">4 <span class="alat-unit">hari</span></span></div>
+                <a class="btn btn-garis btn-kecil" href="#skala">Lihat hitungan skalanya</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -305,16 +379,27 @@
         <h2>Rumah paling boros Sabtu malam.</h2>
         <p class="pengantar">Tiap kotak satu jam. Makin pekat, makin besar pemakaian listriknya.</p>
       </div>
+    </div>
+    <div class="panas-lebar">
       <div class="gr-wadah gulir-x"><div id="petaPanasBeranda"></div></div>
+    </div>
+    <div class="wrap">
       <p class="gr-keterangan">Sabtu pukul 19.00 jam paling padat di rumah contoh.</p>
     </div>
   </section>
 
   <!-- ============ Skala dan target dunia ============ -->
-  <section class="bagian skala">
+  <section class="bagian gelap skala" id="skala">
     <div class="wrap">
       <div class="rel-tik" data-reg="06"></div>
       <p class="judul-kecil">Skala</p>
+
+      <div class="raksasa">
+        <p class="raksasa-syarat">Kalau satu persen rumah tangga Indonesia ikut</p>
+        <p class="raksasa-angka ukur" data-hitung="132034">0</p>
+        <p class="raksasa-satuan">ton CO&#8322;e yang tidak jadi terlepas, tiap tahun</p>
+      </div>
+
       <div class="skala-kepala">
         <h2>Delapan kelurahan hari ini. Modelnya tidak terikat tempat.</h2>
         <p class="pengantar">

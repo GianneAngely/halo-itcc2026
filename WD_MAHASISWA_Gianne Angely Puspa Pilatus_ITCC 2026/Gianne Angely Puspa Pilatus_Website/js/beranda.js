@@ -83,19 +83,69 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Alur empat pemeran, menyala bergantian ---------- */
+  /* ---------- Alur empat pemeran ----------
+     Saat bagian ini masuk layar, keempat titiknya menyala berurutan
+     sekali. Setelah itu tiap pemeran bisa diklik untuk melihat apa
+     yang dia lihat dan apa yang tidak boleh dia lihat. */
   const panggung = document.getElementById('alurPanggung');
   if (panggung) {
-    const langkah = panggung.querySelectorAll('.alur-daftar li');
+    const butir = [...panggung.querySelectorAll('.alur-daftar li')];
+    const tombol = [...panggung.querySelectorAll('.alur-btn')];
+    const panel = [...panggung.querySelectorAll('.alur-isi')];
     const diam = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function pilih(peran) {
+      tombol.forEach(t => t.setAttribute('aria-selected', String(t.dataset.peran === peran)));
+      panel.forEach(p => {
+        const aktif = p.dataset.peran === peran;
+        p.hidden = !aktif;
+        if (aktif && !diam) {
+          p.classList.remove('tukar');
+          void p.offsetWidth;          /* paksa hitung ulang supaya animasinya terputar lagi */
+          p.classList.add('tukar');
+        }
+      });
+    }
+
+    panggung.querySelector('.alur-daftar').addEventListener('click', e => {
+      const t = e.target.closest('.alur-btn');
+      if (t) pilih(t.dataset.peran);
+    });
+
+    /* Panah kiri-kanan untuk berpindah lewat papan ketik */
+    tombol.forEach((t, i) => {
+      t.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + tombol.length) % tombol.length;
+        tombol[j].focus();
+        pilih(tombol[j].dataset.peran);
+      });
+    });
+
     const nyalakan = () => {
       panggung.classList.add('jalan');
-      langkah.forEach((li, i) => setTimeout(() => li.classList.add('nyala'), diam ? 0 : 320 + i * 260));
+      butir.forEach((li, i) => setTimeout(() => li.classList.add('nyala'), diam ? 0 : 320 + i * 240));
     };
-    if (!('IntersectionObserver' in window) || diam) { nyalakan(); return; }
-    const pengamat = new IntersectionObserver(e => {
-      if (e[0].isIntersecting) { nyalakan(); pengamat.disconnect(); }
-    }, { threshold: 0.35 });
-    pengamat.observe(panggung);
+    /* Dipicu dari posisi gulir langsung, bukan dari pengamat viewport.
+       Pengamat sempat tidak terpanggil pada sebagian keadaan, dan
+       hitungan jarak begini tidak punya kasus gagal. */
+    if (diam) {
+      nyalakan();
+    } else {
+      let sudah = false;
+      const periksa = () => {
+        if (sudah) return;
+        const k = panggung.getBoundingClientRect();
+        if (k.top < window.innerHeight * 0.85 && k.bottom > 0) {
+          sudah = true;
+          window.removeEventListener('scroll', periksa);
+          nyalakan();
+        }
+      };
+      window.addEventListener('scroll', periksa, { passive: true });
+      window.addEventListener('resize', periksa);
+      periksa();
+    }
   }
 });

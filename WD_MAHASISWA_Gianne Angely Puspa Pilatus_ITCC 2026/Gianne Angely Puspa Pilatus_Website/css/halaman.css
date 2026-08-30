@@ -97,10 +97,15 @@
 /* ---------- Susunan dua kolom ---------- */
 .dua-kolom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s5); }
 .kolom-berat { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--s5); align-items: start; }
-.tumpuk { display: grid; gap: var(--s5); }
+.tumpuk { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s5); }
+
+/* Petak grid secara bawaan menolak menyusut di bawah lebar isi terkecilnya.
+   Tanpa min-width: 0, satu tabel lebar bisa memaksa seluruh kolom melebar
+   dan membuat halaman bisa digulir ke samping. */
+.tumpuk > *, .dua-kolom > *, .kolom-berat > *, .panel-kisi > * { min-width: 0; }
 
 @media (max-width: 1000px) {
-  .kepala-kisi, .dua-kolom, .kolom-berat { grid-template-columns: 1fr; gap: var(--s5); }
+  .kepala-kisi, .dua-kolom, .kolom-berat { grid-template-columns: minmax(0, 1fr); gap: var(--s5); }
   .panel-kisi { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 520px) {

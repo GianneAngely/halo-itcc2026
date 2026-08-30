@@ -13,18 +13,37 @@ document.addEventListener('DOMContentLoaded', function () {
     langkah.forEach(li => li.classList.toggle('aktif', li.dataset.sorot === kunci));
   }
 
-  if (diam || !('IntersectionObserver' in window)) {
+  if (diam) {
     diagram.querySelectorAll('g').forEach(g => g.classList.add('nyala'));
     langkah.forEach(li => li.classList.add('aktif'));
   } else {
-    sorot(langkah[0].dataset.sorot);
-    const pengamat = new IntersectionObserver(entri => {
-      /* Ambil langkah yang paling dekat ke tengah layar */
-      const terlihat = entri.filter(e => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (terlihat) sorot(terlihat.target.dataset.sorot);
-    }, { threshold: [0.35, 0.6], rootMargin: '-20% 0px -20% 0px' });
-    langkah.forEach(li => pengamat.observe(li));
+    /* Langkah yang aktif dipilih dari jaraknya ke tengah layar.
+       Cara ini tidak punya zona mati seperti pengamat berambang:
+       berapa pun tinggi tiap langkah, selalu ada satu yang terpilih. */
+    let kunciTerakhir = null;
+    let menunggu = false;
+
+    function pilihTerdekat() {
+      menunggu = false;
+      const tengah = window.innerHeight / 2;
+      let terdekat = langkah[0], jarakTerdekat = Infinity;
+      langkah.forEach(li => {
+        const k = li.getBoundingClientRect();
+        const jarak = Math.abs((k.top + k.bottom) / 2 - tengah);
+        if (jarak < jarakTerdekat) { jarakTerdekat = jarak; terdekat = li; }
+      });
+      const kunci = terdekat.dataset.sorot;
+      if (kunci !== kunciTerakhir) { kunciTerakhir = kunci; sorot(kunci); }
+    }
+
+    const saatGulir = () => {
+      if (menunggu) return;
+      menunggu = true;
+      requestAnimationFrame(pilihTerdekat);
+    };
+    window.addEventListener('scroll', saatGulir, { passive: true });
+    window.addEventListener('resize', saatGulir);
+    pilihTerdekat();
   }
 
   /* ---------- Ketepatan perkiraan ----------

@@ -8,13 +8,18 @@
 
 /* ---------- Bercerita sambil digulir ---------- */
 .cerita { background: var(--surface); border-block: 1px solid var(--line); }
-.cerita-kisi { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: var(--s8); align-items: start; }
+.cerita-kisi { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: var(--s8); }
 
-/* Panggung dipaku setinggi layar dan isinya ditengahkan, supaya
-   diagram tetap sejajar mata selagi daftar langkah bergulir melewatinya */
-.cerita-panggung {
+/* Kolom kiri dibiarkan setinggi kolom kanan supaya elemen yang
+   menempel punya ruang jelajah sepanjang seluruh daftar langkah.
+   Yang dipaku adalah pembungkus di dalamnya, bukan kolomnya. */
+.cerita-panggung { height: 100%; }
+/* Tingginya sedikit di bawah satu layar, dan daftar langkah diberi
+   ruang sisa di bawahnya. Keduanya membuat diagram tetap terpaku
+   sampai langkah terakhir benar-benar selesai dibaca. */
+.cerita-lekat {
   position: sticky; top: 0;
-  height: 100vh; display: grid; align-content: center;
+  height: 82vh; display: grid; align-content: center;
   padding-block: var(--s6);
 }
 .diagram { width: 100%; height: auto; }
@@ -39,7 +44,7 @@
 .nadi { animation: denyutSensor 2.2s ease-in-out infinite; }
 @keyframes denyutSensor { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
 
-.cerita-langkah { padding-block: var(--s8); }
+.cerita-langkah { padding-block: var(--s8) 40vh; }
 .cerita-langkah li {
   min-height: 74vh; display: flex; flex-direction: column; justify-content: center;
   opacity: .3; transition: opacity .5s var(--ease);
@@ -63,7 +68,8 @@
 
 @media (max-width: 1000px) {
   .cerita-kisi { grid-template-columns: 1fr; gap: var(--s4); }
-  .cerita-panggung { position: sticky; top: 62px; height: auto; background: var(--surface); padding-block: var(--s4); z-index: 2; border-bottom: 1px solid var(--line-2); }
+  .cerita-panggung { height: auto; }
+  .cerita-lekat { position: sticky; top: 62px; height: auto; background: var(--surface); padding-block: var(--s4); z-index: 2; border-bottom: 1px solid var(--line-2); }
   .cerita-langkah li { min-height: 0; padding-block: var(--s6); opacity: 1; }
   .cerita-langkah { padding-block: var(--s6); }
   .aman-kisi { grid-template-columns: repeat(2, 1fr); }

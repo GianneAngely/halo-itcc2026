@@ -147,8 +147,42 @@ document.addEventListener('DOMContentLoaded', function () {
   [gUnit, gTarif, gPakai].forEach(g => g.addEventListener('input', () => hitung(true)));
   hitung(false);
 
-  /* ---------- Galeri ---------- */
-  if (window.Fancybox) Fancybox.bind('[data-fancybox="galeri"]', { Thumbs: false });
+  /* ---------- Galeri ----------
+     Label bawaan Fancybox berbahasa Inggris, jadi diganti supaya
+     seragam dengan seluruh isi situs. */
+  if (window.Fancybox) {
+    Fancybox.bind('[data-fancybox="galeri"]', {
+      Thumbs: false,
+      l10n: {
+        CLOSE: 'Tutup',
+        NEXT: 'Berikutnya',
+        PREV: 'Sebelumnya',
+        MODAL: 'Tekan tombol Esc untuk menutup',
+        ERROR: 'Ada yang tidak beres, coba sebentar lagi',
+        IMAGE_ERROR: 'Gambar tidak ditemukan',
+        /* Tombol perbesar memakai tiga nama kunci berbeda di dalam
+           Fancybox, jadi ketiganya diisi supaya pasti tergantikan. */
+        TOGGLE_ZOOM: 'Perbesar atau perkecil',
+        TOGGLEZOOM: 'Perbesar atau perkecil',
+        ITERATEZOOM: 'Perbesar atau perkecil',
+        TOGGLE_SLIDESHOW: 'Putar otomatis',
+        TOGGLE_FULLSCREEN: 'Layar penuh',
+        TOGGLE_THUMBS: 'Tampilkan gambar kecil',
+        DOWNLOAD: 'Unduh',
+        PANUP: 'Geser ke atas',
+        PANDOWN: 'Geser ke bawah',
+        PANLEFT: 'Geser ke kiri',
+        PANRIGHT: 'Geser ke kanan',
+        ZOOMIN: 'Perbesar',
+        ZOOMOUT: 'Perkecil',
+        ROTATECCW: 'Putar berlawanan jarum jam',
+        ROTATECW: 'Putar searah jarum jam',
+        FLIPX: 'Balik mendatar',
+        FLIPY: 'Balik tegak',
+        RESET: 'Kembalikan seperti semula'
+      }
+    });
+  }
 
   /* ---------- Tombol tindakan ---------- */
   document.getElementById('tombolAjukan').addEventListener('click', () => {

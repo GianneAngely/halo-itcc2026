@@ -45,7 +45,7 @@
 .prog-kaki { font-size: var(--fs-xs); color: var(--ink-3); margin-top: 6px; }
 
 /* ---------- Antrean verifikasi ---------- */
-.antre-daftar { display: grid; gap: var(--s3); }
+.antre-daftar { display: grid; gap: var(--s3); overflow-x: clip; }
 .antre {
   display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s5);
   padding: var(--s4) var(--s5); border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface);

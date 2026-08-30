@@ -114,7 +114,7 @@ Yang dibutuhkan cuma sensor, satu pengelola kawasan, dan teknisi setempat —
 ketiganya ada di hampir semua daerah. Bagian **Skala** di beranda menghitungnya:
 kalau pola yang sama berjalan di satu persen rumah tangga Indonesia, yaitu
 710.000 rumah, penghematannya 12,6 juta kWh sebulan dan emisi yang dicegah
-132.034 ton CO₂e setahun.
+132.015 ton CO₂e setahun.
 
 Angka itu dihitung, bukan dikarang: 17,8 kWh dan 0,55 m³ per rumah tiap bulan
 (rata-rata rumah yang sudah terhubung), dikali 710.000, dikali faktor emisi

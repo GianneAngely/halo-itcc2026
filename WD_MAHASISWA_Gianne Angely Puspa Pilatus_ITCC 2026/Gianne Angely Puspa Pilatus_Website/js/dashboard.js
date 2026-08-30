@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
     Grafik.garis(wadahPrediksi, {
       seri: [
         { nama: 'Perkiraan', data: perkiraan, warna: 'var(--air)', isi: true },
-        { nama: 'Terbaca sensor', data: terbaca.map((v, i) => v === null ? perkiraan[lewat - 1] : v), warna: 'var(--listrik)' }
+        { nama: 'Terbaca sensor', data: terbaca, warna: 'var(--listrik)' }
       ],
       labelX: Array.from({ length: lewat + sisa }, (_, i) => 'H' + (i + 1)),
       satuan: 'Rupiah', maksLabelX: 7,

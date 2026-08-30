@@ -96,7 +96,7 @@ const Grafik = (function () {
   function garis(wadah, opsi) {
     const W = 760, H = 300, kiri = 52, kanan = 14, atas = 18, bawah = 34;
     const seri = opsi.seri, n = seri[0].data.length;
-    const maks = Math.max(...seri.flatMap(s => s.data));
+    const maks = Math.max(...seri.flatMap(s => s.data.filter(v => v !== null && v !== undefined)));
     const sk = tangga(maks, 4);
     const px = i => kiri + (i / (n - 1)) * (W - kiri - kanan);
     const py = v => H - bawah - (v / sk.atas) * (H - atas - bawah);
@@ -130,12 +130,24 @@ const Grafik = (function () {
 
     const jalurSeri = [];
     seri.forEach(s => {
-      const d = s.data.map((v, i) => (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + py(v).toFixed(1)).join(' ');
+      /* Nilai null memutus garis, bukan digambar mendatar. Deret yang
+         belum punya data — misalnya hari yang belum terjadi — harus
+         berhenti, bukan berpura-pura terbaca. */
+      let mulaiBaru = true;
+      const d = s.data.map((v, i) => {
+        if (v === null || v === undefined) { mulaiBaru = true; return ''; }
+        const perintah = mulaiBaru ? 'M' : 'L';
+        mulaiBaru = false;
+        return perintah + px(i).toFixed(1) + ' ' + py(v).toFixed(1);
+      }).filter(Boolean).join(' ');
       if (s.isi) {
-        svg.appendChild(el('path', {
-          d: d + ' L' + px(n - 1) + ' ' + py(0) + ' L' + px(0) + ' ' + py(0) + ' Z',
-          fill: s.warna, opacity: '.08'
-        }));
+        const isi = s.data.map((v, i) => v === null || v === undefined ? -1 : i).filter(i => i >= 0);
+        if (isi.length) {
+          svg.appendChild(el('path', {
+            d: d + ' L' + px(isi[isi.length - 1]) + ' ' + py(0) + ' L' + px(isi[0]) + ' ' + py(0) + ' Z',
+            fill: s.warna, opacity: '.08'
+          }));
+        }
       }
       const j = el('path', { d: d, fill: 'none', stroke: s.warna, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
       svg.appendChild(j);
@@ -162,7 +174,7 @@ const Grafik = (function () {
       i = Math.max(0, Math.min(n - 1, i));
       penanda.setAttribute('cx', px(i)); penanda.setAttribute('cy', py(seri[0].data[i]));
       penanda.setAttribute('stroke', seri[0].warna); penanda.setAttribute('opacity', 1);
-      const baris = seri.map(s =>
+      const baris = seri.filter(s => s.data[i] !== null && s.data[i] !== undefined).map(s =>
         '<span class="gr-tip-baris"><i style="background:' + s.warna + '"></i>' + s.nama + ' <b>' +
         F.angka(s.data[i], opsi.pecahan || 0) + (opsi.satuanTip || '') + '</b></span>').join('');
       tip.tampil('<strong>' + opsi.labelX[i] + '</strong>' + baris,

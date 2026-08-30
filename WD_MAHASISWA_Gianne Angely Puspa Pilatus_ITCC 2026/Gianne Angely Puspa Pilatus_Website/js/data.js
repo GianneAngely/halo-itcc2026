@@ -222,12 +222,22 @@ const HALO = (function () {
     { nama:'Atap Surya Bersama',   wilayah:'Ubud',            sasaran: 60,  capai: 23, tutup:'31 Des 2026' }
   ];
 
+  /* Pertumbuhan platform, dua belas bulan terakhir.
+     Penghematan diturunkan dari jumlah rumah terhubung dikali
+     rata-rata penghematan per rumah, jadi kedua deret ini tidak
+     bisa saling bertentangan. */
+  const rumahBulanan = [1104, 1218, 1327, 1451, 1580, 1699, 1822, 1948, 2061, 2168, 2259, 2337];
+  const hematKwhPerRumah = 17.81;
+  const hematM3PerRumah  = 0.5495;
+  const hematListrikBulanan = rumahBulanan.map(r => Math.round(r * hematKwhPerRumah));
+  const hematAirBulanan     = rumahBulanan.map(r => Math.round(r * hematM3PerRumah));
+
   /* Ringkasan tingkat platform — dipakai di Beranda */
   const ringkasan = {
-    rumah: 2337,
-    kelurahan: 8,
-    kwhBulanIni: 41628,
-    literBulanIni: 1284500,
+    rumah: rumahBulanan[11],
+    kelurahan: kawasan.length,
+    kwhBulanIni: hematListrikBulanan[11],
+    literBulanIni: hematAirBulanan[11] * 1000,
     sensorAktif: 3914,
     teknisi: 27
   };
@@ -235,6 +245,7 @@ const HALO = (function () {
   return {
     tarif, polaListrik, polaAir, listrikHarian, airHarian,
     bulan, listrikBulanan, airBulanan, hariPekan, petaPanas,
-    kurvaHari, alat, kategori, galeri, layanan, riwayat, anomali, kawasan, antrean, program, ringkasan
+    kurvaHari, rumahBulanan, hematListrikBulanan, hematAirBulanan,
+    alat, kategori, galeri, layanan, riwayat, anomali, kawasan, antrean, program, ringkasan
   };
 })();

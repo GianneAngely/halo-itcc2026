@@ -55,9 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------- Garis mungil di deret angka ---------- */
+  /* Garis mungil ini menggambarkan angka tepat di atasnya, yaitu
+     penghematan seluruh platform dua belas bulan terakhir — bukan
+     pemakaian satu rumah contoh seperti sebelumnya. */
   document.querySelectorAll('[data-kilau]').forEach(kotak => {
     const jenis = kotak.dataset.kilau;
-    const deret = (jenis === 'air' ? HALO.airHarian : HALO.listrikHarian).slice(-14);
+    const deret = jenis === 'air' ? HALO.hematAirBulanan : HALO.hematListrikBulanan;
     Grafik.kilau(kotak, deret, jenis === 'air' ? 'var(--air)' : 'var(--listrik)');
   });
 

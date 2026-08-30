@@ -194,16 +194,17 @@ const HALO = (function () {
       dampak:'Sekitar 3,2 kWh per bulan, setara Rp4.600.', tindakan:'kulkas-inverter' }
   ];
 
-  /* Data kawasan — kelurahan dan desa di sekitar Ubud, Gianyar */
+  /* Data kawasan — kelurahan dan desa di sekitar Ubud, Gianyar.
+     Jumlah rumah menentukan luas petak, pemakaian listrik menentukan warnanya. */
   const kawasan = [
-    { nama:'Peliatan',   rumah:412, listrik:243, air:18.1, hemat:14.2, program:3, x: 96, y: 84, w:118, h: 92 },
-    { nama:'Ubud',       rumah:508, listrik:271, air:19.6, hemat:11.8, program:4, x:222, y: 46, w:132, h:110 },
-    { nama:'Petulu',     rumah:186, listrik:228, air:17.4, hemat: 9.4, program:1, x:362, y: 40, w: 96, h: 84 },
-    { nama:'Sayan',      rumah:274, listrik:296, air:21.3, hemat: 6.1, program:2, x: 78, y:186, w:124, h: 96 },
-    { nama:'Kedewatan',  rumah:159, listrik:318, air:22.8, hemat: 4.3, program:1, x:210, y:166, w:110, h:104 },
-    { nama:'Lodtunduh',  rumah:233, listrik:214, air:16.9, hemat:16.7, program:3, x:328, y:132, w:130, h: 88 },
-    { nama:'Singakerta', rumah:301, listrik:259, air:20.1, hemat:10.5, program:2, x:150, y:280, w:142, h: 82 },
-    { nama:'Mas',        rumah:264, listrik:237, air:18.7, hemat:12.9, program:2, x:300, y:228, w:158, h: 92 }
+    { nama:'Peliatan',   rumah:412, listrik:243, air:18.1, hemat:14.2, program:3 },
+    { nama:'Ubud',       rumah:508, listrik:271, air:19.6, hemat:11.8, program:4 },
+    { nama:'Petulu',     rumah:186, listrik:228, air:17.4, hemat: 9.4, program:1 },
+    { nama:'Sayan',      rumah:274, listrik:296, air:21.3, hemat: 6.1, program:2 },
+    { nama:'Kedewatan',  rumah:159, listrik:318, air:22.8, hemat: 4.3, program:1 },
+    { nama:'Lodtunduh',  rumah:233, listrik:214, air:16.9, hemat:16.7, program:3 },
+    { nama:'Singakerta', rumah:301, listrik:259, air:20.1, hemat:10.5, program:2 },
+    { nama:'Mas',        rumah:264, listrik:237, air:18.7, hemat:12.9, program:2 }
   ];
 
   /* Antrean verifikasi milik peran pengelola kawasan */

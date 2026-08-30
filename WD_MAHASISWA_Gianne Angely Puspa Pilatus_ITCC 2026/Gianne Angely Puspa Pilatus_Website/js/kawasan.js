@@ -3,67 +3,37 @@
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
 
-  const NS = 'http://www.w3.org/2000/svg';
   const maksListrik = Math.max(...HALO.kawasan.map(k => k.listrik));
   const minListrik  = Math.min(...HALO.kawasan.map(k => k.listrik));
 
-  /* ---------- Peta blok kelurahan ----------
-     Digambar sebagai SVG sederhana. Letak dan ukuran tiap blok
-     diambil dari data, warnanya mengikuti besar pemakaian. */
-  const wadahPeta = document.getElementById('petaKawasan');
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('viewBox', '0 0 476 386');
-  svg.setAttribute('class', 'gr');
-  svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', 'Peta blok delapan kelurahan dengan warna menurut besar pemakaian listrik');
-
-  const blok = {};
-  HALO.kawasan.forEach(k => {
-    const kuat = 0.18 + ((k.listrik - minListrik) / (maksListrik - minListrik)) * 0.82;
-    const g = document.createElementNS(NS, 'g');
-
-    const r = document.createElementNS(NS, 'rect');
-    r.setAttribute('x', k.x); r.setAttribute('y', k.y);
-    r.setAttribute('width', k.w); r.setAttribute('height', k.h);
-    r.setAttribute('rx', 4);
-    r.setAttribute('fill', 'var(--listrik)');
-    r.setAttribute('fill-opacity', kuat.toFixed(2));
-    r.setAttribute('stroke', 'var(--paper)');
-    r.setAttribute('stroke-width', 2);
-    r.setAttribute('class', 'peta-blok');
-    g.appendChild(r);
-
-    /* Blok yang warnanya pekat memakai tulisan terang supaya tetap terbaca */
-    const terang = kuat > 0.58;
-
-    const nama = document.createElementNS(NS, 'text');
-    nama.setAttribute('x', k.x + 10); nama.setAttribute('y', k.y + 22);
-    nama.setAttribute('class', 'peta-nama' + (terang ? ' peta-balik' : ''));
-    nama.textContent = k.nama;
-    g.appendChild(nama);
-
-    const nilai = document.createElementNS(NS, 'text');
-    nilai.setAttribute('x', k.x + 10); nilai.setAttribute('y', k.y + 38);
-    nilai.setAttribute('class', 'peta-nilai' + (terang ? ' peta-balik' : ''));
-    nilai.textContent = k.listrik + ' kWh · ' + k.rumah + ' rumah';
-    g.appendChild(nilai);
-
-    svg.appendChild(g);
-    blok[k.nama] = r;
-    r.addEventListener('click', () => pilih(k.nama));
-    r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pilih(k.nama); } });
-    r.setAttribute('tabindex', '0');
-    r.setAttribute('role', 'button');
-    r.setAttribute('aria-label', k.nama + ', ' + k.listrik + ' kilowatt jam per rumah');
-  });
-  wadahPeta.appendChild(svg);
+  /* ---------- Petak berukuran data ----------
+     Luas tiap petak sebanding dengan jumlah rumah yang terhubung,
+     warnanya mewakili rata-rata pemakaian listrik per rumah.
+     Jadi kedua dimensinya membawa data — bukan kotak yang ukurannya
+     ditentukan sembarangan seperti versi sebelumnya. */
+  let petak = null;
+  const wadahPetak = document.getElementById('petakKawasan');
+  if (wadahPetak) {
+    petak = Grafik.petakData(wadahPetak, {
+      data: HALO.kawasan.map(k => ({
+        nama: k.nama,
+        luas: k.rumah,
+        warnaNilai: k.listrik,
+        keterangan: k.rumah + ' rumah · ' + k.listrik + ' kWh'
+      })),
+      warna: 'var(--listrik)',
+      minWarna: minListrik,
+      maksWarna: maksListrik,
+      judulAria: 'Petak delapan kelurahan, luasnya sebanding jumlah rumah dan warnanya mewakili pemakaian listrik per rumah',
+      saatPilih: nama => pilih(nama)
+    });
+  }
 
   /* ---------- Rincian kelurahan terpilih ---------- */
   const rataKawasan = HALO.kawasan.reduce((a, b) => a + b.listrik, 0) / HALO.kawasan.length;
   function pilih(nama) {
     const k = HALO.kawasan.find(x => x.nama === nama);
-    Object.values(blok).forEach(b => b.classList.remove('peta-terpilih'));
-    blok[nama].classList.add('peta-terpilih');
+    if (petak) petak.sorot(nama);
 
     document.getElementById('rkNama').textContent = k.nama;
     document.getElementById('rkRumah').textContent = F.angka(k.rumah);

@@ -493,6 +493,128 @@ const Grafik = (function () {
     return svg;
   }
 
+  /* ---------------------------------------------------------
+     Petak berukuran data (treemap).
+     Luas tiap petak sebanding dengan nilainya, warnanya mewakili
+     nilai kedua. Dipakai menggantikan "peta" blok lama yang
+     ukurannya tidak mewakili apa pun.
+
+     Penataannya memakai cara squarified: petak diisi selajur demi
+     selajur pada sisi terpendek yang tersisa, dan satu petak baru
+     hanya ditambahkan ke lajur berjalan selama bentuknya tidak
+     jadi makin panjang. Hasilnya petak-petak mendekati persegi,
+     bukan bilah tipis yang tidak terbaca.
+
+     opsi: { data:[{nama,luas,warnaNilai,keterangan}], warna,
+             minWarna, maksWarna, saatPilih }
+     --------------------------------------------------------- */
+  function petakData(wadah, opsi) {
+    const W = 720, H = 470, jarak = 3;
+    const svg = bingkai(W, H, 'gr-petak');
+    svg.setAttribute('aria-label', opsi.judulAria || 'Petak berukuran data');
+
+    const total = opsi.data.reduce((a, b) => a + b.luas, 0);
+    const skala = (W * H) / total;
+    const antre = opsi.data
+      .map(d => Object.assign({}, d, { area: d.luas * skala }))
+      .sort((a, b) => b.area - a.area);
+
+    /* Sisa bidang yang belum terisi */
+    let x = 0, y = 0, w = W, h = H;
+    const hasil = [];
+
+    const jumlah = r => r.reduce((a, b) => a + b.area, 0);
+    const terburuk = (r, sisi) => {
+      if (!r.length) return Infinity;
+      const s = jumlah(r), maks = Math.max(...r.map(i => i.area)), min = Math.min(...r.map(i => i.area));
+      return Math.max((sisi * sisi * maks) / (s * s), (s * s) / (sisi * sisi * min));
+    };
+    const taruhLajur = lajur => {
+      const s = jumlah(lajur);
+      if (w >= h) {                       /* lajur tegak di tepi kiri */
+        const tebal = s / h;
+        let geser = 0;
+        lajur.forEach(i => {
+          const sisi = i.area / tebal;
+          hasil.push(Object.assign({}, i, { px: x, py: y + geser, pw: tebal, ph: sisi }));
+          geser += sisi;
+        });
+        x += tebal; w -= tebal;
+      } else {                            /* lajur mendatar di tepi atas */
+        const tebal = s / w;
+        let geser = 0;
+        lajur.forEach(i => {
+          const sisi = i.area / tebal;
+          hasil.push(Object.assign({}, i, { px: x + geser, py: y, pw: sisi, ph: tebal }));
+          geser += sisi;
+        });
+        y += tebal; h -= tebal;
+      }
+    };
+
+    let lajur = [];
+    while (antre.length) {
+      const sisi = Math.min(w, h);
+      const calon = lajur.concat(antre[0]);
+      if (!lajur.length || terburuk(calon, sisi) <= terburuk(lajur, sisi)) {
+        lajur.push(antre.shift());
+      } else {
+        taruhLajur(lajur);
+        lajur = [];
+      }
+    }
+    if (lajur.length) taruhLajur(lajur);
+
+    /* Gambar */
+    const nilaiWarna = hasil.map(d => d.warnaNilai);
+    const minW = opsi.minWarna !== undefined ? opsi.minWarna : Math.min(...nilaiWarna);
+    const maksW = opsi.maksWarna !== undefined ? opsi.maksWarna : Math.max(...nilaiWarna);
+    const petakPer = {};
+
+    hasil.forEach(d => {
+      const kuat = 0.16 + ((d.warnaNilai - minW) / (maksW - minW || 1)) * 0.84;
+      const g = el('g', { class: 'petak-satu', tabindex: '0', role: 'button' });
+      g.setAttribute('aria-label', d.nama + ', ' + d.luas + ' rumah, ' + d.warnaNilai + ' kilowatt jam per rumah');
+
+      const r = el('rect', {
+        x: d.px + jarak / 2, y: d.py + jarak / 2,
+        width: Math.max(0, d.pw - jarak), height: Math.max(0, d.ph - jarak),
+        rx: 3, fill: opsi.warna, 'fill-opacity': kuat.toFixed(3), class: 'petak-kotak'
+      });
+      g.appendChild(r);
+
+      /* Tulisan hanya dipasang kalau petaknya memang cukup luas */
+      const terang = kuat > 0.58;
+      if (d.pw > 74 && d.ph > 42) {
+        const t1 = el('text', { x: d.px + 12, y: d.py + 26, class: 'petak-nama' + (terang ? ' petak-balik' : '') });
+        t1.textContent = d.nama;
+        g.appendChild(t1);
+        if (d.ph > 62) {
+          const t2 = el('text', { x: d.px + 12, y: d.py + 44, class: 'petak-angka' + (terang ? ' petak-balik' : '') });
+          t2.textContent = d.keterangan;
+          g.appendChild(t2);
+        }
+      }
+      svg.appendChild(g);
+      petakPer[d.nama] = { g: g, r: r };
+      if (opsi.saatPilih) {
+        g.addEventListener('click', () => opsi.saatPilih(d.nama));
+        g.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opsi.saatPilih(d.nama); }
+        });
+      }
+    });
+
+    wadah.innerHTML = '';
+    wadah.appendChild(svg);
+    return {
+      svg: svg,
+      sorot(nama) {
+        Object.keys(petakPer).forEach(n => petakPer[n].g.classList.toggle('petak-terpilih', n === nama));
+      }
+    };
+  }
+
   /* Angka sumbu dipendekkan supaya tidak memakan tempat.
      Jumlah angka di belakang koma mengikuti besar langkah sumbunya,
      supaya ambang seperti 0,25 tidak terbaca menjadi 0,3. */
@@ -502,5 +624,5 @@ const Grafik = (function () {
     return F.angka(v, desimal !== undefined ? desimal : (v % 1 === 0 ? 0 : 1));
   }
 
-  return { garis, batang, batangDatar, cincin, petaPanas, kilau, aliranGanda, ringkas };
+  return { garis, batang, batangDatar, cincin, petaPanas, kilau, aliranGanda, petakData, ringkas };
 })();

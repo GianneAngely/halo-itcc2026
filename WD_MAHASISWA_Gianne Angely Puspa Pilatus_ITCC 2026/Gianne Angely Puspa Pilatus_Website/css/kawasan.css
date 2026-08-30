@@ -7,14 +7,22 @@
 .kepala-angka span { font-size: var(--fs-xs); color: var(--ink-3); }
 
 /* ---------- Peta blok ---------- */
-.peta-bungkus { background: var(--paper); border-radius: var(--r-sm); padding: var(--s4); }
-.peta-blok { cursor: pointer; transition: fill-opacity .16s var(--ease), stroke-width .16s var(--ease); }
-.peta-blok:hover { fill-opacity: 1 !important; }
-.peta-terpilih { stroke: var(--ink); stroke-width: 2.5; }
-.peta-nama { font-size: 12px; font-weight: 600; fill: var(--ink); font-family: 'Plex Sans', sans-serif; pointer-events: none; }
-.peta-nilai { font-size: 10px; fill: var(--ink-2); font-family: 'Plex Sans', sans-serif; font-variant-numeric: tabular-nums; pointer-events: none; }
+/* ---------- Petak berukuran data ---------- */
+.peta-bungkus { background: var(--paper); border-radius: var(--r-sm); padding: var(--s3); }
+/* Petak punya lebar minimum supaya namanya tetap terbaca; kalau
+   layarnya lebih sempit, kotaknya yang digulir mendatar. */
+#petakKawasan .gr { min-width: 560px; }
+.petak-satu { cursor: pointer; }
+.petak-kotak { transition: fill-opacity .16s var(--ease); }
+.petak-satu:hover .petak-kotak { fill-opacity: 1 !important; }
+.petak-satu:focus-visible { outline: none; }
+.petak-satu:focus-visible .petak-kotak { stroke: var(--ink); stroke-width: 3; }
+.petak-terpilih .petak-kotak { stroke: var(--ink); stroke-width: 3; }
+.petak-nama { font-size: 15px; font-weight: 600; fill: var(--ink); font-family: 'Plex Sans', sans-serif; pointer-events: none; }
+.petak-angka { font-size: 12px; fill: var(--ink-2); font-family: 'Plex Sans', sans-serif; font-variant-numeric: tabular-nums; pointer-events: none; }
+.petak-balik { fill: #fdf9f3; }
 .peta-skala { display: flex; align-items: center; gap: var(--s3); margin-top: var(--s4); }
-.peta-skala-teks { font-size: var(--fs-xs); color: var(--ink-3); }
+.peta-skala-teks { font-size: var(--fs-xs); color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .peta-skala-bar {
   flex: 1; height: 8px; border-radius: 4px;
   /* Deret warna rata bertingkat, bukan gradasi */
@@ -66,7 +74,6 @@
   .antre-aksi .btn { flex: 1; }
 }
 .baris-sorot { outline: 2px solid var(--ink); outline-offset: -2px; }
-.peta-balik { fill: #fdf9f3; }
 
 /* ---------- Kepala berfoto ----------
    Foto udara jadi latar, ditutup lapisan warna rata (bukan gradasi)

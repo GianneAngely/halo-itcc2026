@@ -38,7 +38,7 @@ sisi platform yang berbeda:
 | Akun demo | Diarahkan ke | Yang bisa dilihat |
 |---|---|---|
 | Warga | Dashboard rumah | Pemakaian per jam, kejanggalan, perkiraan tagihan |
-| Pengelola kawasan | Data kawasan | Peta, peringkat kelurahan, antrean verifikasi |
+| Pengelola kawasan | Data kawasan | Petak se-Bali, peringkat kabupaten, rincian kelurahan, antrean verifikasi |
 | Teknisi | Riwayat aktivitas | Daftar pekerjaan yang sudah diverifikasi |
 
 ## Isi folder

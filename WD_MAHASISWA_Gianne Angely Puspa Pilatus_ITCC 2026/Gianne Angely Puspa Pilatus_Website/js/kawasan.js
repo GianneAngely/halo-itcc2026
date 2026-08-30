@@ -3,8 +3,8 @@
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
 
-  const maksListrik = Math.max(...HALO.kawasan.map(k => k.listrik));
-  const minListrik  = Math.min(...HALO.kawasan.map(k => k.listrik));
+  const maksListrik = Math.max(...HALO.bali.map(k => k.listrik));
+  const minListrik  = Math.min(...HALO.bali.map(k => k.listrik));
 
   /* ---------- Petak berukuran data ----------
      Luas tiap petak sebanding dengan jumlah rumah yang terhubung,
@@ -15,42 +15,45 @@ document.addEventListener('DOMContentLoaded', function () {
   const wadahPetak = document.getElementById('petakKawasan');
   if (wadahPetak) {
     petak = Grafik.petakData(wadahPetak, {
-      data: HALO.kawasan.map(k => ({
+      data: HALO.bali.map(k => ({
         nama: k.nama,
         luas: k.rumah,
         warnaNilai: k.listrik,
-        keterangan: k.rumah + ' rumah · ' + k.listrik + ' kWh'
+        keterangan: F.angka(k.rumah) + ' rumah · ' + k.listrik + ' kWh'
       })),
       warna: 'var(--listrik)',
       minWarna: minListrik,
       maksWarna: maksListrik,
-      judulAria: 'Petak delapan kelurahan, luasnya sebanding jumlah rumah dan warnanya mewakili pemakaian listrik per rumah',
+      judulAria: 'Petak sembilan kabupaten dan kota di Bali, luasnya sebanding jumlah rumah dan warnanya mewakili pemakaian listrik per rumah',
       saatPilih: nama => pilih(nama)
     });
   }
 
-  /* ---------- Rincian kelurahan terpilih ---------- */
-  const rataKawasan = HALO.kawasan.reduce((a, b) => a + b.listrik, 0) / HALO.kawasan.length;
+  /* ---------- Rincian wilayah terpilih ---------- */
+  const rumahBali = HALO.bali.reduce((a, b) => a + b.rumah, 0);
+  const rataBali  = HALO.bali.reduce((a, b) => a + b.listrik * b.rumah, 0) / rumahBali;
+
   function pilih(nama) {
-    const k = HALO.kawasan.find(x => x.nama === nama);
+    const k = HALO.bali.find(x => x.nama === nama);
     if (petak) petak.sorot(nama);
 
     document.getElementById('rkNama').textContent = k.nama;
     document.getElementById('rkRumah').textContent = F.angka(k.rumah);
     document.getElementById('rkListrik').textContent = F.angka(k.listrik) + ' kWh';
     document.getElementById('rkAir').textContent = F.angka(k.air, 1) + ' m³';
-    const hemat = document.getElementById('rkHemat');
-    hemat.textContent = F.angka(k.hemat, 1) + '%';
+    document.getElementById('rkHemat').textContent = F.angka(k.hemat, 1) + '%';
     document.getElementById('rkProgram').textContent = k.program;
 
-    const selisih = ((k.listrik / rataKawasan) - 1) * 100;
-    document.getElementById('rkCatatan').textContent = selisih < 0
-      ? k.nama + ' berada ' + F.angka(Math.abs(selisih), 1) + ' persen di bawah rata-rata kawasan. Ada ' + k.program + ' program hemat yang sedang berjalan di sini.'
-      : k.nama + ' berada ' + F.angka(selisih, 1) + ' persen di atas rata-rata kawasan. Wilayah ini layak didahulukan untuk program berikutnya.';
+    const selisih = ((k.listrik / rataBali) - 1) * 100;
+    let catatan = selisih < 0
+      ? k.nama + ' berada ' + F.angka(Math.abs(selisih), 1) + ' persen di bawah rata-rata Bali. Ada ' + k.program + ' program hemat yang sedang berjalan di sini.'
+      : k.nama + ' berada ' + F.angka(selisih, 1) + ' persen di atas rata-rata Bali. Wilayah ini layak didahulukan untuk program berikutnya.';
+    if (k.rinci) catatan += ' Angka Gianyar dihitung dari delapan kelurahan yang dirinci di bawah.';
+    document.getElementById('rkCatatan').textContent = catatan;
 
     document.querySelectorAll('#tubuhKawasan tr').forEach(tr => tr.classList.toggle('baris-sorot', tr.dataset.nama === nama));
   }
-  pilih('Peliatan');
+  pilih('Gianyar');
 
   /* ---------- Pengurutan tabel ---------- */
   const tubuh = document.getElementById('tubuhKawasan');
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.tabel-urut').forEach(t => t.removeAttribute('aria-sort'));
       tombol.setAttribute('aria-sort', arah[kolom] === 'naik' ? 'ascending' : 'descending');
       const nilai = tr => {
-        const k = HALO.kawasan.find(x => x.nama === tr.dataset.nama);
+        const k = HALO.bali.find(x => x.nama === tr.dataset.nama);
         return kolom === 'nama' ? k.nama : k[kolom];
       };
       baris.sort((a, b) => {
@@ -74,14 +77,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- Tren kawasan ---------- */
-  /* Rata-rata kawasan mengikuti bentuk tren rumah contoh,
-     digeser ke tingkat rata-rata delapan kelurahan. */
-  const geser = rataKawasan / HALO.listrikBulanan[11];
+  /* ---------- Gianyar dibuka sampai kelurahan ----------
+     Satu kabupaten dirinci penuh supaya terlihat bahwa verifikasi
+     sebenarnya terjadi di tingkat kelurahan, bukan di tingkat provinsi. */
+  const wadahKel = document.getElementById('grafikKelurahan');
+  if (wadahKel) {
+    const urut = [...HALO.kawasan].sort((a, b) => b.listrik - a.listrik);
+    Grafik.batangDatar(wadahKel, {
+      data: urut.map(k => ({
+        nama: k.nama,
+        nilai: k.listrik,
+        catatan: F.angka(k.rumah) + ' rumah · hemat ' + F.angka(k.hemat, 1) + '% tahun ini'
+                 + (k.nama === 'Peliatan' ? ' · kelurahan rumah contoh di Dashboard' : '')
+      })),
+      satuan: 'kWh',
+      warna: 'var(--listrik)',
+      judulAria: 'Rata-rata pemakaian listrik per rumah di delapan kelurahan Gianyar'
+    });
+  }
+
+  /* ---------- Tren se-Bali ---------- */
+  /* Rata-rata provinsi mengikuti bentuk tren rumah contoh,
+     digeser ke tingkat rata-rata sembilan kabupaten dan kota. */
+  const geser = rataBali / HALO.listrikBulanan[11];
   Grafik.garis(document.getElementById('grafikTren'), {
-    seri: [{ nama: 'Rata-rata kawasan', data: HALO.listrikBulanan.map(v => Math.round(v * geser)), warna: 'var(--air)', isi: true }],
+    seri: [{ nama: 'Rata-rata Bali', data: HALO.listrikBulanan.map(v => Math.round(v * geser)), warna: 'var(--air)', isi: true }],
     labelX: HALO.bulan, satuan: 'kWh', satuanTip: ' kWh', maksLabelX: 12,
-    judulAria: 'Tren rata-rata pemakaian listrik per rumah di kawasan selama dua belas bulan'
+    judulAria: 'Tren rata-rata pemakaian listrik per rumah di seluruh Bali selama dua belas bulan'
   });
 
   /* ---------- Bilah kemajuan program ---------- */

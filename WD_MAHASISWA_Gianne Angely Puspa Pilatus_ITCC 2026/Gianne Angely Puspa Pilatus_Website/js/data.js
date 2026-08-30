@@ -226,7 +226,29 @@ const HALO = (function () {
      Penghematan diturunkan dari jumlah rumah terhubung dikali
      rata-rata penghematan per rumah, jadi kedua deret ini tidak
      bisa saling bertentangan. */
-  const rumahBulanan = [1104, 1218, 1327, 1451, 1580, 1699, 1822, 1948, 2061, 2168, 2259, 2337];
+  /* Sembilan kabupaten dan kota se-Bali. Baris Gianyar sengaja tidak
+     ditulis tangan: angkanya dihitung dari delapan kelurahan di atas,
+     jadi tingkat provinsi dan tingkat kelurahan tidak mungkin
+     menunjukkan angka yang berbeda untuk wilayah yang sama. */
+  const rumahGianyar   = kawasan.reduce((a, k) => a + k.rumah, 0);
+  const rerata = (kunci) =>
+    Math.round((kawasan.reduce((a, k) => a + k[kunci] * k.rumah, 0) / rumahGianyar) * 10) / 10;
+
+  const bali = [
+    { nama:'Denpasar',   rumah:4128, listrik:331, air:23.6, hemat: 9.2, program:24 },
+    { nama:'Badung',     rumah:3406, listrik:344, air:24.4, hemat: 7.4, program:19 },
+    { nama:'Gianyar',    rumah:rumahGianyar, listrik:Math.round(rerata('listrik')),
+                         air:rerata('air'), hemat:rerata('hemat'),
+                         program:kawasan.reduce((a, k) => a + k.program, 0), rinci:true },
+    { nama:'Buleleng',   rumah:2015, listrik:239, air:17.9, hemat:10.1, program:16 },
+    { nama:'Tabanan',    rumah:1842, listrik:246, air:18.4, hemat:12.6, program:14 },
+    { nama:'Karangasem', rumah:1194, listrik:218, air:16.2, hemat:13.8, program:11 },
+    { nama:'Jembrana',   rumah:1037, listrik:231, air:17.3, hemat: 8.7, program: 9 },
+    { nama:'Klungkung',  rumah: 806, listrik:227, air:17.1, hemat:11.9, program: 8 },
+    { nama:'Bangli',     rumah: 742, listrik:209, air:15.6, hemat:15.2, program: 7 }
+  ];
+
+  const rumahBulanan = [8270, 9124, 9941, 10870, 11836, 12728, 13649, 14593, 15439, 16241, 16923, 17507];
   const hematKwhPerRumah = 17.81;
   const hematM3PerRumah  = 0.5495;
   const hematListrikBulanan = rumahBulanan.map(r => Math.round(r * hematKwhPerRumah));
@@ -235,17 +257,18 @@ const HALO = (function () {
   /* Ringkasan tingkat platform — dipakai di Beranda */
   const ringkasan = {
     rumah: rumahBulanan[11],
+    kabupaten: bali.length,
     kelurahan: kawasan.length,
     kwhBulanIni: hematListrikBulanan[11],
     literBulanIni: hematAirBulanan[11] * 1000,
-    sensorAktif: 3914,
-    teknisi: 27
+    sensorAktif: Math.round(rumahBulanan[11] * 1.675),   /* meteran listrik + sebagian meteran air */
+    teknisi: Math.round(rumahBulanan[11] / 86.6)
   };
 
   return {
     tarif, polaListrik, polaAir, listrikHarian, airHarian,
     bulan, listrikBulanan, airBulanan, hariPekan, petaPanas,
     kurvaHari, rumahBulanan, hematListrikBulanan, hematAirBulanan,
-    alat, kategori, galeri, layanan, riwayat, anomali, kawasan, antrean, program, ringkasan
+    alat, kategori, galeri, layanan, riwayat, anomali, kawasan, bali, antrean, program, ringkasan
   };
 })();

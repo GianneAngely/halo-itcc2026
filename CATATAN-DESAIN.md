@@ -28,8 +28,8 @@ hasil perbaikannya.** Itu kalimat kunci kalau ditanya "apa bedanya dengan aplika
 monitoring biasa".
 
 **Kaitan dengan tema.** AI = deteksi anomali dan prediksi tagihan. IoT = sensor
-arus dan sensor air yang mengirim tiap 15 menit. Big Data = perbandingan 2.337
-rumah dan 8 kelurahan. Semuanya disimulasikan di sisi klien karena lomba melarang
+arus dan sensor air yang mengirim tiap 15 menit. Big Data = perbandingan 17.507
+rumah di sembilan kabupaten, yang bisa dibuka sampai kelurahan. Semuanya disimulasikan di sisi klien karena lomba melarang
 backend.
 
 ---
@@ -109,7 +109,7 @@ pemantauan: satu temuan sensor berjalan melewati empat pihak sampai hasilnya
 terukur. Tunjukkan halaman Riwayat, jejak lima tahapnya.
 
 **"Di mana sisi globalnya?"** — Ini bagian yang paling perlu latihan. Jawabannya:
-skala sekarang memang delapan kelurahan, tapi modelnya tidak terikat tempat.
+skala sekarang memang satu provinsi, tapi modelnya tidak terikat tempat.
 Yang dibutuhkan cuma sensor, satu pengelola kawasan, dan teknisi setempat —
 ketiganya ada di hampir semua daerah. Bagian **Skala** di beranda menghitungnya:
 kalau pola yang sama berjalan di satu persen rumah tangga Indonesia, yaitu
@@ -119,6 +119,17 @@ kalau pola yang sama berjalan di satu persen rumah tangga Indonesia, yaitu
 Angka itu dihitung, bukan dikarang: 17,8 kWh dan 0,55 m³ per rumah tiap bulan
 (rata-rata rumah yang sudah terhubung), dikali 710.000, dikali faktor emisi
 0,87 kg CO₂e per kWh.
+
+**"Kenapa Bali, bukan satu kota saja?"** — Halaman Kawasan sengaja dibuat dua
+tingkat. Tingkat atas sembilan kabupaten dan kota se-Bali, supaya terlihat
+sistemnya berjalan di wilayah seluas provinsi. Tingkat bawah delapan kelurahan
+di Gianyar, karena di situlah verifikasi benar-benar terjadi — pengelola kawasan
+memutuskan per kelurahan, bukan per provinsi. Angka Gianyar di tabel atas tidak
+ditulis terpisah, melainkan dijumlahkan dari delapan kelurahan itu, jadi dua
+tingkatnya tidak mungkin bertentangan. Kalau juri bertanya soal ini, tunjukkan
+baris Gianyar lalu gulir ke blok "Di dalam Gianyar".
+
+---
 
 **Empat target SDG yang dibantu** — hafalkan nomornya:
 - **SDG 6** air bersih, khususnya target 6.4 soal efisiensi pemakaian air

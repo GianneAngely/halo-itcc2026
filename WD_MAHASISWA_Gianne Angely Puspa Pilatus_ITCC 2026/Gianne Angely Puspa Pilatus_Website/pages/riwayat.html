@@ -76,9 +76,19 @@
           <p class="panel-kaki"><i class="bx bx-down-arrow-alt"></i> per bulan, diukur setelah pemasangan</p>
         </div>
         <div class="panel">
-          <p class="panel-nama">Total yang dikeluarkan</p>
-          <p class="panel-angka tnum" id="ringkasBiaya">Rp2.775.000</p>
-          <p class="panel-kaki">balik modal pada bulan ke-11</p>
+          <p class="panel-nama">Sebaran tahap</p>
+          <div class="sebaran" id="sebaranTahap">
+            <span class="sebaran-bagian sb-terpasang" style="flex:3" title="3 terpasang"></span>
+            <span class="sebaran-bagian sb-jadwal" style="flex:1" title="1 dijadwalkan"></span>
+            <span class="sebaran-bagian sb-ajukan" style="flex:1" title="1 diajukan"></span>
+            <span class="sebaran-bagian sb-batal" style="flex:1" title="1 batal"></span>
+          </div>
+          <ul class="sebaran-kunci">
+            <li><i class="sb-terpasang"></i>3 terpasang</li>
+            <li><i class="sb-jadwal"></i>1 dijadwalkan</li>
+            <li><i class="sb-ajukan"></i>1 diajukan</li>
+            <li><i class="sb-batal"></i>1 batal</li>
+          </ul>
         </div>
       </div>
 
@@ -126,16 +136,18 @@
             <span class="aj-kiri">
               <span class="aj-kode tnum">AJ-2608</span>
               <span class="aj-nama">Penelusuran & perbaikan kebocoran</span>
-              <span class="aj-sub">1 paket · Tirta Karya · diajukan 24 Ags 2026</span>
+              <span class="aj-sub">1 paket · Tirta Karya · 24 Ags 2026</span>
+              <span class="jejak" role="img" aria-label="Tahap 5 dari 5"><span class="jejak-titik lewat" data-tahap="Diajukan"></span><span class="jejak-titik lewat" data-tahap="Diverifikasi"></span><span class="jejak-titik lewat" data-tahap="Dijadwalkan"></span><span class="jejak-titik lewat" data-tahap="Terpasang"></span><span class="jejak-titik lewat" data-tahap="Terukur"></span></span>
             </span>
             <span class="aj-kanan">
-              <span class="aj-biaya tnum">Rp275.000</span>
-              <span class="aj-hemat tnum">hemat Rp97.400 / bulan</span>
+              <span class="aj-biaya ukur">Rp275.000</span>
+              <span class="aj-hemat ukur">hemat Rp97.400 / bln</span>
               <span class="pil pil-hemat">Terpasang</span>
               <i class="bx bx-chevron-down aj-panah"></i>
             </span>
           </button>
           <div class="aj-isi" hidden>
+            <div class="aj-isi-kisi">
             <ol class="lini">
             <li class="selesai">
               <div class="lini-atas"><span class="lini-judul">Diajukan</span><span class="lini-tanggal">24 Ags 2026</span></div>
@@ -158,6 +170,8 @@
               <p>Pemakaian dini hari turun dari 41 liter menjadi 4 liter per jam.</p>
             </li>
             </ol>
+            <div class="aj-samping"><figure class="aj-bukti"><img src="../assets/img/pipa-air.jpg" width="1000" height="625" alt="Titik sambungan pipa yang ditambal" loading="lazy"><figcaption><span class="gbr">Bukti AJ-2608</span>Titik sambungan pipa yang ditambal</figcaption></figure><div class="ukur-hasil"><span class="satuan">Selisih terukur setelah pengerjaan</span><div class="ukur-batang"><i style="width:81%"></i></div><span class="ukur-kaki ukur">Rp97.400 <span class="alat-unit">per bulan</span></span></div></div>
+            </div>
             <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=kebocoran">Lihat layanan ini</a>
           </div>
         </article>
@@ -166,16 +180,18 @@
             <span class="aj-kiri">
               <span class="aj-kode tnum">AJ-2591</span>
               <span class="aj-nama">Sensor listrik pintar</span>
-              <span class="aj-sub">2 unit · Nusa Meter · diajukan 11 Ags 2026</span>
+              <span class="aj-sub">2 unit · Nusa Meter · 11 Ags 2026</span>
+              <span class="jejak" role="img" aria-label="Tahap 5 dari 5"><span class="jejak-titik lewat" data-tahap="Diajukan"></span><span class="jejak-titik lewat" data-tahap="Diverifikasi"></span><span class="jejak-titik lewat" data-tahap="Dijadwalkan"></span><span class="jejak-titik lewat" data-tahap="Terpasang"></span><span class="jejak-titik lewat" data-tahap="Terukur"></span></span>
             </span>
             <span class="aj-kanan">
-              <span class="aj-biaya tnum">Rp1.360.000</span>
-              <span class="aj-hemat tnum">hemat Rp118.200 / bulan</span>
+              <span class="aj-biaya ukur">Rp1.360.000</span>
+              <span class="aj-hemat ukur">hemat Rp118.200 / bln</span>
               <span class="pil pil-hemat">Terpasang</span>
               <i class="bx bx-chevron-down aj-panah"></i>
             </span>
           </button>
           <div class="aj-isi" hidden>
+            <div class="aj-isi-kisi">
             <ol class="lini">
             <li class="selesai">
               <div class="lini-atas"><span class="lini-judul">Diajukan</span><span class="lini-tanggal">11 Ags 2026</span></div>
@@ -198,6 +214,8 @@
               <p>Rincian per alat kini tersedia, pemborosan pompa terdeteksi.</p>
             </li>
             </ol>
+            <div class="aj-samping"><figure class="aj-bukti"><img src="../assets/img/tiang-listrik.jpg" width="1000" height="625" alt="Jalur masuk daya sebelum sensor dipasang" loading="lazy"><figcaption><span class="gbr">Bukti AJ-2591</span>Jalur masuk daya sebelum sensor dipasang</figcaption></figure><div class="ukur-hasil"><span class="satuan">Selisih terukur setelah pengerjaan</span><div class="ukur-batang"><i style="width:99%"></i></div><span class="ukur-kaki ukur">Rp118.200 <span class="alat-unit">per bulan</span></span></div></div>
+            </div>
             <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=sensor-listrik">Lihat layanan ini</a>
           </div>
         </article>
@@ -206,16 +224,18 @@
             <span class="aj-kiri">
               <span class="aj-kode tnum">AJ-2577</span>
               <span class="aj-nama">Penggantian lampu LED</span>
-              <span class="aj-sub">12 titik · Terang Bali · diajukan 28 Jul 2026</span>
+              <span class="aj-sub">12 titik · Terang Bali · 28 Jul 2026</span>
+              <span class="jejak" role="img" aria-label="Tahap 5 dari 5"><span class="jejak-titik lewat" data-tahap="Diajukan"></span><span class="jejak-titik lewat" data-tahap="Diverifikasi"></span><span class="jejak-titik lewat" data-tahap="Dijadwalkan"></span><span class="jejak-titik lewat" data-tahap="Terpasang"></span><span class="jejak-titik lewat" data-tahap="Terukur"></span></span>
             </span>
             <span class="aj-kanan">
-              <span class="aj-biaya tnum">Rp420.000</span>
-              <span class="aj-hemat tnum">hemat Rp54.600 / bulan</span>
+              <span class="aj-biaya ukur">Rp420.000</span>
+              <span class="aj-hemat ukur">hemat Rp54.600 / bln</span>
               <span class="pil pil-hemat">Terpasang</span>
               <i class="bx bx-chevron-down aj-panah"></i>
             </span>
           </button>
           <div class="aj-isi" hidden>
+            <div class="aj-isi-kisi">
             <ol class="lini">
             <li class="selesai">
               <div class="lini-atas"><span class="lini-judul">Diajukan</span><span class="lini-tanggal">28 Jul 2026</span></div>
@@ -238,6 +258,8 @@
               <p>Beban penerangan turun 31 persen.</p>
             </li>
             </ol>
+            <div class="aj-samping"><figure class="aj-bukti"><img src="../assets/img/kabel-listrik.jpg" width="1000" height="625" alt="Instalasi penerangan sebelum diganti LED" loading="lazy"><figcaption><span class="gbr">Bukti AJ-2577</span>Instalasi penerangan sebelum diganti LED</figcaption></figure><div class="ukur-hasil"><span class="satuan">Selisih terukur setelah pengerjaan</span><div class="ukur-batang"><i style="width:46%"></i></div><span class="ukur-kaki ukur">Rp54.600 <span class="alat-unit">per bulan</span></span></div></div>
+            </div>
             <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=lampu-led">Lihat layanan ini</a>
           </div>
         </article>
@@ -246,15 +268,17 @@
             <span class="aj-kiri">
               <span class="aj-kode tnum">AJ-2612</span>
               <span class="aj-nama">Servis dan isi ulang AC</span>
-              <span class="aj-sub">2 unit · Adem Servis · diajukan 28 Ags 2026</span>
+              <span class="aj-sub">2 unit · Adem Servis · 28 Ags 2026</span>
+              <span class="jejak" role="img" aria-label="Tahap 3 dari 5"><span class="jejak-titik lewat" data-tahap="Diajukan"></span><span class="jejak-titik lewat" data-tahap="Diverifikasi"></span><span class="jejak-titik lewat" data-tahap="Dijadwalkan"></span><span class="jejak-titik" data-tahap="Terpasang"></span><span class="jejak-titik" data-tahap="Terukur"></span></span>
             </span>
             <span class="aj-kanan">
-              <span class="aj-biaya tnum">Rp370.000</span>
+              <span class="aj-biaya ukur">Rp370.000</span>
               <span class="pil pil-listrik">Dijadwalkan</span>
               <i class="bx bx-chevron-down aj-panah"></i>
             </span>
           </button>
           <div class="aj-isi" hidden>
+            <div class="aj-isi-kisi">
             <ol class="lini">
             <li class="selesai">
               <div class="lini-atas"><span class="lini-judul">Diajukan</span><span class="lini-tanggal">28 Ags 2026</span></div>
@@ -269,6 +293,8 @@
               <p>Adem Servis dijadwalkan 2 September pukul 09.00.</p>
             </li>
             </ol>
+            <div class="aj-samping"></div>
+            </div>
             <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=servis-ac">Lihat layanan ini</a>
           </div>
         </article>
@@ -277,21 +303,25 @@
             <span class="aj-kiri">
               <span class="aj-kode tnum">AJ-2615</span>
               <span class="aj-nama">Audit energi rumah</span>
-              <span class="aj-sub">1 paket · Koperasi Energi Gianyar · diajukan 30 Ags 2026</span>
+              <span class="aj-sub">1 paket · Koperasi Energi Gianyar · 30 Ags 2026</span>
+              <span class="jejak" role="img" aria-label="Tahap 1 dari 5"><span class="jejak-titik lewat" data-tahap="Diajukan"></span><span class="jejak-titik" data-tahap="Diverifikasi"></span><span class="jejak-titik" data-tahap="Dijadwalkan"></span><span class="jejak-titik" data-tahap="Terpasang"></span><span class="jejak-titik" data-tahap="Terukur"></span></span>
             </span>
             <span class="aj-kanan">
-              <span class="aj-biaya tnum">Rp350.000</span>
+              <span class="aj-biaya ukur">Rp350.000</span>
               <span class="pil pil-netral">Diajukan</span>
               <i class="bx bx-chevron-down aj-panah"></i>
             </span>
           </button>
           <div class="aj-isi" hidden>
+            <div class="aj-isi-kisi">
             <ol class="lini">
             <li class="kini">
               <div class="lini-atas"><span class="lini-judul">Diajukan</span><span class="lini-tanggal">30 Ags 2026</span></div>
               <p>Menunggu verifikasi pengelola kawasan.</p>
             </li>
             </ol>
+            <div class="aj-samping"></div>
+            </div>
             <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=audit-rumah">Lihat layanan ini</a>
           </div>
         </article>
@@ -300,15 +330,17 @@
             <span class="aj-kiri">
               <span class="aj-kode tnum">AJ-2534</span>
               <span class="aj-nama">Pengatur waktu pompa air</span>
-              <span class="aj-sub">1 unit · Tirta Karya · diajukan 19 Jun 2026</span>
+              <span class="aj-sub">1 unit · Tirta Karya · 19 Jun 2026</span>
+              <span class="jejak jejak-batal" role="img" aria-label="Tahap dibatalkan"><span class="jejak-titik" data-tahap="Diajukan"></span><span class="jejak-titik" data-tahap="Diverifikasi"></span><span class="jejak-titik" data-tahap="Dijadwalkan"></span><span class="jejak-titik" data-tahap="Terpasang"></span><span class="jejak-titik" data-tahap="Terukur"></span></span>
             </span>
             <span class="aj-kanan">
-              <span class="aj-biaya tnum">Rp310.000</span>
+              <span class="aj-biaya ukur">Rp310.000</span>
               <span class="pil pil-waspada">Batal</span>
               <i class="bx bx-chevron-down aj-panah"></i>
             </span>
           </button>
           <div class="aj-isi" hidden>
+            <div class="aj-isi-kisi">
             <ol class="lini">
             <li class="selesai">
               <div class="lini-atas"><span class="lini-judul">Diajukan</span><span class="lini-tanggal">19 Jun 2026</span></div>
@@ -323,6 +355,8 @@
               <p>Dibatalkan pemilik rumah, menunggu penggantian pompa lebih dulu.</p>
             </li>
             </ol>
+            <div class="aj-samping"></div>
+            </div>
             <a class="btn btn-garis btn-kecil" href="detail-layanan.html?id=timer-pompa">Lihat layanan ini</a>
           </div>
         </article>

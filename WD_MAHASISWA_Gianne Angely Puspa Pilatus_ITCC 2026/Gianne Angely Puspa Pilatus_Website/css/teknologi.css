@@ -85,3 +85,33 @@
   .cerita-langkah li { opacity: 1 !important; }
   .alur { stroke-dashoffset: 0 !important; animation: none !important; }
 }
+
+/* ---------- Keping data di tiap langkah ---------- */
+.keping { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); margin-top: var(--s5); }
+.keping .sel-angka { font-size: 1.45rem; }
+.keping .alat-unit { font-size: var(--fs-xs); }
+.langkah-foto { margin-top: var(--s5); }
+.langkah-foto img { aspect-ratio: 16 / 10; object-fit: cover; }
+.langkah-foto figcaption { font-size: var(--fs-xs); color: var(--ink-3); line-height: 1.5; padding: var(--s3) 2px 2px; }
+
+/* ---------- Matriks siapa melihat apa ---------- */
+.aman-tabel { background: transparent; border-color: #2c3b36; }
+.aman-tabel .tabel thead th { background: #1b2a26; color: #9aa8a2; }
+.aman-tabel .tabel th, .aman-tabel .tabel td { border-bottom-color: #2c3b36; color: #c3ccc8; }
+.aman-tabel .tabel tbody tr:hover { background: #1b2a26; }
+.aman-tabel .tabel tbody th { color: var(--paper); font-weight: 600; }
+.izin { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-xs); }
+.izin::before { content: ''; width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.izin.ya::before { background: var(--hemat); }
+.izin.sebagian::before { background: var(--listrik); }
+.izin.tidak::before { background: #46534e; }
+.izin.tidak { color: #7d8b85; }
+.gelap .gr-keterangan { color: #7d8b85; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .keping { grid-template-columns: 1fr; gap: var(--s4); }
+}

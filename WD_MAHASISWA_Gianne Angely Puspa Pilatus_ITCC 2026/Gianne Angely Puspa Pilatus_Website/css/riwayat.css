@@ -47,3 +47,48 @@
   .aj-kepala { flex-direction: column; align-items: flex-start; gap: var(--s3); }
   .aj-kanan { width: 100%; justify-content: space-between; gap: var(--s3); }
 }
+
+/* ---------- Jejak lima tahap ----------
+   Muncul di tiap baris pengajuan supaya alur lintas pihak terbaca
+   tanpa barisnya perlu dibuka dulu. */
+.jejak { display: flex; align-items: center; gap: 0; margin-top: 9px; max-width: 260px; }
+.jejak-titik {
+  width: 9px; height: 9px; border-radius: 50%; flex: none;
+  background: var(--surface); border: 1.5px solid var(--line);
+  position: relative;
+}
+.jejak-titik + .jejak-titik { margin-left: 34px; }
+.jejak-titik + .jejak-titik::before {
+  content: ''; position: absolute; right: 9px; top: 50%; transform: translateY(-50%);
+  width: 34px; height: 1.5px; background: var(--line);
+}
+.jejak-titik.lewat { background: var(--hemat); border-color: var(--hemat); }
+.jejak-titik.lewat + .jejak-titik.lewat::before { background: var(--hemat); }
+.jejak-batal .jejak-titik.lewat { background: var(--waspada); border-color: var(--waspada); }
+
+/* ---------- Isi baris yang dibuka ---------- */
+.aj-isi-kisi { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s6); align-items: start; }
+.aj-samping { display: grid; gap: var(--s5); }
+.aj-bukti img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0; display: block; }
+.aj-bukti figcaption { font-size: var(--fs-xs); color: var(--ink-3); margin-top: var(--s2); line-height: 1.5; }
+.ukur-hasil { border-left: 3px solid var(--hemat); padding-left: var(--s4); }
+.ukur-batang { height: 8px; background: var(--line-2); border-radius: 999px; overflow: hidden; margin: 7px 0 6px; }
+.ukur-batang i { display: block; height: 100%; background: var(--hemat); border-radius: 999px; }
+.ukur-kaki { display: block; font-size: 1.15rem; color: var(--hemat); }
+
+/* ---------- Sebaran tahap ---------- */
+.sebaran { display: flex; gap: 2px; height: 10px; margin: var(--s3) 0 var(--s3); }
+.sebaran-bagian { display: block; border-radius: 2px; }
+.sb-terpasang { background: var(--hemat); }
+.sb-jadwal { background: var(--listrik); }
+.sb-ajukan { background: var(--ink-3); }
+.sb-batal { background: var(--waspada); }
+.sebaran-kunci { display: grid; gap: 3px; }
+.sebaran-kunci li { display: flex; align-items: center; gap: 7px; font-size: var(--fs-xs); color: var(--ink-3); }
+.sebaran-kunci i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+
+@media (max-width: 900px) {
+  .aj-isi-kisi { grid-template-columns: 1fr; }
+  .jejak-titik + .jejak-titik { margin-left: 26px; }
+  .jejak-titik + .jejak-titik::before { right: 9px; width: 26px; }
+}

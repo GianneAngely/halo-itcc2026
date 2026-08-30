@@ -149,6 +149,7 @@
             dan menghitung debit lewat pantulan gelombang, jadi pipanya tidak perlu dipotong.
           </p>
           <p class="cerita-catatan">Inilah bagian yang disebut IoT: alat fisik yang punya alamat sendiri di jaringan.</p>
+                  <div class="keping"><span class="sel sel-listrik"><span class="satuan sel-satuan">Penjepit arus</span><span class="sel-angka">±1,5<span class="alat-unit">%</span></span></span><span class="sel sel-air"><span class="satuan sel-satuan">Sensor air</span><span class="sel-angka">±2<span class="alat-unit">%</span></span></span></div><figure class="bingkai langkah-foto"><img src="../assets/img/teknisi-lapangan.jpg" width="1200" height="750" alt="Teknisi memasang alat pada panel di lapangan" loading="lazy"><figcaption><span class="gbr">GBR 01</span>Pemasangan tidak memutus instalasi rumah.</figcaption></figure>
         </li>
         <li data-sorot="dKirim">
           <span class="cerita-nomor">02</span>
@@ -159,6 +160,7 @@
             menjadi lebih dari tiga ratus ribu pembacaan setiap hari.
           </p>
           <p class="cerita-catatan">Kalau jaringan putus, sensor menyimpan data sementara dan mengirimnya menyusul.</p>
+                  <div class="keping"><span class="sel sel-listrik"><span class="satuan sel-satuan">Tiap rumah</span><span class="sel-angka">96<span class="alat-unit">baca/hari</span></span></span><span class="sel sel-air"><span class="satuan sel-satuan">Seluruh jaringan</span><span class="sel-angka">376<span class="alat-unit">ribu/hari</span></span></span></div>
         </li>
         <li data-sorot="dAi">
           <span class="cerita-nomor">03</span>
@@ -169,6 +171,7 @@
             karena yang dicari adalah <em>penyimpangan dari kebiasaannya sendiri</em>.
           </p>
           <p class="cerita-catatan">Itu sebabnya peringatan HALO menyebut angka dan rentang jamnya, bukan sekadar “pemakaian tinggi”.</p>
+                  <div class="keping"><span class="sel sel-listrik"><span class="satuan sel-satuan">Riwayat dipelajari</span><span class="sel-angka">3<span class="alat-unit">bulan</span></span></span><span class="sel sel-hemat"><span class="satuan sel-satuan">Meleset rata-rata</span><span class="sel-angka">3,4<span class="alat-unit">%</span></span></span></div>
         </li>
         <li data-sorot="dData">
           <span class="cerita-nomor">04</span>
@@ -179,6 +182,7 @@
             dengan rumah empat orang, bukan dengan seluruh kawasan.
           </p>
           <p class="cerita-catatan">Perbandingan ini juga yang dipakai pengelola kawasan untuk memilih wilayah prioritas.</p>
+                  <div class="keping"><span class="sel sel-air"><span class="satuan sel-satuan">Rumah dibandingkan</span><span class="sel-angka">2.337</span></span><span class="sel sel-air"><span class="satuan sel-satuan">Kelurahan</span><span class="sel-angka">8</span></span></div>
         </li>
         <li data-sorot="dBalik">
           <span class="cerita-nomor">05</span>
@@ -189,6 +193,7 @@
             masalahnya. Setelah perbaikan dikerjakan, sensor yang sama mengukur selisihnya.
           </p>
           <p class="cerita-catatan">Lingkarannya tertutup di sini: yang mengukur hasil adalah alat yang menemukan masalahnya.</p>
+                  <div class="keping"><span class="sel sel-hemat"><span class="satuan sel-satuan">Contoh selisih terukur</span><span class="sel-angka">38<span class="alat-unit">→ 4 L/jam</span></span></span><span class="sel sel-hemat"><span class="satuan sel-satuan">Waktu tempuh</span><span class="sel-angka">4<span class="alat-unit">hari</span></span></span></div><figure class="bingkai langkah-foto"><img src="../assets/img/pipa-air.jpg" width="1000" height="625" alt="Sambungan pipa air yang menjadi titik kebocoran" loading="lazy"><figcaption><span class="gbr">GBR 02</span>Sensor yang menemukan masalahnya juga yang mengukur hasilnya.</figcaption></figure>
         </li>
       </ol>
     </div>
@@ -246,12 +251,52 @@
           data mentah tidak pernah keluar dari akun pemiliknya.
         </p>
       </div>
-      <ul class="aman-kisi" data-urut>
-        <li><h3>Yang dilihat pengelola kawasan</h3><p>Hanya angka gabungan per kelurahan dan daftar pengajuan yang masuk. Tidak ada pemakaian per jam milik rumah tertentu.</p></li>
-        <li><h3>Yang dilihat teknisi</h3><p>Hanya alamat, jenis pekerjaan, dan temuan sensor yang menjadi dasar pengajuan. Riwayat pemakaian tidak ikut dibuka.</p></li>
-        <li><h3>Yang dipakai untuk pembanding</h3><p>Data dilucuti identitasnya lalu digabung dalam kelompok. Satu kelompok baru dipakai kalau isinya sedikitnya tiga puluh rumah.</p></li>
-        <li><h3>Yang bisa dihapus pemilik</h3><p>Pemilik akun bisa menghapus seluruh riwayatnya kapan saja. Sensor berhenti mengirim begitu ditandai nonaktif.</p></li>
-      </ul>
+      <div class="tabel-bungkus aman-tabel">
+        <table class="tabel">
+          <caption class="visually-hidden">Siapa boleh melihat data apa</caption>
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Pemilik rumah</th>
+              <th scope="col">Pengelola kawasan</th>
+              <th scope="col">Teknisi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Pemakaian per jam</th>
+              <td><span class="izin ya">Penuh</span></td>
+              <td><span class="izin tidak">Tidak</span></td>
+              <td><span class="izin tidak">Tidak</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Alamat rumah</th>
+              <td><span class="izin ya">Penuh</span></td>
+              <td><span class="izin sebagian">Kelurahan saja</span></td>
+              <td><span class="izin sebagian">Saat ditugaskan</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Temuan sensor pada satu pengajuan</th>
+              <td><span class="izin ya">Penuh</span></td>
+              <td><span class="izin ya">Penuh</span></td>
+              <td><span class="izin ya">Penuh</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Agregat kelurahan</th>
+              <td><span class="izin sebagian">Peringkat saja</span></td>
+              <td><span class="izin ya">Penuh</span></td>
+              <td><span class="izin tidak">Tidak</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Data pembanding antar rumah</th>
+              <td><span class="izin sebagian">Tanpa identitas</span></td>
+              <td><span class="izin sebagian">Tanpa identitas</span></td>
+              <td><span class="izin tidak">Tidak</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="gr-keterangan">Kelompok pembanding baru dipakai kalau isinya sedikitnya tiga puluh rumah. Pemilik akun bisa menghapus seluruh riwayatnya kapan saja.</p>
     </div>
   </section>
 

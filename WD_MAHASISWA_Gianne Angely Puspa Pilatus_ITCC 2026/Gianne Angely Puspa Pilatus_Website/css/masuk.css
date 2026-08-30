@@ -20,10 +20,6 @@
 .masuk-kiri-isi { position: relative; z-index: 1; max-width: 420px; color: var(--paper); }
 .masuk-kiri-isi h2 { color: var(--paper); margin-bottom: var(--s6); }
 .masuk-guna { display: grid; gap: var(--s5); }
-.masuk-guna li { display: flex; gap: var(--s4); }
-.masuk-guna i { font-size: 1.35rem; color: var(--listrik); flex: none; margin-top: 2px; }
-.masuk-guna strong { display: block; font-size: var(--fs-sm); color: var(--paper); margin-bottom: 2px; }
-.masuk-guna span { font-size: var(--fs-sm); color: #a9b5b0; }
 
 /* ---------- Panel kanan: formulir ---------- */
 .masuk-kanan {
@@ -89,7 +85,7 @@
   .masuk-kiri { position: static; height: auto; padding: var(--s7) var(--s5); }
   .masuk-kanan { min-height: 0; padding-block: var(--s7); }
   .masuk-kiri-isi h2 { font-size: 1.4rem; margin-bottom: var(--s5); }
-  .masuk-guna { gap: var(--s4); }
+  .masuk-guna { display: grid; gap: var(--s5); }
 }
 @media (max-width: 420px) {
   .pilihan-kisi { grid-template-columns: 1fr; }
@@ -107,3 +103,10 @@
 .masuk-kiri-isi .plat { border-top-color: var(--paper); }
 .masuk-kiri-isi .plat-nama { color: var(--paper); }
 .masuk-kiri-isi .plat-arti { color: #9aa8a2; }
+
+/* Sel pembacaan di panel kiri memakai warna terang karena latarnya gelap */
+.masuk-guna .sel { border-left-width: 3px; padding-left: var(--s4); }
+.masuk-guna .sel-satuan { color: #8f9c97; }
+.masuk-guna .sel-angka { color: var(--paper); font-size: 1.75rem; }
+.masuk-guna .alat-unit { color: #9aa8a2; }
+.masuk-guna .sel-kaki { color: #9aa8a2; }

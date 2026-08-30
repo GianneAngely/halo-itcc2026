@@ -23,6 +23,21 @@ document.addEventListener('DOMContentLoaded', function () {
       'Halo ' + pengguna.nama.split(' ')[0] + '. Setiap pengajuan berjalan melewati verifikasi pengelola kawasan dan penugasan teknisi sebelum hasilnya diukur ulang oleh sensor yang sama.';
   }
 
+  /* ---------- Jejak lima tahap ----------
+     Bentuknya sama persis dengan yang tertulis di HTML, supaya
+     pengajuan baru tidak terlihat beda dari yang sudah ada. */
+  const TAHAP = ['Diajukan', 'Diverifikasi', 'Dijadwalkan', 'Terpasang', 'Terukur'];
+  const sampaiTahap = { diajukan: 1, diverifikasi: 2, dijadwalkan: 3, terpasang: 4, batal: 0 };
+
+  function jejakTahap(status, terukur) {
+    const capai = terukur ? 5 : (sampaiTahap[status] || 0);
+    const batal = status === 'batal';
+    return '<span class="jejak' + (batal ? ' jejak-batal' : '') + '" role="img" aria-label="Tahap ' +
+      (batal ? 'dibatalkan' : capai + ' dari 5') + '">' +
+      TAHAP.map((t, i) => '<span class="jejak-titik' + (i < capai ? ' lewat' : '') + '" data-tahap="' + t + '"></span>').join('') +
+      '</span>';
+  }
+
   /* ---------- Sisipkan pengajuan buatan pengguna ---------- */
   Sesi.ajuan().forEach(a => {
     const l = HALO.layanan.find(x => x.id === a.layanan);
@@ -35,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
       '<button class="aj-kepala" aria-expanded="false">' +
         '<span class="aj-kiri"><span class="aj-kode tnum">' + a.id + '</span>' +
         '<span class="aj-nama">' + l.nama + '</span>' +
-        '<span class="aj-sub">' + a.unit + ' ' + l.satuan + ' · ' + l.penyedia + ' · diajukan ' + F.tanggal(a.tanggal) + '</span></span>' +
+        '<span class="aj-sub">' + a.unit + ' ' + l.satuan + ' · ' + l.penyedia + ' · ' + F.tanggal(a.tanggal) + '</span>' +
+        jejakTahap(a.status, a.hematTerukur) + '</span>' +
         '<span class="aj-kanan"><span class="aj-biaya tnum">' + F.rupiah(a.biaya) + '</span>' +
         '<span class="pil ' + pilStatus[a.status] + '">' + namaStatus[a.status] + '</span>' +
         '<i class="bx bx-chevron-down aj-panah"></i></span>' +
@@ -102,6 +118,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const s = b.dataset.status;
     b.querySelector('.jumlah').textContent = s === 'semua' ? semua.length : hitungStatus(s);
   });
+
+  /* ---------- Sebaran tahap ikut menyesuaikan jumlah sebenarnya ---------- */
+  const kotakSebaran = document.getElementById('sebaranTahap');
+  if (kotakSebaran) {
+    const kelas = { terpasang: 'sb-terpasang', dijadwalkan: 'sb-jadwal', diajukan: 'sb-ajukan', diverifikasi: 'sb-ajukan', batal: 'sb-batal' };
+    const nama  = { terpasang: 'terpasang', dijadwalkan: 'dijadwalkan', diajukan: 'diajukan', diverifikasi: 'diverifikasi', batal: 'batal' };
+    const hitung = {};
+    semua.forEach(a => { hitung[a.dataset.status] = (hitung[a.dataset.status] || 0) + 1; });
+    const urut = ['terpasang', 'dijadwalkan', 'diverifikasi', 'diajukan', 'batal'].filter(k => hitung[k]);
+    kotakSebaran.innerHTML = urut.map(k =>
+      '<span class="sebaran-bagian ' + kelas[k] + '" style="flex:' + hitung[k] + '" title="' + hitung[k] + ' ' + nama[k] + '"></span>').join('');
+    const kunci = kotakSebaran.parentElement.querySelector('.sebaran-kunci');
+    if (kunci) kunci.innerHTML = urut.map(k =>
+      '<li><i class="' + kelas[k] + '"></i>' + hitung[k] + ' ' + nama[k] + '</li>').join('');
+  }
 
   /* ---------- Grafik penghematan yang menumpuk ---------- */
   const wadah = document.getElementById('grafikHemat');

@@ -326,6 +326,7 @@ Jujur saja kalau ditanya kekurangan — juri menghargai peserta yang tahu batas
 karyanya:
 
 - Belum ada halaman laporan dampak yang bisa dicetak sebagai berkas
-- Peta kawasan berupa blok geometris, bukan bentuk wilayah sebenarnya
+- Petak kawasan sengaja bukan peta: letak dan ketetanggaan antar petak tidak
+  membawa arti apa pun, yang membawa data hanya luas dan warnanya
 - Model prediksi hanya rata-rata berbobot, bukan model musiman
 - Belum diuji dengan pembaca layar secara menyeluruh

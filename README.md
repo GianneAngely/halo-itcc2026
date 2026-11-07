@@ -1,16 +1,17 @@
 # HALO — Hemat Air dan Listrik Otomatis
 
-Ekosistem pemantauan **listrik dan air rumah tangga**, dibuat untuk Lomba Web Design
+Ekosistem pemantauan **listrik dan air rumah tangga**. Karya untuk Lomba Web Design
 ITCC 2026 kategori mahasiswa (perorangan), HMTI Universitas Udayana.
-
-**Peserta:** Gianne Angely Puspa Pilatus — Teknik Informatika, Universitas Dhyana Pura
-**Tema lomba:** *Synergizing Intelligence: Developing Integrated Web Ecosystems for Sustainable Global Impact*
 
 🏆 **Peringkat 1 Babak Penyisihan** · **Finalis 10 Besar Nasional**
 
 🔗 **[halo-itcc2026.vercel.app](https://halo-itcc2026.vercel.app)**
 
-`8 halaman` · `HTML/CSS/JS murni` · `tanpa framework` · `tanpa library grafik` · `nol permintaan internet`
+| | |
+|---|---|
+| **Pembuat** | Gianne Angely Puspa Pilatus — Teknik Informatika, Universitas Dhyana Pura |
+| **Tema lomba** | *Synergizing Intelligence: Developing Integrated Web Ecosystems for Sustainable Global Impact* |
+| **Teknologi** | HTML, CSS, JavaScript murni · tanpa framework · tanpa library grafik · jalan tanpa internet |
 
 ![Beranda HALO](docs/img/beranda-hero.png)
 
@@ -158,11 +159,12 @@ Typed.js, dan GSAP sengaja ditinggalkan karena tidak ada yang perlu mereka kerja
 
 ## Menjalankan di komputer sendiri
 
-Klik dua kali `index.html` di dalam folder `Gianne Angely Puspa Pilatus_Website` sudah cukup.
-Tapi supaya fitur daftar dan masuk berjalan penuh di semua peramban, jalankan server lokal:
+Klik dua kali `index.html` di dalam folder website sudah cukup. Tapi supaya fitur daftar
+dan masuk berjalan penuh di semua peramban, jalankan server lokal dari akar repositori:
 
 ```bash
-cd "Gianne Angely Puspa Pilatus_Website" && python3 -m http.server 8000
+cd "WD_MAHASISWA_Gianne Angely Puspa Pilatus_ITCC 2026/Gianne Angely Puspa Pilatus_Website"
+python3 -m http.server 8000
 ```
 
 Lalu buka `http://localhost:8000`.
@@ -189,8 +191,9 @@ peran lain melihat tanpa tombol.
 HALO-ITCC2026/
 ├── README.md
 ├── CATATAN-DESAIN.md               Alasan tiap keputusan desain
-├── vercel.json                     Konfigurasi pratinjau
+├── vercel.json                     Konfigurasi deploy Vercel
 ├── docs/img/                       Gambar untuk README ini
+├── latihan-final/                  Naskah dan deck latihan presentasi final
 └── WD_MAHASISWA_Gianne Angely Puspa Pilatus_ITCC 2026/     ← yang dikumpulkan
     ├── Gianne Angely Puspa Pilatus_Website/
     │   ├── index.html              Beranda
@@ -205,10 +208,19 @@ HALO-ITCC2026/
 
 ## Berkas lain
 
-- [CATATAN-DESAIN.md](CATATAN-DESAIN.md) — alasan tiap keputusan desain, cara kerja grafik,
-  dan bahan persiapan untuk babak final.
+- [CATATAN-DESAIN.md](CATATAN-DESAIN.md) — alasan tiap keputusan desain dan cara kerja grafik.
+- [latihan-final/peta-kode.md](latihan-final/peta-kode.md) — peta sebelas berkas JavaScript
+  dan penjelasan bagian kode yang paling penting.
+
+## Kredit
+
+- **Huruf** — IBM Plex Sans dan IBM Plex Serif, lisensi SIL Open Font License
+- **Ikon** — Boxicons 2.1.4
+- **Foto** — Pexels
+- **Logo, ilustrasi, diagram, dan semua grafik** — digambar sendiri sebagai SVG
 
 ---
 
-Data di situs ini simulasi. Pada sistem sungguhan angka-angkanya datang dari sensor IoT yang
+Data di situs ini simulasi, termasuk keluaran lapisan AI-nya. Lomba melarang backend, jadi
+semuanya berjalan di peramban. Pada sistem sungguhan angka-angkanya datang dari sensor IoT yang
 terpasang di meteran listrik dan air.

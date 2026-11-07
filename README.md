@@ -6,6 +6,8 @@ ITCC 2026 kategori mahasiswa (perorangan), HMTI Universitas Udayana.
 **Peserta:** Gianne Angely Puspa Pilatus — Teknik Informatika, Universitas Dhyana Pura
 **Tema lomba:** *Synergizing Intelligence: Developing Integrated Web Ecosystems for Sustainable Global Impact*
 
+🏆 **Peringkat 1 Babak Penyisihan** (nilai 258,3 dari tiga juri) · **Finalis 10 Besar Nasional**
+
 🔗 **[halo-itcc2026.vercel.app](https://halo-itcc2026.vercel.app)**
 
 `8 halaman` · `HTML/CSS/JS murni` · `tanpa framework` · `tanpa library grafik` · `nol permintaan internet`
